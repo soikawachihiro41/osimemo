@@ -24,7 +24,6 @@ class PhotosController < ApplicationController
     end
   end
   
-
   def index
     idol = Idol.find(params[:idol_id])
     @album = idol.albums.find(params[:album_id])
