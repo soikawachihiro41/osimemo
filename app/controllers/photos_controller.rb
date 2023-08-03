@@ -58,7 +58,6 @@ class PhotosController < ApplicationController
     # 指定されたURLにリダイレクト
     redirect_to mypages_url(tab: 'photos'), notice: '写真が正常に削除されました。'
   end
-  
     
   private
 
