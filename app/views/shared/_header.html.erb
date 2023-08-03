@@ -1,9 +1,11 @@
-<div class="flex items-center p-1 md:p-2 w-full h-18 md:h-18 text-yellow-900 font-zenmaru">
-  <div class="flex-1 px-3">
-    <%= link_to "after_login", class: "block absolute top-0 left-0" do %>
-      <%= image_tag '3-1.png', size: '150x40' %>
+<header class="text-yellow-900 container mx-auto flex flex-wrap flex-row items-center justify-between ">
+  <div class="flex items-center">
+    <%= link_to "after_login", class: "top-10 right-0 flex fast" do %>
+      <span class="text-lg" style="color: #C85914;">osiMemories</span>
     <% end %>
   </div>
+
+
 
   <% if logged_in? %>
     <div class="flex justify-end md:hidden flex-wrap mr-12">
@@ -20,12 +22,6 @@
         </label>
       <% end %>
     </div>
-    <%= link_to new_notification_setting_path do %>
-        <label class="btn btn-ghost rounded-btn flex-col font-normal">
-          <i class="fas fa-user text-lg text-yellow-900 mb-1"></i>
-          <div class="text-xs">通知</div>
-        </label>
-    <% end %>
     <div class="flex justify-end hidden md:flex space-x-3">
       <%= link_to mypages_path do %>
         <label class="btn btn-ghost rounded-btn flex-col font-normal">
@@ -51,6 +47,12 @@
           <div class="text-xs">写真登録</div>
         </label>
       <% end %>
+      <%= link_to new_notification_setting_path do %>
+        <label class="btn btn-ghost rounded-btn flex-col font-normal">
+          <i class="fas fa-user text-lg text-yellow-900 mb-1"></i>
+          <div class="text-xs">通知</div>
+        </label>
+      <% end %>
       <%= button_to logout_path, method: :delete, data: { turbo_method: :delete }, class: "w-auto flex-shrink-0" do %>
         <label class="btn btn-ghost rounded-btn flex-col font-normal">
           <i class="fas fa-sign-out-alt text-yellow-900 mb-1"></i>
@@ -71,4 +73,4 @@
       <% end %>
     </div>
   <% end %>
-</div>
+</header>
