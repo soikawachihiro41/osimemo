@@ -1,0 +1,32 @@
+<div class='my-20 max-w-lg mx-auto'>
+  <div>
+    <%= image_tag "Angelina.png", class:'block mx-auto' %>
+  </div>
+
+  <div class="mt-20 mb-10 pt-20">
+    <h1 class="md:text-base text-sm text-yellow-900 my-2 font-zenmaru text-center font-bold"><%= t('.site_description_html') %></h1>
+  </div>
+  <div class='text-sm mb-5 border-dotted border-2 border-yellow-700 rounded-box place-items-center'>
+    <div class='my-10'>
+      <%= image_tag '3.png', class:'block mx-auto' %>
+      <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
+        <p>名前、犬or猫、にくきゅう写真を入れて<br>”診断ボタン”を押すと性格診断の結果が表示されます</p>
+      </div>
+    </div>
+    <div class='my-10'>
+      <%= image_tag '3.png', class:'block mx-auto' %>
+      <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
+        <p>種類、好きなおやつ•おもちゃ、性別、誕生日、写真を入れて<br>18種類の見本から背景を選んで”カードを作る”ボタンを押すと<br>プロフィールカードができます</p>
+      </div>
+    </div>
+    <div class='mt-20 mb-5'>
+      <%= image_tag '3.png', class:'block mx-auto' %>
+      <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
+        <p>ユーザー登録するとマイページから診断結果や作ったカードが見れたり<br>期間限定カードが追加された時、いつでも入力なしで簡単に作れます！！</p>
+      </div>
+    </div>
+  </div>
+  <div class='text-center pt-20'>
+    <%= link_to t('defaults.take_test'), new_user_path, class:'btn btn-primary', data: { turbo: false } %>
+  </div>
+</div>

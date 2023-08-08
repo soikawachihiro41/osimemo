@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    attributes:
+      letter:
+        title: 手紙を送りたい相手の名前
+        body: 手紙の本文
+        sender_name: 自分の名前
+        image: 画像
+        send_date: 手紙を送る日時
+        remove_image: 画像を取り消す
+      template:
+        name: テンプレート名
+        content: テンプレート
+      anniversary:
+        date: Date
+        name: 記念日名
+        description: 説明

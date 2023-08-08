@@ -1,0 +1,65 @@
+<div class="flex items-center p-1 md:p-2 w-full h-18 md:h-20 text-yellow-900 font-zenmaru">
+  <div class="flex-1 px-3">
+    <%= link_to "#" do %>
+      <%= image_tag '3-1.png', size: '200x90' %>
+    <% end %>
+  </div>
+  <% if logged_in? %>
+    <div class="flex justify-end md:hidden">
+      <%= link_to "#" do %>
+        <label class="btn btn-sm btn-ghost items-center rounded-btn">
+          <i class="fas fa-solid fa-book mt-1 text-lg text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 mb-1"></i>
+        </label>
+      <% end %>
+      <%= button_to "#", method: :delete do %>
+        <label class="btn btn-sm btn-ghost items-center rounded-btn">
+          <i class="fas fa-sign-out-alt mt-1 text-lg text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 mb-1"></i>
+        </label>
+      <% end %>
+    </div>
+    <div class="flex justify-end hidden md:flex">
+      <div class="flex items-stretch">
+        <%# Other items... (use the above pattern for each item) %>
+        <%= link_to "#" do %>
+          <label class="btn btn-ghost rounded-btn flex-col font-normal">
+            <i class="fas fa-moon text-lg text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-600 mb-1"></i>
+            <div class="text-xs">願いごと</div>
+          </label>
+        <% end %>
+        <%# Other items... (use the above pattern for each item) %>
+      </div>
+    </div>
+  <% else %>
+    <div class="flex justify-end">
+      <div class="flex items-center">
+        <%= link_to "#", class: "btn btn-sm btn-ghost rounded-btn px-2" do %>
+          ログイン
+        <% end %>
+        <%= link_to "#", class: "btn btn-sm btn-ghost rounded-btn px-2" do %>
+          ガイド
+        <% end %>
+        <%= link_to "#", class: "btn btn-sm btn-ghost rounded-btn px-2" do %>
+          新規登録
+        <% end %>
+        <div class="dropdown dropdown-end menu-compact">
+          <label class="btn btn-sm btn-ghost rounded-btn" tabindex="0">
+            <i class="fas fa-info-circle"></i>
+          </label>
+          <ul class="menu dropdown-content p-2 shadow bg-indigo-50 rounded w-52 mt-4" tabindex="0">
+            <li>
+              <%= link_to "#" do %>
+                利用規約
+              <% end %>
+            </li>
+            <%# Other items... (use the above pattern for each item) %>
+            <li>
+              <%= link_to "#", target: :_blank, rel: 'noopener noreferrer' do %>
+                お問い合わせ
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
