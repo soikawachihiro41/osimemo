@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get 'terms', to: 'home#terms'
   get '/after_login', to: 'home#after_login'
   resource :user, only: %i[new create]
+  resources :mypages, only: %i[index]
+  resources :albums
 end
