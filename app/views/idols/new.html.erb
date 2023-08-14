@@ -1,0 +1,30 @@
+<div class="min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <%= form_with model: @idol, local: true do |form| %>
+      <h1 class="font-custom text-4xl mb-6 text-yellow-900 font-kaisei-decol text-center">
+        <i class="fas fa-star"></i> Osi Sign up <i class="fas fa-heart ml-2"></i>
+      </h1>
+
+      <div class="mb-4">
+        <%= form.label :name, "Name", class: "block text-lg text-rose-600 mb-2" %>
+        <%= form.text_field :name, class: "form-input w-full p-2 border rounded-md custom-focus" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :birth_date, "Birth Date", class: "block text-lg text-rose-600 mb-2" %>
+        <%= form.date_field :birth_date, class: "form-input w-full p-2 border rounded-md custom-focus" %>
+      </div>
+
+      <%= form.fields_for :albums do |album_form| %>
+        <div class="mb-4">
+          <%= album_form.label :name, "アルバム名", class: "block text-lg text-rose-600 mb-2" %>
+          <%= album_form.text_field :name, class: "form-input w-full p-2 border rounded-md custom-focus" %>
+        </div>
+      <% end %>
+
+      <div class="text-center mt-6">
+        <%= form.submit "登録", class: "py-2 px-4 border text-rose-600 border-yellow-900 bg-white hover:bg-yellow-100 rounded" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -5,7 +5,6 @@
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.3.0",
     "autoprefixer": "^10.4.14",
-    "daisyui": "^3.3.1",
     "esbuild": "^0.18.16",
     "postcss": "^8.4.27",
     "tailwindcss": "^3.3.3"
@@ -14,5 +13,8 @@
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   },
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "yarn@1.22.19",
+  "devDependencies": {
+    "daisyui": "^3.5.1"
+  }
 }
