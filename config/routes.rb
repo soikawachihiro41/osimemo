@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/after_login', to: 'home#after_login'
   resource :user, only: %i[new create]
   resources :mypages, only: %i[index]
-  resources :albums
-  resources :idols, only: %i[new create]
+
+  resources :idols, only: %i[new create] do
+    resources :albums, only: %i[new create]
+  end
 end

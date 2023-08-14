@@ -1,0 +1,9 @@
+<%= form_for [@idol, @album] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :cover_image, "アルバムトップ画像" %>
+  <%= f.file_field :cover_image %>
+
+  <%= f.submit %>
+<% end %>

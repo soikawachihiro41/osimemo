@@ -11,16 +11,14 @@
       </div>
 
       <div class="mb-4">
-        <%= form.label :birth_date, "推しのBirth Date", class: "block text-lg text-rose-600 mb-2" %>
+        <%= form.label :birth_date, "推しのBirth Dateを入力してね", class: "block text-lg text-rose-600 mb-2" %>
         <%= form.date_field :birth_date, class: "form-input w-full p-2 border rounded-md custom-focus" %>
       </div>
 
-      <%= form.fields_for :albums do |album_form| %>
-        <div class="mb-4">
-          <%= album_form.label :name, "album名を決めよう", class: "block text-lg text-rose-600 mb-2" %>
-          <%= album_form.text_field :name, class: "form-input w-full p-2 border rounded-md custom-focus" %>
-        </div>
-      <% end %>
+      <div class="mb-4">
+        <%= form.label :is_selected, "LINEbotで通知を受けますか？", class: "block text-lg text-rose-600 mb-2" %>
+        <%= form.select :is_selected, [['Yes', true], ['No', false]], {}, class: "form-select w-full p-2 border rounded-md custom-focus" %>
+      </div>
 
       <div class="text-center mt-6">
         <%= link_to mypages_path, class: "relative inline-block text-lg group" do %>
