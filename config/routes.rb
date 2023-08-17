@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resource :user, only: %i[new create]
   resources :mypages, only: %i[index]
 
-  resources :idols, only: %i[new create] do
-    resources :albums, only: %i[new create]
+  resources :idols, only: %i[new create show] do
+    resources :albums, only: %i[new create index]
   end
 end

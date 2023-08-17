@@ -2,3 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 // application.js
+Turbo.session.drive = false

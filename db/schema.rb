@@ -10,13 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_14_144114) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
+ActiveRecord::Schema[7.0].define(version: 2023_08_14_154038) do
   create_table "albums", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "idol_id", null: false
+    t.integer "user_id", null: false
+    t.integer "idol_id", null: false
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,8 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_144114) do
   end
 
   create_table "birthday_notifications", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "idol_id", null: false
+    t.integer "user_id", null: false
+    t.integer "idol_id", null: false
     t.date "notify_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -36,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_144114) do
   end
 
   create_table "idols", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "name"
     t.date "birth_date"
     t.boolean "is_selected"
@@ -46,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_144114) do
   end
 
   create_table "photo_tags", force: :cascade do |t|
-    t.bigint "photo_id", null: false
-    t.bigint "tag_id", null: false
+    t.integer "photo_id", null: false
+    t.integer "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["photo_id"], name: "index_photo_tags_on_photo_id"
@@ -55,7 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_144114) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.bigint "album_id", null: false
+    t.integer "album_id", null: false
     t.string "image"
     t.datetime "capture_date"
     t.text "body"

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :login_required
   helper_method :logged_in?
+  add_flash_types :success, :info, :warning, :danger
 
   private
 

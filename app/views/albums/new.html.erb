@@ -1,3 +1,33 @@
-<h1><%= @idol.name %>の新しいアルバムを追加</h1>
+<div class="min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <%= form_for [@idol, @album], local: true do |form| %>
+      <h1 class="text-2xl font-bold mb-10 text-center">
+        <%= @idol.name %>の新しいアルバムを追加
+      </h1>
+      <h1 class="font-custom text-4xl mb-6 text-yellow-900 font-kaisei-decol text-center">
+        <i class="fas fa-star"></i> Album Register <i class="fas fa-heart ml-2"></i>
+      </h1>
 
-<%= render 'form', album: @album %>
+      <div class="mb-4">
+        <%= form.label :name, "アルバムの名前を入力してね", class: "block text-lg text-rose-600 mb-2" %>
+        <%= form.text_field :name, class: "form-input w-full p-2 border rounded-md custom-focus" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :cover_image, "アルバムトップ画像", class: "block text-lg text-rose-600 mb-2" %>
+        <%= form.file_field :cover_image, class: "form-input w-full p-2 border rounded-md custom-focus" %>
+      </div>
+
+      <div class="text-center mt-6">
+        <%= form.button class: "relative inline-block text-lg group" do %>
+          <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
+            <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
+            <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
+            <span class="relative">Sign up</span>
+          </span>
+          <span class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

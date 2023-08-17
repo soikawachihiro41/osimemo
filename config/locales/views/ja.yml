@@ -1,17 +1,8 @@
 ja:
-  defaults:
-    app_name: 推しメモリーズ（仮）
-    contact: CONTACT
-    save: 保存する
-    destroy: Destroy
-    back: Back
-    to_writing_page: 手紙を書く
-    to_send_letter_page: 手紙を送る相手を選ぶ
-    message:
-      login_message: 処理中です...お待ちください...
-      logout_confirm: ログアウトしますか?
-      delete_confirm: 削除してもよろしいですか?
-      no_result: nothing...
+  idols:
+    create:
+      success: '推しとアルバムが正常に作成されました。'
+      fail: 'エラーが発生しました。入力内容を確認してください。'
   time:
     formats:
       default: "%Y-%m-%d %H:%M"

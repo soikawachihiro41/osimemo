@@ -2,6 +2,7 @@ class MypagesController < ApplicationController
   def index
     @selected_tab = params[:tab] || 'albums'
     @albums = current_user.albums
+    @idols = current_user.idols
   end
   
   def notifications

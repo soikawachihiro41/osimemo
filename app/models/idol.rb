@@ -1,6 +1,9 @@
 class Idol < ApplicationRecord
   belongs_to :user
   has_many :albums
-  accepts_nested_attributes_for :albums
   has_many :birthday_notifications
+
+  validates :name, presence: true
+  validates :birth_date, presence: true
+  validates :is_selected, inclusion: { in: [true, false] }
 end
