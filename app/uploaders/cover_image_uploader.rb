@@ -22,7 +22,14 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  #process scale: [200, 200]
+  process scale: [800, 800]
+
+  def scale(width, height)
+    manipulate! do |img|
+      img.resize "#{width}x#{height}!"
+      img
+    end
+  end
   #
   # def scale(width, height)
   #   # do something

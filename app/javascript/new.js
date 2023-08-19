@@ -19,7 +19,7 @@ document.addEventListener('turbo:load', () => {
       // bodyにパラメーターの設定
       const body = `idToken=${idToken}`
       // リクエスト内容の定義
-      const request = new Request('/user', {
+      const request = new Request('/sessions', {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
           'X-CSRF-Token': token

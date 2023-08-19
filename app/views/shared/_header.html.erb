@@ -14,7 +14,7 @@
           <div class="text-xs">マイページ</div>
         </label>
       <% end %>
-      <%= button_to "#", method: :delete, class: "w-auto flex-shrink-0" do %>
+      <%= button_to logout_path, method: :delete, data: { turbo_method: :delete }, class: "w-auto flex-shrink-0" do %>
         <label class="btn btn-sm btn-ghost items-center rounded-btn flex-col font-normal">
           <i class="fas fa-sign-out-alt mt-50 text-lg text-yellow-900 mb-1"></i>
           <div class="text-xs">ログアウト</div>
@@ -40,13 +40,13 @@
           <div class="text-xs">アルバム作成</div>
         </label>
       <% end %>
-      <%= link_to "#" do %>
+      <%= link_to new_photo_path do %>
         <label class="btn btn-ghost rounded-btn flex-col font-normal">
           <i class="fas fa-image text-lg text-yellow-900 mb-1"></i>
           <div class="text-xs">写真登録</div>
         </label>
       <% end %>
-      <%= link_to "#" do %>
+      <%= button_to logout_path, method: :delete, data: { turbo_method: :delete }, class: "w-auto flex-shrink-0" do %>
         <label class="btn btn-ghost rounded-btn flex-col font-normal">
           <i class="fas fa-sign-out-alt text-yellow-900 mb-1"></i>
           <div class="text-xs">ログアウト</div>
