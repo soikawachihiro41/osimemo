@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :mypages, only: %i[index]
   resources :photos
   resources :idols, only: %i[new create show] do
-    resources :albums, only: %i[new create index]
+    resources :albums, only: %i[new create index] do
+      resources :photos, only: [:index]
+    end
   end
 end

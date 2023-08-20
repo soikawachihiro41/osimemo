@@ -24,6 +24,8 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
     require("daisyui"),
+
+    // New utility for focus
     function ({ addUtilities }) {
       const newUtilities = {
         '.custom-focus:focus': {
@@ -33,6 +35,18 @@ module.exports = {
       };
       addUtilities(newUtilities, ['responsive', 'hover', 'focus']);
     },
+
+    // New component for .tabs
+    function ({ addComponents }) {
+      const components = {
+        '.tabs': {
+          display: 'flex',  // For horizontal tabs
+          justifyContent: 'center',  // Center the tabs horizontally
+          gap: '1rem'  // Space between tabs
+        },
+      };
+      addComponents(components);
+    }
   ],
   daisyui: {
     themes: [

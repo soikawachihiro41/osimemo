@@ -17,7 +17,8 @@ class AlbumsController < ApplicationController
   end
   
   def index
-    @albums = @idol.albums.all
+    @album = Album.find(params[:album_id])
+    @photos = @album.photos
   end
   
   private

@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+
   def new
     @photo = Photo.new
   end
@@ -15,9 +16,15 @@ class PhotosController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def index
+    idol = Idol.find(params[:idol_id])
+    @album = idol.albums.find(params[:album_id])
+    @photos = @album.photos
+  end
   
   private
-  
+
   def photo_params
     params.require(:photo).permit(:image, :body, :album_id, :capture_date)
   end
