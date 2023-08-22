@@ -2,7 +2,10 @@
   <div class="w-full max-w-lg py-8 flex flex-row items-center justify-center mx-auto bg-[#fdeeee] rounded-lg shadow-xl">
     <div class="flex flex-col md:flex-row w-3/4 md:w-5/6 space-y-4 md:space-x-8">
       <div class="w-full md:w-2/5 flex flex-col items-center justify-center">
-        <img class="w-24 h-24" src="<%= album.cover_image %>" alt="album cover"> <!-- Assuming cover_image is a valid attribute for album -->
+        <!-- ここでリンクを設定 -->
+        <%= link_to album_path(album), data: { turbo: "false" } do %>
+          <img class="w-24 h-24" src="<%= album.cover_image.url %>" alt="album cover"> <!-- Assuming cover_image is a CarrierWave or ActiveStorage uploader -->
+        <% end %>
         <div class="flex space-x-2">
           <button>
             <svg class="w-6 h-6 text-gray-400" viewBox="0 0 24 24">
@@ -15,7 +18,7 @@
         </div>
       </div>
       <div class="w-full md:w-3/5 flex flex-col items-center justify-center space-y-4">
-        <!-- ここでリンクを設定 -->
+        <!-- こちらもリンクを設定 -->
         <%= link_to idol_album_photos_path(idol_id: album.idol.id, album_id: album.id), data: { turbo: "false" } do %>
           <div class="text-center md:text-left text-2xl font-bold text-gray-900"><%= album.name %></div>
         <% end %>

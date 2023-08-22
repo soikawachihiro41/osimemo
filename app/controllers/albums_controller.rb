@@ -20,6 +20,31 @@ class AlbumsController < ApplicationController
     @photos = @album.photos
   end
   
+  def show
+    @album = Album.find(params[:id])
+  end
+  
+  def edit
+    @album = Album.find(params[:id])
+  end
+
+  def update
+    @album = Album.find(params[:id])
+    if @album.update(album_params)
+      redirect_to idol_album_path(@album.idol, @album), notice: 'アルバムが更新されました'
+    else
+      render :edit
+    end
+  end
+  
+  def destroy
+    @album = Album.find(params[:id])
+    @album.destroy
+
+    flash[:notice] = "アルバムと関連する写真が削除されました。"
+    redirect_to mypages_path
+  end
+  
   private
 
   def album_params

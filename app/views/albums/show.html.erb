@@ -1,0 +1,35 @@
+<div class="min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    
+    <h1 class="font-custom text-4xl mb-6 text-yellow-900 font-kaisei-decol text-center">
+      <i class="fas fa-star"></i> Album Details <i class="fas fa-heart ml-2"></i>
+    </h1>
+
+    <div class="mb-4">
+      <label class="block text-lg text-rose-600 mb-2">アイドル:</label>
+      <p class="p-2 border rounded-md"><%= @album.idol.name %></p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-lg text-rose-600 mb-2">アルバムの名前:</label>
+      <p class="p-2 border rounded-md"><%= @album.name %></p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-lg text-rose-600 mb-2">アルバムトップ画像:</label>
+      <%= image_tag @album.cover_image.url, class: "w-full h-auto rounded-md" if @album.cover_image.present? %>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-lg text-rose-600 mb-2">写真の枚数:</label>
+      <p class="p-2 border rounded-md"><%= @album.photos.count %>枚</p>
+    </div>
+
+    <div class="text-center mt-6 flex justify-center space-x-4">
+      <%= link_to '編集', edit_album_path(@album), class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded' %>
+      <%= button_to '削除', album_path(@album), method: :delete, data: { turbo_confirm: "アルバムを削除すると、関連する写真もすべて削除されます。本当に削除しますか？" }, form_class: 'inline', class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded' %>
+      <%= link_to '戻る', mypages_path, class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded' %>
+    </div>
+  </div>
+</div>
+

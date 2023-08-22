@@ -16,6 +16,9 @@ module.exports = {
         'zenmaru': ['Zen Maru Gothic', 'serif'],
         'kaisei-decol': ['Kaisei Decol', 'serif'],
       },
+      backgroundColor: { // この部分を追加
+        '5c7b64': '#5c7b64',
+      },
     },
   },
   plugins: [
