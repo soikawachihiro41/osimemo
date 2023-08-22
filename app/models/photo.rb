@@ -6,7 +6,6 @@ class Photo < ApplicationRecord
   attr_accessor :tag_names
 
   validates :image, presence: true
-  validates :body, presence: true
   validates :album_id, presence: true
   validates :capture_date, presence: true
 
