@@ -3,14 +3,12 @@ class IdolsController < ApplicationController
     @idol = Idol.new
     @idol.albums.build
   end
-  
-
-  # app/controllers/idols_controller.rb
 
   def create
     @idol = current_user.idols.build(idol_params)
     if @idol.save
-      redirect_to new_idol_album_path(@idol), success: '推しを正常に登録しました。続いてアルバムを登録してください。'
+      # 成功時のリダイレクト先をmypages_pathへ変更
+      redirect_to mypages_path, success: '推しを正常に登録しました。'
     else
       flash.now[:danger] = 'エラーが発生しました。入力内容を確認してください。'
       render :new, status: :unprocessable_entity
@@ -25,10 +23,10 @@ class IdolsController < ApplicationController
     @idols = Idol.where(user_id: current_user.id)
   end
 
-
   private
 
   def idol_params
     params.require(:idol).permit(:name, :birth_date, :is_selected)
   end
 end
+

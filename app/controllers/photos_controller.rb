@@ -23,9 +23,39 @@ class PhotosController < ApplicationController
     @photos = @album.photos
   end
   
+  def edit
+    @photo = Photo.find(params[:id])
+    @tag_names = @photo.tags.pluck(:tag_names).join(',')
+  end
+  
+  def update
+    @photo = Photo.find(params[:id])
+    tag_list = params[:photo][:tag_names].split(',') if params[:photo][:tag_names].present?
+    if @photo.update(photo_params.except(:tag_names))
+      @photo.save_tags(tag_list)
+      redirect_to mypages_url(tab: 'photos'), notice: '写真が正常に更新されました。'
+    else
+      render :edit
+    end
+  end
+
+  def tag
+    @photos = Photo.joins(:tags).where(tags: { tag_names: params[:tag] })
+    render :index
+  end
+  
+  def destroy
+    @photo = Photo.find(params[:id])
+    @photo.destroy
+  
+    # 指定されたURLにリダイレクト
+    redirect_to mypages_url(tab: 'photos'), notice: '写真が正常に削除されました。'
+  end
+  
+    
   private
 
   def photo_params
-    params.require(:photo).permit(:image, :body, :album_id, :capture_date)
+    params.require(:photo).permit(:image, :body, :album_id, :capture_date, :tag_names)
   end
 end

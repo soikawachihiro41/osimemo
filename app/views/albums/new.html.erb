@@ -1,12 +1,14 @@
 <div class="min-h-screen flex items-center justify-center">
   <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-    <%= form_for [@idol, @album], local: true do |form| %>
-      <h1 class="text-2xl font-bold mb-10 text-center">
-        <%= @idol.name %>の新しいアルバムを追加
-      </h1>
+    <%= form_for @album, local: true do |form| %>
       <h1 class="font-custom text-4xl mb-6 text-yellow-900 font-kaisei-decol text-center">
         <i class="fas fa-star"></i> Album Register <i class="fas fa-heart ml-2"></i>
       </h1>
+
+      <div class="mb-4">
+        <%= form.label :idol_id, "アイドルを選択してね", class: "block text-lg text-rose-600 mb-2" %>
+        <%= form.collection_select :idol_id, Idol.all, :id, :name, {}, class: "form-input w-full p-2 border rounded-md custom-focus" %>
+      </div>
 
       <div class="mb-4">
         <%= form.label :name, "アルバムの名前を入力してね", class: "block text-lg text-rose-600 mb-2" %>

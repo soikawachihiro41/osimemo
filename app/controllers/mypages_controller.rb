@@ -3,7 +3,15 @@ class MypagesController < ApplicationController
     @selected_tab = params[:tab] || 'albums'
     @albums = current_user.albums
     @idols = current_user.idols
+    @photos = Photo.joins(:album).where(albums: { user_id: current_user.id })
   end
+  
+  def tag
+    @photos = Photo.joins(:tags).where(tags: { tag_names: params[:tag] })
+    @selected_tab = 'photos'
+    render :index
+  end
+
   
   def notifications
     render partial: 'mypages/notifications_content'

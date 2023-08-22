@@ -16,8 +16,11 @@ class Photo < ApplicationRecord
     new_tags = sent_tags - current_tags
     
     old_tags.each do |old|
-      self.post_tags.delete Tag.find_by(tag_names: old)
+      tag = Tag.find_by(tag_names: old)
+      photo_tag = self.photo_tags.find_by(tag_id: tag.id)
+      photo_tag&.destroy
     end
+    
 
     new_tags.each do |new|
       tag = Tag.find_or_create_by(tag_names: new)
