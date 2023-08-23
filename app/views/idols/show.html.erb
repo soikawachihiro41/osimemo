@@ -1,3 +1,31 @@
-<h1><%= @idol.name %></h1>
-<p>誕生日: <%= @idol.birth_date %></p>
-<p>選択されましたか？: <%= @idol.is_selected ? 'はい' : 'いいえ' %></p>
+<div class="min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+
+    <h1 class="font-custom text-4xl mb-6 text-yellow-900 font-kaisei-decol text-center">
+      <i class="fas fa-star"></i> <%= @idol.name %> Details <i class="fas fa-heart ml-2"></i>
+    </h1>
+
+    <div class="mb-4">
+      <h2 class="block text-lg text-rose-600 mb-2">推しの名前:</h2>
+      <p class="p-2 border rounded-md bg-gray-100"><%= @idol.name %></p>
+    </div>
+
+    <div class="mb-4">
+      <h2 class="block text-lg text-rose-600 mb-2">推しのBirth Date:</h2>
+      <p class="p-2 border rounded-md bg-gray-100"><%= @idol.birth_date&.strftime('%Y年%m月%d日') || '未登録' %></p>
+    </div>
+
+    <div class="mb-4">
+      <h2 class="block text-lg text-rose-600 mb-2">LINEbotで通知を受けますか？</h2>
+      <p class="p-2 border rounded-md bg-gray-100"><%= @idol.is_selected ? 'Yes' : 'No' %></p>
+    </div>
+
+    <div class="text-center mt-6">
+      <%= link_to '編集', edit_idol_path(@idol), class: "btn btn-primary mr-4" %>
+      <%= link_to '削除', idol_path(@idol), method: :delete, data: { confirm: '本当に削除してもよろしいですか？' }, class: "btn btn-danger" %>
+      <div class="mt-4">
+        <%= link_to '戻る', idols_path, class: "btn btn-secondary" %> <!-- Back button -->
+      </div>
+    </div>
+  </div>
+</div>

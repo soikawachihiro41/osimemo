@@ -23,6 +23,27 @@ class IdolsController < ApplicationController
     @idols = Idol.where(user_id: current_user.id)
   end
 
+  def edit
+    @idol = Idol.find(params[:id])
+  end
+
+  def update
+    @idol = Idol.find(params[:id])
+    if @idol.update(idol_params)
+      redirect_to idol_path(@idol), success: '推しの情報を正常に更新しました。'
+    else
+      flash.now[:danger] = 'エラーが発生しました。入力内容を確認してください。'
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @idol = Idol.find(params[:id])
+    @idol.destroy
+    redirect_to mypages_path, success: '推しを正常に削除しました。'
+  end
+  
+
   private
 
   def idol_params

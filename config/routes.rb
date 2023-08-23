@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :mypages, only: %i[index]
   resources :photos, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :albums, only: [:new, :create, :index, :edit, :update, :destroy, :show]
-  resources :idols, only: %i[new create show] do
+  resources :idols, only: %i[new create show edit update destroy] do
     resources :albums, only: [:show] do
       resources :photos
     end
