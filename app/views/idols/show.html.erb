@@ -22,8 +22,10 @@
 
     <div class="text-center mt-6 flex justify-center space-x-4">
       <%= link_to '編集', edit_idol_path(@idol), class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded' %>
-      <%= button_to '削除', idol_path(@idol), method: :delete %>
-      <%= link_to '戻る', mypages_path, class: "btn btn-secondary" %> <!-- Back button -->
+      <%= button_to idol_path(@idol), method: :delete, data: { turbo_confirm: "推しを削除すると、関連するアルバムもすべて削除されます。本当に削除しますか？" }, form_class: 'inline' do %>
+        <i class="btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded">削除</i>
+      <% end %>
+      <%= link_to '戻る', mypages_path, class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded' %>
     </div>
   </div>
 </div>

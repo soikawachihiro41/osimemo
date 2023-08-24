@@ -39,16 +39,9 @@ class IdolsController < ApplicationController
 
   def destroy
     @idol = Idol.find(params[:id])
-    
-    # 関連するAlbumのidol_idをNULLに設定
-    @idol.albums.each do |album|
-      album.update(idol_id: nil)
-    end
-  
     @idol.destroy
     redirect_to mypages_path, success: '推しを正常に削除しました。'
   end
-  
   
 
   private
