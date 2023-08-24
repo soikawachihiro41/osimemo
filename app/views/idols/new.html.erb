@@ -20,6 +20,10 @@
         <%= form.select :is_selected, [['Yes', true], ['No', false]], {}, class: "form-select w-full p-2 border rounded-md custom-focus" %>
       </div>
 
+      <div class="mb-4">
+        <%= form.label :preferred_time, "好きな時間帯を選択してください", class: "block text-lg text-rose-600 mb-2" %>
+        <%= form.select :preferred_time, [['未明', '未明'], ['明け方', '明け方'], ['朝', '朝'], ['昼前', '昼前'], ['昼過ぎ', '昼過ぎ'],['夕方', '夕方'], ['夜のはじめ頃', '夜のはじめ頃'], ['夜遅く', '夜遅く']], {}, class: "form-select w-full p-2 border rounded-md custom-focus" %>
+      </div>
       <div class="text-center mt-6">
         <%= form.button class: "relative inline-block text-lg group" do %>
           <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">

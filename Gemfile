@@ -56,6 +56,10 @@ gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'gon'
 
+#バックグラウンド
+gem 'sidekiq'
+gem 'whenever', require: false
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 gem 'tailwindcss-rails'

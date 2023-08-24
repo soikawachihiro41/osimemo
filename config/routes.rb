@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/callback', to: 'line_bot#callback'
   root 'home#top'
   get 'terms', to: 'home#terms'
   get '/after_login', to: 'home#after_login'
