@@ -20,12 +20,10 @@
       <p class="p-2 border rounded-md bg-gray-100"><%= @idol.is_selected ? 'Yes' : 'No' %></p>
     </div>
 
-    <div class="text-center mt-6">
-      <%= link_to '編集', edit_idol_path(@idol), class: "btn btn-primary mr-4" %>
-      <%= link_to '削除', idol_path(@idol), method: :delete, data: { confirm: '本当に削除してもよろしいですか？' }, class: "btn btn-danger" %>
-      <div class="mt-4">
-        <%= link_to '戻る', idols_path, class: "btn btn-secondary" %> <!-- Back button -->
-      </div>
+    <div class="text-center mt-6 flex justify-center space-x-4">
+      <%= link_to '編集', edit_idol_path(@idol), class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded' %>
+      <%= button_to '削除', idol_path(@idol), method: :delete %>
+      <%= link_to '戻る', mypages_path, class: "btn btn-secondary" %> <!-- Back button -->
     </div>
   </div>
 </div>

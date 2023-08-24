@@ -8,7 +8,6 @@
               <i class="far fa-calendar-alt mr-1"></i>
               <%= l(photo.capture_date, format: :short) if photo.capture_date.present? %>
             </div>
-
             <div class="flex flex-wrap space-x-2 mb-2">
               <% photo.tags.each do |tag| %>
                 <%= link_to mypage_tag_path(tag.tag_names), class: "hover:rotate-90 transform transition-transform duration-500" do %>

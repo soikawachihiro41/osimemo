@@ -1,6 +1,6 @@
 class Idol < ApplicationRecord
   belongs_to :user
-  has_many :albums
+  has_many :albums, dependent: :nullify
   has_many :birthday_notifications
 
   validates :name, presence: true

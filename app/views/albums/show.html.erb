@@ -27,7 +27,9 @@
 
     <div class="text-center mt-6 flex justify-center space-x-4">
       <%= link_to '編集', edit_album_path(@album), class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded' %>
-      <%= button_to '削除', album_path(@album), method: :delete, data: { turbo_confirm: "アルバムを削除すると、関連する写真もすべて削除されます。本当に削除しますか？" }, form_class: 'inline', class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded' %>
+      <%= button_to album_path(@album), method: :delete, data: { turbo_confirm: "アルバムを削除すると、関連する写真もすべて削除されます。本当に削除しますか？" }, form_class: 'inline' do %>
+        <i class="btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded">削除</i>
+      <% end %>
       <%= link_to '戻る', mypages_path, class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded' %>
     </div>
   </div>
