@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'mypages/tag/:tag', to: 'mypages#tag', as: 'mypage_tag'
   resources :sessions, only: [:new, :create]
   delete '/logout', to: 'sessions#destroy', as: 'logout'
+  resources :notification_settings, only: [:new, :create]
   resources :mypages, only: %i[index]
   resources :photos, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :albums, only: [:new, :create, :index, :edit, :update, :destroy, :show]

@@ -51,6 +51,8 @@ gem 'line-bot-api'
 gem 'mini_magick'
 # ファイルのアップロード機能
 gem 'carrierwave'
+# AWS S3
+gem 'fog-aws'
 
 # 環境変数を管理する
 gem 'dotenv-rails'

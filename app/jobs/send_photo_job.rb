@@ -1,29 +1,27 @@
-# app/jobs/send_photo_job.rb
 class SendPhotoJob < ApplicationJob
   queue_as :default
 
   def perform(time_period)
-    users = User.where(preferred_time: time_period)
+    # ユーザーの設定（notification_settings）に基づいて
+    # どのユーザーに写真を送るかを判定
+    users = User.joins(:notification_settings)
+                .where(notification_settings: { time_period: time_period })
 
     users.each do |user|
-      photo = Photo.order("RANDOM()").first  # ランダムな写真を選ぶロジック
-      user_id = user.line_user_id # ユーザーがLINEで使っているID
+      idol = user.idols.where(is_selected: true).first
+      photo = idol.photos.order("RANDOM()").first if idol
       
-      # LINE APIクライアントの設定
+      # LINE APIで写真を送る（以下は例として、具体的な実装はプロジェクトに応じて）
       client = Line::Bot::Client.new { |config|
         config.channel_secret = ENV["LINE_CHANNEL_SECRET_bot"]
         config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
       }
-
-      # 画像を送信するためのメッセージオブジェクト
       message = {
         type: 'image',
-        originalContentUrl: photo.url, # 画像のURL
-        previewImageUrl: photo.preview_url # 画像のプレビューURL
+        originalContentUrl: photo.image_url,
+        previewImageUrl: photo.image_url
       }
-
-      # LINE APIを使って写真を送る
-      client.push_message(user_id, message)
+      client.push_message(user.line_id, message)
     end
   end
 end

@@ -1,0 +1,7 @@
+<%= form_with model: @notification_setting, url: notification_settings_path do |form| %>
+  <div class="mb-4">
+    <%= form.label :preferred_time, "通知が来る時間を選んでね", class: "block text-lg text-rose-600 mb-2" %>
+    <%= form.select :preferred_time, options_for_select([['未明', '0-3'], ['明け方', '3-6'], ['朝', '6-9'], ['昼前', '9-12'], ['昼過ぎ', '12-15'], ['夕方', '15-18'], ['夜のはじめ頃', '18-21'], ['夜遅く', '21-24']]), {}, class: "form-select w-full p-2 border rounded-md custom-focus" %>
+  </div>
+  <%= form.submit "保存", class: "btn btn-primary" %>
+<% end %>

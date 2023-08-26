@@ -21,7 +21,7 @@ every 1.day, at: '10:00 am' do
 end
 
 # 12時〜15時 "昼過ぎ"
-every 1.day, at: '1:00 pm' do
+every 1.day, at: '12:16 pm' do
   runner "SendPhotoJob.perform_later('early_afternoon')"
 end
 
