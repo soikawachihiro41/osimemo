@@ -16,22 +16,17 @@ class LineBotController < ApplicationController
           # ユーザーからのメッセージが '1' かどうかを確認
           if event.message['text'] == '1'
             photo = Photo.where(album_id: 1).first
-            image_url = photo.image # 画像のURLを取得
-
-          # ログに出力
+            image_url = photo.image.url # CarrierWave + Fogを使用している場合、これはS3のURLになる
+        
+            # ログに出力
             puts "Fetched image URL: #{image_url}"
-
-            # データベースから画像のURLを取得
-            image_url = fetch_image_from_database()
-  
+        
             message = {
               type: 'image',
               originalContentUrl: image_url,
               previewImageUrl: image_url
             }
             client.reply_message(event['replyToken'], message)
-          else
-            # その他のメッセージに対する処理（オプション）
           end
         end
       end

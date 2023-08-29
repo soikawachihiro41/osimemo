@@ -53,6 +53,8 @@ gem 'mini_magick'
 gem 'carrierwave'
 # AWS S3
 gem 'fog-aws'
+# AWS確認用
+gem 'aws-sdk-s3'
 
 # 環境変数を管理する
 gem 'dotenv-rails'
