@@ -19,4 +19,3 @@ class NotificationSettingsController < ApplicationController
     params.require(:notification_setting).permit(:preferred_time)
   end
 end
-

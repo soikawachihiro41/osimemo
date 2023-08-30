@@ -15,17 +15,26 @@ class LineBotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           # ユーザーからのメッセージが '1' かどうかを確認
           if event.message['text'] == '1'
-            photo = Photo.where(album_id: 1).first
-            image_url = photo.image.url # CarrierWave + Fogを使用している場合、これはS3のURLになる
+            photo = Photo.where(album_id: 1).order("RANDOM()").first
+            if photo
+              image_url = photo.image.url # CarrierWave + Fogを使用している場合、これはS3のURLになる
         
             # ログに出力
-            puts "Fetched image URL: #{image_url}"
+              puts "Fetched image URL: #{image_url}"
         
-            message = {
-              type: 'image',
-              originalContentUrl: image_url,
-              previewImageUrl: image_url
-            }
+              message = {
+                type: 'image',
+                originalContentUrl: image_url,
+                previewImageUrl: image_url
+              }
+              client.reply_message(event['replyToken'], message)
+            else
+              # 画像が見つからなかった場合の処理
+              message = {
+                type: 'text',
+                text: '画像を登録してね'
+              }
+            end
             client.reply_message(event['replyToken'], message)
           end
         end

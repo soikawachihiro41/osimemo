@@ -5,16 +5,17 @@ class IdolsController < ApplicationController
   end
 
   def create
-    @idol = current_user.idols.build(idol_params)
+    @idol = current_user.idols.build(idol_params) 
     if @idol.save
       # 成功時のリダイレクト先をmypages_pathへ変更
       redirect_to mypages_path, success: '推しを正常に登録しました。'
     else
+      # 失敗時の処理
       flash.now[:danger] = 'エラーが発生しました。入力内容を確認してください。'
       render :new, status: :unprocessable_entity
     end
   end
-
+  
   def show
     @idol = Idol.find(params[:id])
   end

@@ -20,6 +20,12 @@
         </label>
       <% end %>
     </div>
+    <%= link_to new_notification_setting_path do %>
+        <label class="btn btn-ghost rounded-btn flex-col font-normal">
+          <i class="fas fa-user text-lg text-yellow-900 mb-1"></i>
+          <div class="text-xs">通知</div>
+        </label>
+    <% end %>
     <div class="flex justify-end hidden md:flex space-x-3">
       <%= link_to mypages_path do %>
         <label class="btn btn-ghost rounded-btn flex-col font-normal">
