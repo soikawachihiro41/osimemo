@@ -20,6 +20,16 @@
         <%= form.file_field :cover_image, class: "form-input w-full p-2 border rounded-md custom-focus" %>
       </div>
 
+      <div class="mb-4">
+        <%= form.label :is_public, "公開設定", class: "block text-lg text-rose-600 mb-2" %>
+        <%= form.select :is_public, [["公開", true], ["非公開", false]], {}, class: "form-input w-full p-2 border rounded-md custom-focus" %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :is_open, "誰でも写真を追加", class: "block text-lg text-rose-600 mb-2" %>
+        <%= form.select :is_open, [["可能", true], ["不可", false]], {}, class: "form-input w-full p-2 border rounded-md custom-focus" %>
+      </div>
+
       <div class="text-center mt-6">
         <%= form.button class: "relative inline-block text-lg group" do %>
           <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">

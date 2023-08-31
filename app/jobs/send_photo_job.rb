@@ -2,6 +2,7 @@ class SendPhotoJob < ApplicationJob
   queue_as :default
 
   def perform(time_period)
+    Rails.logger.info("SendPhotoJob started for #{time_period}")
     # 指定時間帯のユーザーを取得
     users = User.joins(:notification_setting)
                 .where(notification_settings: { preferred_time: time_period })
@@ -22,9 +23,8 @@ class SendPhotoJob < ApplicationJob
       # メッセージを構築
       message = build_message(photo)
       
-      Rails.logger.info("Sending message to user #{user.id}")
       client.push_message(user.line_id, message)
-      Rails.logger.info("Message sent to user #{user.id}")
+      Rails.logger.info("SendPhotoJob finished for #{time_period}")
     end
   end
 

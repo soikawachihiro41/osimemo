@@ -1,0 +1,23 @@
+<div class="min-h-screen bg-gray-100 py-8 px-4">
+  <div class="max-w-screen-xl mx-auto">
+    <h1 class="text-3xl font-semibold text-center mb-8">公開アルバム一覧</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% @public_albums.each do |album| %>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <%= link_to idol_album_photos_path(idol_id: album.idol.id, album_id: album.id), data: { turbo: "false" } do %>
+            <%= image_tag album.cover_image.url, class: "w-full h-48 object-cover" %>
+          <% end %>
+          <div class="p-4">
+            <h2 class="text-lg font-semibold text-gray-800"><%= album.name %></h2>
+            <p class="text-gray-600">Idol: <%= album.idol.name %></p>
+            <p class="text-gray-400">Posted by: <%= album.user.username %></p> <!-- Assuming the user who posted has a 'username' field -->
+            <%= link_to idol_album_photos_path(idol_id: album.idol.id, album_id: album.id), data: { turbo: "false" }, class: "mt-2 inline-block text-sm text-blue-500 hover:underline" do %>
+              View Photos
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

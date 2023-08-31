@@ -15,9 +15,13 @@ class AlbumsController < ApplicationController
     end
   end
 
-  def index
+  def index #自分用
     @album = Album.find(params[:album_id])
     @photos = @album.photos
+  end
+
+  def public_index #みんなの公開アルバム
+    @public_albums = Album.where(is_public: true)
   end
   
   def show
@@ -48,6 +52,6 @@ class AlbumsController < ApplicationController
   private
 
   def album_params
-    params.require(:album).permit(:name, :cover_image, :idol_id)
+    params.require(:album).permit(:name, :cover_image, :idol_id, :is_public, :is_open)
   end
 end
