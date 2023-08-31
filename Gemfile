@@ -63,6 +63,7 @@ gem 'gon'
 #バックグラウンド
 gem 'sidekiq'
 gem 'whenever', require: false
+gem 'byebug'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

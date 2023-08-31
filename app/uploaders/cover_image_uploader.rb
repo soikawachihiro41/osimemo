@@ -17,7 +17,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   # def default_url(*args)
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
-
+  
   # 画像の拡張子を制限
   def extension_allowlist
     %w(jpg jpeg gif png)
