@@ -3,7 +3,7 @@
     <h1 class="text-3xl font-bold mb-6 text-rose-600"><%= @album.name %></h1>
   <% end %>
 
-  <div class="flex flex-wrap -m-3 ">
+  <div class="flex flex-wrap -m-3">
     <% @photos.each do |photo| %>
       <div class="w-full lg:w-1/4 p-3 mb-6">
         <div id="photo-id-<%= photo.id %>" class="border rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">

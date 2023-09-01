@@ -38,8 +38,8 @@ every 1.day, at: '4:00 pm' do
 end
 
 # 18時〜21時 "夜のはじめ頃"
-every 1.day, at: '8:00 pm' do
-  runner "SendPhotoJob.perform_later('early_evening')"
+every 1.day, at: '8:10 pm' do
+  runner "SendPhotoJob.perform_now('early_evening')"
 end
 
 # 21時〜24時 "夜遅く"

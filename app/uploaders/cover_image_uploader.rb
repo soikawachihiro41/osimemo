@@ -3,7 +3,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # 画像リサイズ（800x800に合わせる）
-  process resize_to_fit: [800, 800]
+  #process resize_to_fit: [300, 300]
 
   # Choose what kind of storage to use for this uploader:
   storage :fog
@@ -17,7 +17,13 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   # def default_url(*args)
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
-  
+  process scale: [400, 400]
+  def scale(width, height)
+    manipulate! do |img|
+      img.resize "#{width}x#{height}!"
+      img
+    end
+  end
   # 画像の拡張子を制限
   def extension_allowlist
     %w(jpg jpeg gif png)
