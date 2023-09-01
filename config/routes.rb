@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'photos/tag/:tag', to: 'photos#tag', as: 'photo_tag'
   get 'mypages/tag/:tag', to: 'mypages#tag', as: 'mypage_tag'
   get 'public_albums', to: 'albums#public_index'
-  resources :sessions, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update, :show]
   delete '/logout', to: 'sessions#destroy', as: 'logout'
   resources :notification_settings, only: [:new, :create, :edit, :update]
   resources :mypages, only: %i[index]

@@ -1,0 +1,29 @@
+<turbo-frame id="content">
+  <%= form_with(model: current_user, local: true) do |form| %>
+    <div class="profile-content text-center p-10 bg-white rounded-lg shadow-lg">
+      <h2 class="text-2xl font-semibold mb-6">プロフィールを編集</h2>
+      <div class="profile-image w-32 h-32 mx-auto mb-4 relative cursor-pointer">
+        <%= form.file_field :profile_image, class: "absolute inset-0 w-full h-full opacity-0 cursor-pointer", id: "profile_image_input", accept: 'image/*' %>
+        <%= label_tag :profile_image do %>
+          <%= image_tag current_user.profile_image.present? ? current_user.profile_image.url : '/default-profile-image.jpg', alt: current_user.name, class: "rounded-full border-4 border-pink-300 object-cover w-32 h-32", id: "profile_image_preview" %>
+        <% end %>
+      </div>
+      <div class="profile-details">
+        <p class="text-lg font-medium">
+          名前: 
+          <%= form.text_field :name, value: current_user.name, class: "border rounded p-2" %>
+        </p>
+      </div>
+      <div class="text-center mt-6">
+        <%= form.button class: "relative inline-block text-lg group" do %>
+          <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
+            <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
+            <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
+            <span class="relative">更新</span>
+          </span>
+          <span class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0" data-rounded="rounded-lg"></span>
+        <% end %>
+    </div>
+  <% end %>
+</turbo-frame>
+

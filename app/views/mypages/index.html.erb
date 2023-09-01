@@ -4,6 +4,7 @@
     <%= link_to "推しメン一覧", mypages_path(tab: 'idols'), class: "tab tab-border", data: { turbo_frame: "content", turbo_action: "replace" } %>
     <%= link_to "写真", mypages_path(tab: 'photos'), class: "tab tab-border", data: { turbo_frame: "content", turbo_action: "replace" } %>
     <%= link_to "アルバム", mypages_path(tab: 'albums'), class: "tab tab-border", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "プロフィール", mypages_path(tab: 'profile'), class: "tab tab-border", data: { turbo_frame: "content", turbo_action: "replace" } %>
   </div>
 
   <turbo-frame id="content" class="w-full max-w-2xl mt-0">

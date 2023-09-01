@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class UsersController < ApplicationController
   require 'net/http'
   require 'uri'
 
@@ -22,11 +22,32 @@ class SessionsController < ApplicationController
     render json: @user
   end
   
-  
-
-
   def destroy
     reset_session
     redirect_to root_path, notice: 'ログアウトしました'
   end  
+
+  def edit
+    # プロフィール編集画面を表示するための処理
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to mypages_path(tab: 'profile'), turbo_frame: "content"
+    else
+      render :edit
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :profile_image)
+  end
 end
