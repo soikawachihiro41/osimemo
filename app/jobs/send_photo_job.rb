@@ -2,31 +2,45 @@ class SendPhotoJob < ApplicationJob
   queue_as :default
 
   def perform(time_period)
-    # 指定時間帯のユーザーを取得
     users = User.joins(:notification_setting)
                 .where(notification_settings: { preferred_time: time_period })
     
+    if users.empty?
+      Rails.logger.info("No users found for time_period #{time_period}")
+      return
+    end
+  
     users.find_each do |user|
-      # ユーザーの選択したアイドルを取得
       idols = user.idols.includes(:albums).where(is_selected: true)
-
-      # ランダムに1人選ぶ
+  
+      if idols.empty?
+        Rails.logger.info("No selected idols for user #{user.id}")
+        next
+      end
+  
       idol = idols.sample
-
-      # そのアイドルのアルバムからランダムに1つ選ぶ
       album = idol.albums.sample
-
-      # アルバムに紐づく写真からランダムに1枚取得
+  
+      if album.nil?
+        Rails.logger.info("No albums found for idol #{idol.id}")
+        next
+      end
+  
       photo = album.photos.sample
-
-      # メッセージを構築
+  
+      if photo.nil?
+        Rails.logger.info("No photos found for album #{album.id}")
+        next
+      end
+  
       message = build_message(photo)
-      
-      Rails.logger.info("Sending message to user #{user.id}")
-      client.push_message(user.line_id, message)
-      Rails.logger.info("Message sent to user #{user.id}")
+      response = client.push_message(user.line_id, message)
+  
+      # APIからのレスポンスをログに出力
+      Rails.logger.info("API Response: #{response}")
     end
   end
+  
 
   private
 
