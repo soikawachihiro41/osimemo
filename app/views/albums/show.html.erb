@@ -21,6 +21,16 @@
     </div>
 
     <div class="mb-4">
+      <label class="block text-lg text-rose-600 mb-2">公開/非公開:</label>
+      <p class="p-2 border rounded-md"><%= @album.is_public ? '公開' : '非公開' %></p>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-lg text-rose-600 mb-2">誰でも写真を追加可能:</label>
+      <p class="p-2 border rounded-md"><%= @album.is_open ? 'はい' : 'いいえ' %></p>
+    </div>
+
+    <div class="mb-4">
       <label class="block text-lg text-rose-600 mb-2">写真の枚数:</label>
       <p class="p-2 border rounded-md"><%= @album.photos.count %>枚</p>
     </div>
