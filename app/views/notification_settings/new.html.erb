@@ -7,7 +7,7 @@
 
       <div class="mb-4">
         <%= form.label :preferred_time, "通知が来る時間を選んでね", class: "block text-lg text-rose-600 mb-2" %>
-        <%= form.select :preferred_time, options_for_select([['未明', 'midnight'], ['明け方', 'early_morning'], ['朝', 'morning'], ['昼前', 'late_morning'], ['昼過ぎ', 'early_afternoon'], ['夕方', 'late_afternoon'], ['夜のはじめ頃', 'early_evening'], ['夜遅く', 'late_evening']]), {}, class: "form-select w-full p-2 border rounded-md custom-focus" %>
+        <%= form.select :preferred_time, options_for_select([['未明'], ['明け方'], ['朝'], ['昼前'], ['昼過ぎ'], ['夕方'], ['夜のはじめ頃'], ['夜遅く']]), {}, class: "form-select w-full p-2 border rounded-md custom-focus" %>
       </div>
 
       <div class="text-center mt-6">

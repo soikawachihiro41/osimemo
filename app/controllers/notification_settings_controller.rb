@@ -1,4 +1,5 @@
 class NotificationSettingsController < ApplicationController
+  
   def new
     @notification_setting = NotificationSetting.new
   end

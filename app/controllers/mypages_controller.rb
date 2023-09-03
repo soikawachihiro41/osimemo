@@ -3,6 +3,7 @@ class MypagesController < ApplicationController
     @selected_tab = params[:tab] || 'albums'
     @albums = current_user.albums
     @idols = current_user.idols
+    @notification_setting = current_user.notification_setting
     @photos = Photo.joins(:album).where(albums: { user_id: current_user.id })
   end
   

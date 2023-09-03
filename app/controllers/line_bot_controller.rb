@@ -17,11 +17,7 @@ class LineBotController < ApplicationController
           if event.message['text'] == '1'
             photo = Photo.where(album_id: 1).order("RANDOM()").first
             if photo
-              image_url = photo.image.url # CarrierWave + Fogを使用している場合、これはS3のURLになる
-        
-            # ログに出力
-              puts "Fetched image URL: #{image_url}"
-        
+              image_url = photo.image.url # CarrierWave + Fogを使用している場合、これはS3のURLにな
               message = {
                 type: 'image',
                 originalContentUrl: image_url,
@@ -54,7 +50,7 @@ class LineBotController < ApplicationController
 
   def fetch_image_from_database
     # 仮にalbum_idが1のものを取得するとする
-    photo = Photo.find_by(album_id: 1)
+    photo = Photo.find_by(album_id: 3)
   
     if photo
       # 仮に画像がAWS S3や他のストレージに保存されているURLを返すとする
