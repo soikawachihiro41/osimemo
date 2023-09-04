@@ -2,12 +2,19 @@ class PhotosController < ApplicationController
 
   def new
     @photo = Photo.new
+    # 自身がオーナーのアルバム
+    @my_albums = Album.where(user_id: current_user.id)
+    # 公開設定かつ写真追加が許可されているアルバム
+    @open_albums = Album.where(is_public: true, is_open: true).where.not(user_id: current_user)
   end
   
   def create
-    @album = Album.find(params[:photo][:album_id])
+    selected_album_id = params[:my_album_id].present? ? params[:my_album_id] : params[:open_album_id]
+    @album = Album.find(selected_album_id)
+    
     @photo = @album.photos.new(photo_params)
     tag_list = params[:photo][:tag_names].split(',') 
+    
     if @photo.save
       @photo.save_tags(tag_list)
       redirect_to mypages_path, notice: '登録が完了しました'
@@ -16,7 +23,7 @@ class PhotosController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
+  
   def index
     idol = Idol.find(params[:idol_id])
     @album = idol.albums.find(params[:album_id])
