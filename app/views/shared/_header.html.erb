@@ -62,14 +62,8 @@
     </div>
   <% else %>
     <div class="flex justify-end space-x-3">
-      <%= link_to "#", class: "btn btn-sm btn-ghost rounded-btn px-2" do %>
+      <%= link_to new_user_path, class: "btn btn-sm btn-ghost rounded-btn px-2" do %>
         ログイン
-      <% end %>
-      <%= link_to "#", class: "btn btn-sm btn-ghost rounded-btn px-2" do %>
-        ガイド
-      <% end %>
-      <%= link_to "#", class: "btn btn-sm btn-ghost rounded-btn px-2" do %>
-        新規登録
       <% end %>
     </div>
   <% end %>

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   post '/callback', to: 'line_bot#callback'
-  root to: 'home#after_login'
+  root to: 'home#top'
   get 'terms', to: 'home#terms'
   get '/after_login', to: 'home#after_login'
   get 'photos/tag/:tag', to: 'photos#tag', as: 'photo_tag'
