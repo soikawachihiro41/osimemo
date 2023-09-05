@@ -31,7 +31,7 @@ development:
 
 test:
   <<: *default
-  database: service_name3_test
+  database: db/production.sqlite3
 
 production:
   <<: *default
