@@ -240,11 +240,6 @@ GEM
       sentry-ruby (~> 5.10.0)
     sentry-ruby (5.10.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sidekiq (7.1.2)
-      concurrent-ruby (< 2)
-      connection_pool (>= 2.3.0)
-      rack (>= 2.2.4)
-      redis-client (>= 0.14.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -307,7 +302,6 @@ DEPENDENCIES
   redis (~> 5.0)
   sentry-rails (~> 5.10)
   sentry-ruby (~> 5.10)
-  sidekiq
   sprockets-rails
   sqlite3
   stimulus-rails
