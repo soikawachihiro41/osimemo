@@ -61,7 +61,6 @@ gem 'dotenv-rails'
 gem 'gon'
 
 #バックグラウンド
-gem 'sidekiq'
 gem 'whenever', require: false
 gem 'byebug'
 
