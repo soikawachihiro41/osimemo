@@ -34,7 +34,9 @@
 
     <div class="text-center mt-6">
       <%= link_to '編集', edit_photo_path(@photo), class: 'btn btn-primary' %>
-      <%= link_to '削除', photo_path(@photo), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+      <%= button_to photo_path(@photo), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, form_class: 'inline' do %>
+        <i class="btn btn-primary">削除</i>
+      <% end %>
     </div>
   </div>
 </div>
