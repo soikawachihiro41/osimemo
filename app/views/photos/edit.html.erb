@@ -6,14 +6,13 @@
       </h1>
 
       <div class="mb-4">
-        <%= f.label :album_id, "アルバム", class: "block text-lg text-rose-600 mb-2" %>
-        <%= f.collection_select :album_id, Album.all, :id, :name, { prompt: "アルバムを選択してください" }, class: "form-select w-full p-2 border rounded-md custom-focus" %>
+        <%= label_tag :my_album_id, "自分のアルバム", class: "block text-lg text-rose-600 mb-2" %>
+        <%= select_tag :my_album_id, options_from_collection_for_select(@my_albums, 'id', 'name', @photo.album_id), prompt: "アルバムを選択してください", class: "form-select w-full p-2 border rounded-md custom-focus" %>
       </div>
 
       <div class="mb-4">
-        <%= f.label :image, "写真", class: "block text-lg text-rose-600 mb-2" %>
-        <%= f.file_field :image, onchange: 'displayImagePreview(this)', class: 'form-control js-file-select-preview mb-3', accept: 'image/*' %>
-        <img id="image-preview" style="display:none" class='w-80 h-80 border'>
+        <%= label_tag :open_album_id, "みんなの公開アルバム", class: "block text-lg text-rose-600 mb-2" %>
+        <%= select_tag :open_album_id, options_from_collection_for_select(@open_albums, 'id', 'name', @photo.album_id), prompt: "アルバムを選択してください", class: "form-select w-full p-2 border rounded-md custom-focus" %>
       </div>
 
 

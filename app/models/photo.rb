@@ -10,7 +10,9 @@ class Photo < ApplicationRecord
   validates :capture_date, presence: true
 
   def save_tags(sent_tags)
-    current_tags = self.tags.pluck(:tag_names) unless self.tags.nil?
+    current_tags = self.tags.pluck(:tag_names) || []
+    sent_tags ||= []
+
     old_tags = current_tags - sent_tags
     new_tags = sent_tags - current_tags
     
@@ -20,7 +22,6 @@ class Photo < ApplicationRecord
       photo_tag&.destroy
     end
     
-
     new_tags.each do |new|
       tag = Tag.find_or_create_by(tag_names: new)
       self.photo_tags.create(tag: tag)

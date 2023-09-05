@@ -15,7 +15,7 @@ document.addEventListener('turbo:load', () => {
           const idToken = liff.getIDToken()
           const name = profile.displayName
           const body = `idToken=${idToken}&name=${name}`
-          const request = new Request('/sessions', {
+          const request = new Request('/users', {
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
               'X-CSRF-Token': token

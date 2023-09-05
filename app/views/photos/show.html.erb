@@ -1,0 +1,40 @@
+<div class="min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <h1 class="font-custom text-4xl mb-6 text-yellow-900 font-kaisei-decol text-center">
+      <i class="fas fa-camera"></i> 写真の詳細 <i class="fas fa-image ml-2"></i>
+    </h1>
+
+    <div class="mb-4">
+      <h2 class="block text-lg text-rose-600 mb-2">アルバム</h2>
+      <p class="form-input w-full p-2 border rounded-md custom-focus"><%= @photo.album.name %></p>
+    </div>
+
+
+    <div class="mb-4">
+      <h2 class="block text-lg text-rose-600 mb-2">写真</h2>
+      <%= image_tag @photo.image.url, class: 'w-100 border' %>
+    </div>
+
+    <div class="mb-4">
+      <h2 class="block text-lg text-rose-600 mb-2">撮影日</h2>
+      <p class="form-input w-full p-2 border rounded-md custom-focus"><%= @photo.capture_date %></p>
+    </div>
+
+    <div class="mb-4">
+      <h2 class="block text-lg text-rose-600 mb-2">説明・コメント</h2>
+      <p class="form-input w-full p-2 border rounded-md custom-focus"><%= @photo.body %></p>
+    </div>
+
+    <div class="mb-4">
+      <h2 class="block text-lg text-rose-600 mb-2">タグ</h2>
+      <p class="form-input w-full p-2 border rounded-md custom-focus"><%= @tag_names.join(", ") if @tag_names.present? %></p>
+    </div>
+
+
+
+    <div class="text-center mt-6">
+      <%= link_to '編集', edit_photo_path(@photo), class: 'btn btn-primary' %>
+      <%= link_to '削除', photo_path(@photo), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+    </div>
+  </div>
+</div>

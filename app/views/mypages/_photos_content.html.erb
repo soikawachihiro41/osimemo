@@ -2,27 +2,31 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <% @photos.each do |photo| %>
       <div class="card rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-        <%= image_tag photo.image.url, class: "rounded-t-lg w-full h-48 object-cover" if photo.image.present? %>
+        <% if photo.image.present? %>
+          <%= link_to photo_path(photo), data: { turbo: "false" } do %>
+            <%= image_tag photo.image.url, class: "rounded-t-lg w-full h-48 object-cover" %>
+          <% end %>
+        <% end %>
         <div class="card-body bg-pink-100 p-4">
-            <div class="flex items-center space-x-2 mb-2 text-yellow-900">
-              <i class="far fa-calendar-alt mr-1"></i>
-              <%= l(photo.capture_date, format: :short) if photo.capture_date.present? %>
-            </div>
-            <div class="flex flex-wrap space-x-2 mb-2">
-              <% photo.tags.each do |tag| %>
-                <%= link_to mypage_tag_path(tag.tag_names), class: "hover:rotate-90 transform transition-transform duration-500" do %>
-                  <span class="inline-block bg-rose-200 text-rose-600 hover:text-white rounded-full px-2 py-1 text-xs font-bold"><%= tag.tag_names %></span>
-                <% end %>
+          <div class="flex items-center space-x-2 mb-2 text-yellow-900">
+            <i class="far fa-calendar-alt mr-1"></i>
+            <%= l(photo.capture_date, format: :short) if photo.capture_date.present? %>
+          </div>
+          <div class="flex flex-wrap space-x-2 mb-2">
+            <% photo.tags.each do |tag| %>
+              <%= link_to mypage_tag_path(tag.tag_names), class: "hover:rotate-90 transform transition-transform duration-500" do %>
+                <span class="inline-block bg-rose-200 text-rose-600 hover:text-white rounded-full px-2 py-1 text-xs font-bold"><%= tag.tag_names %></span>
               <% end %>
-            </div>
+            <% end %>
+          </div>
           <h5 class="card-title text-pink-600 font-bold text-center mt-2"><%= photo.body %></h5>
           <div class='flex justify-center space-x-2'>
-              <%= link_to edit_photo_path(photo), id: "button-edit-#{photo.id}", data: { turbo: "false" }  do %>
-                <span class="bg-yellow-900 hover:bg-yellow-800 text-white font-semibold py-1 px-4 rounded-full shadow-sm">編集</span>
-              <% end %>
-              <%= button_to photo_path(photo), id: "button-delete-#{photo.id}", method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
-                <span class="bg-yellow-900 hover:bg-yellow-800 text-white font-semibold py-1 px-4 rounded-full shadow-sm">削除</span>
-              <% end %>
+            <%= link_to edit_photo_path(photo), id: "button-edit-#{photo.id}", data: { turbo: "false" }  do %>
+              <span class="bg-yellow-900 hover:bg-yellow-800 text-white font-semibold py-1 px-4 rounded-full shadow-sm">編集</span>
+            <% end %>
+            <%= button_to photo_path(photo), id: "button-delete-#{photo.id}", method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
+              <span class="bg-yellow-900 hover:bg-yellow-800 text-white font-semibold py-1 px-4 rounded-full shadow-sm">削除</span>
+            <% end %>
           </div>
         </div>
       </div>

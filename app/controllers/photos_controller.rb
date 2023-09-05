@@ -23,6 +23,12 @@ class PhotosController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def show
+    @photo = Photo.find(params[:id])
+    @album = Album.find(@photo.album_id)
+    @tag_names = @photo.tags.pluck(:tag_names)
+  end
   
   def index
     idol = Idol.find(params[:idol_id])
@@ -32,19 +38,32 @@ class PhotosController < ApplicationController
   
   def edit
     @photo = Photo.find(params[:id])
+    # 自身がオーナーのアルバム
+    @my_albums = Album.where(user_id: current_user.id)
+    # 公開設定かつ写真追加が許可されているアルバム
+    @open_albums = Album.where(is_public: true, is_open: true).where.not(user_id: current_user.id)
     @tag_names = @photo.tags.pluck(:tag_names).join(',')
   end
   
-  def update
-    @photo = Photo.find(params[:id])
-    tag_list = params[:photo][:tag_names].split(',') if params[:photo][:tag_names].present?
-    if @photo.update(photo_params.except(:tag_names))
-      @photo.save_tags(tag_list)
-      redirect_to mypages_url(tab: 'photos'), notice: '写真が正常に更新されました。'
-    else
-      render :edit
-    end
+  # PhotosController 内の update メソッド
+def update
+  selected_album_id = params[:my_album_id].present? ? params[:my_album_id] : params[:open_album_id]
+  @album = Album.find(selected_album_id)
+  
+  @photo = Photo.find(params[:id])
+  tag_list = params[:photo][:tag_names].presence&.split(',')
+  
+  if @photo.update(photo_params.except(:tag_names))
+    @photo.album = @album
+    @photo.save_tags(tag_list || [])
+    @photo.save
+    redirect_to mypages_url(tab: 'photos'), notice: '写真が正常に更新されました。'
+  else
+    flash.now[:danger] = 'エラーが発生しました。入力内容を確認してください。'
+    render :edit, status: :unprocessable_entity
   end
+end
+
 
   def tag
     @photos = Photo.joins(:tags).where(tags: { tag_names: params[:tag] })
