@@ -9,4 +9,8 @@ class Album < ApplicationRecord
   validates :cover_image, presence: true
   validates :user_id, presence: true
   validates :idol_id, presence: true
+
+  def idol_name
+    idol.name  # idolのname属性を返す
+  end
 end

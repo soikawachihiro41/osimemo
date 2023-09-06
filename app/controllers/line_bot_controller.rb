@@ -19,31 +19,30 @@ class LineBotController < ApplicationController
         when Line::Bot::Event::MessageType::Text
           if event.message['text'] == '1'
             user = User.find_by(line_id: event['source']['userId'])
+            idol = user.idols.includes(:albums).where(is_selected: true).sample
+            album = idol&.albums&.sample
+            photo = album&.photos&.sample
 
-            if user
-              idol = user.idols.includes(:albums).where(is_selected: true).sample
-              album = idol&.albums&.sample
-              photo = album&.photos&.sample
-
-              if photo
-                image_url = photo.image.url
-                show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
-                album_name = photo.album.name
-                idol_name = photo.album.idol.name
-              
-                message = build_flex_message(image_url, album_name, idol_name, show_url)
-                client.reply_message(event['replyToken'], message)
-              else
-                message = {
-                  type: 'text',
-                  text: '機嫌が悪のかな? もう一度呼んでみて'
-                }
-              end
-
+            if photo
+              image_url = photo.image.url
+              show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
+              album_name = photo.album.name
+              idol_name = photo.album.idol.name
+              message = build_flex_message(image_url, album_name, idol_name, show_url)
+              client.reply_message(event['replyToken'], message)
+            else
+              message = {
+                type: 'text',
+                text: '機嫌が悪のかな? もう一度呼んでみて'
+              }
               client.reply_message(event['replyToken'], message)
             end
+          elsif event.message['text'] == '写真を探す。'
+            send_date_picker(event['replyToken'])
           end
         end
+      when Line::Bot::Event::Postback
+        handle_postback(event)
       end
     end
 
@@ -121,4 +120,55 @@ class LineBotController < ApplicationController
       }
     }
   end
-end  
+
+  def send_date_picker(reply_token)
+    message = {
+      type: 'template',
+      altText: '日付を選択してください',
+      template: {
+        type: 'buttons',
+        text: '日付を選択',
+        actions: [
+          {
+            type: 'datetimepicker',
+            label: '日付を選択',
+            data: 'action=choose_date',
+            mode: 'date'
+          }
+        ]
+      }
+    }
+    client.reply_message(reply_token, message)
+  end
+
+  def handle_postback(event)
+    begin
+      capture_date_str = event['postback']['params']['date']  # 日付はおそらくparamsに含まれる
+      capture_date = Date.strptime(capture_date_str, '%Y-%m-%d')  # 文字列からDateオブジェクトを生成
+    
+      line_id = event['source']['userId']
+      user = User.find_by(line_id: line_id)
+  
+      photo = Photo.joins(:album).where(albums: { user_id: user.id }, capture_date: capture_date.beginning_of_day..capture_date.end_of_day).first
+    
+      if photo
+        image_url = photo.image.url
+        show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
+        album_name = photo.album.name
+        idol_name = photo.album.idol.name
+        message = build_flex_message(image_url, album_name, idol_name, show_url)
+        puts "Before reply_message"
+        client.reply_message(event['replyToken'], message)
+        puts "After reply_message"
+      else
+        message = {
+          type: 'text',
+          text: '機嫌が悪のかな? もう一度呼んでみて'
+        }
+        client.reply_message(event['replyToken'], message)
+      end
+    rescue => e
+      puts "Error occurred: #{e.message}"
+    end
+  end    
+end
