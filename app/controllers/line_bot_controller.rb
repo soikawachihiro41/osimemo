@@ -1,41 +1,52 @@
 class LineBotController < ApplicationController
   protect_from_forgery except: [:callback]
+  include Rails.application.routes.url_helpers
 
   def callback
     body = request.body.read
     signature = request.env['HTTP_X_LINE_SIGNATURE']
+
     unless client.validate_signature(body, signature)
       return head :bad_request
     end
+
     events = client.parse_events_from(body)
+
     events.each do |event|
       case event
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          # ユーザーからのメッセージが '1' かどうかを確認
           if event.message['text'] == '1'
-            photo = Photo.where(album_id: 1).order("RANDOM()").first
-            if photo
-              image_url = photo.image.url # CarrierWave + Fogを使用している場合、これはS3のURLにな
-              message = {
-                type: 'image',
-                originalContentUrl: image_url,
-                previewImageUrl: image_url
-              }
+            user = User.find_by(line_id: event['source']['userId'])
+
+            if user
+              idol = user.idols.includes(:albums).where(is_selected: true).sample
+              album = idol&.albums&.sample
+              photo = album&.photos&.sample
+
+              if photo
+                image_url = photo.image.url
+                show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
+                album_name = photo.album.name
+                idol_name = photo.album.idol.name
+              
+                message = build_flex_message(image_url, album_name, idol_name, show_url)
+                client.reply_message(event['replyToken'], message)
+              else
+                message = {
+                  type: 'text',
+                  text: '機嫌が悪のかな? もう一度呼んでみて'
+                }
+              end
+
               client.reply_message(event['replyToken'], message)
-            else
-              # 画像が見つからなかった場合の処理
-              message = {
-                type: 'text',
-                text: '画像を登録してね'
-              }
             end
-            client.reply_message(event['replyToken'], message)
           end
         end
       end
     end
+
     head :ok
   end
 
@@ -48,16 +59,66 @@ class LineBotController < ApplicationController
     end
   end
 
-  def fetch_image_from_database
-    # 仮にalbum_idが1のものを取得するとする
-    photo = Photo.find_by(album_id: 3)
-  
-    if photo
-      # 仮に画像がAWS S3や他のストレージに保存されているURLを返すとする
-      return photo.image
-    else
-      # 画像が見つからない場合の処理
-      return "https://example.com/image_not_found.jpg"
-    end
-  end  
-end
+  def build_flex_message(image_url, album_name, idol_name, show_url)
+    {
+      type: 'flex',
+      altText: 'This is a Flex Message',
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'image',
+              url: image_url,
+              size: 'full',
+              aspectMode: 'cover',
+              aspectRatio: '1:1',
+              gravity: 'center',
+              action: {
+                type: 'uri',
+                label: 'View Details',
+                uri: show_url
+              }
+            },
+            {
+              type: 'box',
+              layout: 'horizontal',
+              contents: [
+                {
+                  type: 'box',
+                  layout: 'vertical',
+                  contents: [
+                    {
+                      type: 'text',
+                      size: 'xl',
+                      color: '#ffffff',
+                      text: album_name,
+                      align: 'start'  # Left align
+                    },
+                    {
+                      type: 'text',
+                      text: idol_name,
+                      color: '#ffffff',
+                      size: 'md',
+                      flex: 0,
+                      align: 'start'  # Left align
+                    }
+                  ],
+                  spacing: 'xs'
+                }
+              ],
+              position: 'absolute',
+              offsetBottom: '0px',
+              offsetStart: '0px',
+              offsetEnd: '0px',
+              paddingAll: '20px'
+            }
+          ],
+          paddingAll: '0px'
+        }
+      }
+    }
+  end
+end  
