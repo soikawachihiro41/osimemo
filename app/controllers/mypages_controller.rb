@@ -4,7 +4,9 @@ class MypagesController < ApplicationController
     @albums = current_user.albums
     @idols = current_user.idols
     @notification_setting = current_user.notification_setting
-    @photos = Photo.joins(:album).where(albums: { user_id: current_user.id })
+    @photos = Photo.joins(:album).where(
+      "albums.user_id = :user_id OR photos.uploader_id = :user_id", user_id: current_user.id
+    )
   end
   
   def tag

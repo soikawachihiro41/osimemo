@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_01_120936) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_06_092037) do
   create_table "albums", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "idol_id", null: false
@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_120936) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "uploader_id"
     t.index ["album_id"], name: "index_photos_on_album_id"
   end
 
@@ -95,4 +96,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_01_120936) do
   add_foreign_key "photo_tags", "photos"
   add_foreign_key "photo_tags", "tags"
   add_foreign_key "photos", "albums"
+  add_foreign_key "photos", "users", column: "uploader_id"
 end

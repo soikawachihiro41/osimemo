@@ -23,6 +23,11 @@
               <% end %>
             </div>
             <p class="text-sm mb-3 text-pink-600 "><%= photo.body %></p>
+
+            <!-- uploader の名前を追加 -->
+            <div class="text-right text-xs text-gray-400">
+              アップロード者: <%= photo.uploader ? photo.uploader.name : '不明' %>
+            </div>
           </div>
         </div>
       </div>

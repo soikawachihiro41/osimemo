@@ -1,5 +1,8 @@
 class PhotosController < ApplicationController
 
+  before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_action :check_owner_or_uploader, only: [:edit, :update, :destroy]
+
   def new
     @photo = Photo.new
     # 自身がオーナーのアルバム
@@ -14,7 +17,7 @@ class PhotosController < ApplicationController
     
     @photo = @album.photos.new(photo_params)
     tag_list = params[:photo][:tag_names].split(',') 
-    
+    @photo.uploader_id = current_user.id
     if @photo.save
       @photo.save_tags(tag_list)
       redirect_to mypages_path, notice: '登録が完了しました'
@@ -71,11 +74,20 @@ end
   end
   
   def destroy
-    @photo = Photo.find(params[:id])
     @photo.destroy
-  
-    # 指定されたURLにリダイレクト
     redirect_to mypages_url(tab: 'photos'), notice: '写真が正常に削除されました。'
+  end
+
+  private
+
+  def set_photo
+    @photo = Photo.find(params[:id])
+  end
+
+  def check_owner_or_uploader
+    unless current_user.id == @photo.album.user_id || current_user.id == @photo.uploader_id
+      redirect_to root_path, alert: '権限がありません。'
+    end
   end
     
   private
