@@ -45,7 +45,6 @@ class LineBotController < ApplicationController
         handle_postback(event)
       end
     end
-
     head :ok
   end
 

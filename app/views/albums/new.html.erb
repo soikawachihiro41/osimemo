@@ -7,7 +7,7 @@
 
       <div class="mb-4">
         <%= form.label :idol_id, "アイドルを選択してね", class: "block text-lg text-rose-600 mb-2" %>
-        <%= form.collection_select :idol_id, Idol.all, :id, :name, {}, class: "form-input w-full p-2 border rounded-md custom-focus" %>
+        <%= form.collection_select :idol_id, current_user.idols, :id, :name, {}, class: "form-input w-full p-2 border rounded-md custom-focus" %>
       </div>
 
       <div class="mb-4">
