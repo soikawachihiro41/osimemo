@@ -143,22 +143,30 @@ class LineBotController < ApplicationController
 
   def handle_postback(event)
     begin
-      capture_date_str = event['postback']['params']['date']  # 日付はおそらくparamsに含まれる
-      capture_date = Date.strptime(capture_date_str, '%Y-%m-%d')  # 文字列からDateオブジェクトを生成
-    
+      capture_date_str = event['postback']['params']['date']
+      capture_date = Date.strptime(capture_date_str, '%Y-%m-%d')
+      
       line_id = event['source']['userId']
       user = User.find_by(line_id: line_id)
   
-      photo = Photo.joins(:album).where(albums: { user_id: user.id }, capture_date: capture_date.beginning_of_day..capture_date.end_of_day).first
-    
-      if photo
-        image_url = photo.image.url
-        show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
-        album_name = photo.album.name
-        idol_name = photo.album.idol.name
-        message = build_flex_message(image_url, album_name, idol_name, show_url)
+      photos = Photo.joins(:album).where(albums: { user_id: user.id }, capture_date: capture_date.beginning_of_day..capture_date.end_of_day)
+  
+      if photos.any?
+        messages = photos.map do |photo|
+          image_url = photo.image.url
+          show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
+          album_name = photo.album.name
+          idol_name = photo.album.idol.name
+          build_flex_message(image_url, album_name, idol_name, show_url)
+        end
+
+        additional_message = {
+          type: 'text',
+          text: "#{capture_date_str} の思い出をお届けしたよ"
+        }
+        messages.unshift(additional_message)
         puts "Before reply_message"
-        client.reply_message(event['replyToken'], message)
+        client.reply_message(event['replyToken'], messages)
         puts "After reply_message"
       else
         message = {
@@ -167,8 +175,6 @@ class LineBotController < ApplicationController
         }
         client.reply_message(event['replyToken'], message)
       end
-    rescue => e
-      puts "Error occurred: #{e.message}"
     end
-  end    
+  end  
 end
