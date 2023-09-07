@@ -22,7 +22,6 @@ class LineBotController < ApplicationController
             idol = user.idols.includes(:albums).where(is_selected: true).sample
             album = idol&.albums&.sample
             photo = album&.photos&.sample
-
             if photo
               image_url = photo.image.url
               show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
