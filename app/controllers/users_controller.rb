@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   require 'net/http'
   require 'uri'
-
   def new
     if current_user
       redirect_to after_login_path

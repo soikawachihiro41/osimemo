@@ -1,4 +1,5 @@
 class MypagesController < ApplicationController
+  before_action :login_required
   def index
     @selected_tab = params[:tab] || 'albums'
     @albums = current_user.albums

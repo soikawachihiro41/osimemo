@@ -18,13 +18,19 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     "/assets/default-profile-image.jpg"
   end
 
-  process scale: [400, 400]
+  #process scale: [400, 400]
   def scale(width, height)
     manipulate! do |img|
+      Rails.logger.debug "Image path before resizing: #{img.path}"
       img.resize "#{width}x#{height}!"
+      Rails.logger.debug "Image path after resizing: #{img.path}"
       img
+    rescue => e
+      Rails.logger.error "An error occurred: #{e.message}"
+      raise e
     end
   end
+  
   # 画像の拡張子を制限
   def extension_allowlist
     %w(jpg jpeg gif png)

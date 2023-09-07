@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-
+  before_action :login_required
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
   before_action :check_owner_or_uploader, only: [:edit, :update, :destroy]
 

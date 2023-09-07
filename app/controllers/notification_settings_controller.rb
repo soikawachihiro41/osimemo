@@ -1,5 +1,5 @@
 class NotificationSettingsController < ApplicationController
-  
+  before_action :login_required
   def new
     @notification_setting = NotificationSetting.new
   end

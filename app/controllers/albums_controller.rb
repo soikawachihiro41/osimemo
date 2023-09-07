@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :login_required
   def new
     @album = Album.new
   end

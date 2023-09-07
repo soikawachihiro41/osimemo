@@ -1,4 +1,5 @@
 class IdolsController < ApplicationController
+  before_action :login_required
   def new
     @idol = Idol.new
     @idol.albums.build
