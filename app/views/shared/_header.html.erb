@@ -4,9 +4,6 @@
       <span class="text-lg" style="color: #C85914;">osiMemories</span>
     <% end %>
   </div>
-
-
-
   <% if logged_in? %>
     <div class="flex justify-end md:hidden flex-wrap mr-12">
       <%= link_to mypages_path do %>
@@ -31,7 +28,6 @@
                 推しアイドル登録
               <% end %>
             </li>
-            <%# Other items... (use the above pattern for each item) %>
             <li>
               <%= link_to new_album_path , target: :_blank, rel: 'noopener noreferrer' do %>
                 アルバム作成
@@ -42,8 +38,13 @@
                 写真登録
               <% end %>
             </li>
+            <li>
+              <%=  link_to new_notification_setting_path, target: :_blank, rel: 'noopener noreferrer' do %>
+                通知
+              <% end %>
+            </li>
           </ul>
-        </div>
+      </div>
     </div>
     <div class="flex justify-end hidden md:flex space-x-3">
       <%= link_to mypages_path do %>
