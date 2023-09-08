@@ -21,6 +21,29 @@
           <div class="text-xs">ログアウト</div>
         </label>
       <% end %>
+      <div class="dropdown dropdown-end menu-compact">
+          <label class="btn btn-sm btn-ghost rounded-btn" tabindex="0">
+            <i class="fas fa-heart ml-2"></i>
+          </label>
+          <ul class="menu dropdown-content p-2 shadow bg-5c7b64 rounded w-52 mt-4" tabindex="0">
+            <li>
+              <%= link_to new_idol_path do %>
+                推しアイドル登録
+              <% end %>
+            </li>
+            <%# Other items... (use the above pattern for each item) %>
+            <li>
+              <%= link_to new_album_path , target: :_blank, rel: 'noopener noreferrer' do %>
+                アルバム作成
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_photo_path, target: :_blank, rel: 'noopener noreferrer' do %>
+                写真登録
+              <% end %>
+            </li>
+          </ul>
+        </div>
     </div>
     <div class="flex justify-end hidden md:flex space-x-3">
       <%= link_to mypages_path do %>
