@@ -1,13 +1,23 @@
-<div class="min-h-screen flex flex-col items-center justify-start my-20">
-  <div class="tabs mx-auto">
-    <%= link_to "通知", mypages_path(tab: 'notifications'), class: "tab tab-border", data: { turbo_frame: "content", turbo_action: "replace" } %>
-    <%= link_to "推しメン一覧", mypages_path(tab: 'idols'), class: "tab tab-border", data: { turbo_frame: "content", turbo_action: "replace" } %>
-    <%= link_to "写真", mypages_path(tab: 'photos'), class: "tab tab-border", data: { turbo_frame: "content", turbo_action: "replace" } %>
-    <%= link_to "アルバム", mypages_path(tab: 'albums'), class: "tab tab-border", data: { turbo_frame: "content", turbo_action: "replace" } %>
-    <%= link_to "プロフィール", mypages_path(tab: 'profile'), class: "tab tab-border", data: { turbo_frame: "content", turbo_action: "replace" } %>
+<div class="min-h-screen flex flex-col items-center justify-start my-4 md:my-20">
+  <!-- PC版 -->
+  <div class="tabs mx-auto hidden md:flex">
+    <%= link_to "通知", mypages_path(tab: 'notifications'), class: "tab tab-border px-4 py-2", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "推しメン一覧", mypages_path(tab: 'idols'), class: "tab tab-border px-4 py-2", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "写真", mypages_path(tab: 'photos'), class: "tab tab-border px-4 py-2", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "アルバム", mypages_path(tab: 'albums'), class: "tab tab-border px-4 py-2", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "プロフィール", mypages_path(tab: 'profile'), class: "tab tab-border px-4 py-2", data: { turbo_frame: "content", turbo_action: "replace" } %>
   </div>
 
-  <turbo-frame id="content" class="w-full max-w-2xl mt-0">
+  <!-- モバイル版 -->
+  <div class="tabs mx-auto md:hidden flex flex-col overflow-y-auto h-24">
+    <%= link_to "通知", mypages_path(tab: 'notifications'), class: "tab tab-border px-2 py-1", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "推しメン一覧", mypages_path(tab: 'idols'), class: "tab tab-border px-2 py-1", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "写真", mypages_path(tab: 'photos'), class: "tab tab-border px-2 py-1", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "アルバム", mypages_path(tab: 'albums'), class: "tab tab-border px-2 py-1", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "プロフィール", mypages_path(tab: 'profile'), class: "tab tab-border px-2 py-1", data: { turbo_frame: "content", turbo_action: "replace" } %>
+  </div>
+
+  <turbo-frame id="content" class="w-full max-w-2xl mt-4">
     <%= render partial: "mypages/#{@selected_tab}_content" %>
   </turbo-frame>
 </div>
