@@ -1,8 +1,15 @@
 <header class="text-yellow-900 container mx-auto flex flex-wrap flex-row items-center justify-between ">
-  <div class="flex items-center">
-    <%= link_to root_path, class: "top-10 right-0 flex fast" do %>
-      <span class="text-lg" style="color: #C85914;">osiMemories</span>
-    <% end %>
+  <div class="flex items-center justify-between">
+    <div class="flex items-center pl-5 md:hidden"> <!-- md:hidden は 'medium' サイズ以上で非表示 -->
+      <%= link_to root_path do %>
+        <span class="fas fa-home "></span>
+      <% end %>
+    </div>
+    <div class="pl-3 hidden sm:flex">
+      <%= link_to root_path, { class: "text-lg", style: "color: #C85914;" } do %>
+        <span class="text-lg" style="color: #C85914;">osiMemories</span>
+      <% end %>
+    </div>
   </div>
   <% if logged_in? %>
     <div class="flex justify-end md:hidden flex-wrap mr-12">
@@ -20,7 +27,7 @@
       <% end %>
       <div class="dropdown dropdown-end menu-compact">
           <label class="btn btn-sm btn-ghost rounded-btn" tabindex="0">
-            <i class="fas fa-heart ml-2"></i>
+            <i class="fas fa-heart"></i>
           </label>
           <ul class="menu dropdown-content p-2 shadow bg-5c7b64 rounded w-52 mt-4" tabindex="0">
             <li>
@@ -39,7 +46,7 @@
               <% end %>
             </li>
             <li>
-              <%=  link_to new_notification_setting_path, target: :_blank, rel: 'noopener noreferrer' do %>
+              <%= link_to new_notification_setting_path, target: :_blank, rel: 'noopener noreferrer' do %>
                 通知
               <% end %>
             </li>
@@ -73,13 +80,13 @@
       <% end %>
       <%= link_to new_notification_setting_path do %>
         <label class="btn btn-ghost rounded-btn flex-col font-normal">
-          <i class="fas fa-user text-lg text-yellow-900 mb-1"></i>
+          <i class="fas fa-bell text-lg text-yellow-900 mb-1"></i>
           <div class="text-xs">通知</div>
         </label>
       <% end %>
       <%= button_to logout_path, method: :delete, data: { turbo_method: :delete }, class: "w-auto flex-shrink-0" do %>
         <label class="btn btn-ghost rounded-btn flex-col font-normal">
-          <i class="fas fa-sign-out-alt text-yellow-900 mb-1"></i>
+          <i class="fas fa-sign-out-alt text-lg text-yellow-900 mb-1"></i>
           <div class="text-xs">ログアウト</div>
         </label>
       <% end %>
