@@ -17,7 +17,7 @@ class LineBotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          if event.message['text'] == '1'
+          if event.message['text'] == '何が出るかな...'
             user = User.find_by(line_id: event['source']['userId'])
             idol = user.idols.includes(:albums).where(is_selected: true).sample
             album = idol&.albums&.sample
@@ -36,7 +36,7 @@ class LineBotController < ApplicationController
               }
               client.reply_message(event['replyToken'], message)
             end
-          elsif event.message['text'] == '写真を探す。'
+          elsif event.message['text'] == '写真を探すよ。'
             send_date_picker(event['replyToken'])
           end
         end
