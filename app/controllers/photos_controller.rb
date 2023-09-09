@@ -68,10 +68,17 @@ def update
 end
 
 
-  def tag
-    @photos = Photo.joins(:tags).where(tags: { tag_names: params[:tag] })
-    render :index
-  end
+def tag
+  # is_publicがtrueに設定されたアルバムのIDを取得
+  public_album_ids = Album.where(is_public: true).pluck(:id)
+
+  # タグに紐づいていて、かつ公開されているアルバムに所属している写真のみを取得
+  @photos = Photo.joins(:tags, :album).where(tags: { tag_names: params[:tag] }).where(albums: { id: public_album_ids })
+
+  render :index
+end
+
+
   
   def destroy
     @photo.destroy
