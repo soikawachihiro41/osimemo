@@ -1,11 +1,15 @@
 <turbo-frame id="notification-content">
-  <%= link_to new_notification_setting_path(@notification_setting), data: { turbo: "false" } do %>
-    <div class="profile-content text-center p-10 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-      <h2 class="text-2xl font-semibold mb-6">通知時間</h2>
-      <div class="profile-details">
-        <span class="text-pink-500"><%= @notification_setting.preferred_time %></span>
-      <!-- 他のプロフィール情報 -->
+  <% if @notification_setting.present? %>
+    <%= link_to new_notification_setting_path(@notification_setting), data: { turbo: "false" } do %>
+      <div class="profile-content text-center p-10 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+        <h2 class="text-2xl font-semibold mb-6">通知時間</h2>
+        <div class="profile-details">
+          <span class="text-pink-500"><%= @notification_setting.preferred_time %></span>
+        <!-- 他のプロフィール情報 -->
+        </div>
       </div>
-    </div>
+    <% end %>
+  <% else %>
+    <p class="text-center text-gray-500">通知登録されていません。</p>
   <% end %>
 </turbo-frame>
