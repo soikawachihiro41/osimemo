@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   require 'uri'
   def new
     if current_user
-      redirect_to photos_path
+      redirect_to after_login_path
     end
     gon.user_key = ENV['LINE_LIFF_SECRET']
   end
