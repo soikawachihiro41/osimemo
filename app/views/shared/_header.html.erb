@@ -25,7 +25,7 @@
           <div class="text-xs">ログアウト</div>
         </label>
       <% end %>
-      <div class="dropdown dropdown-end menu-compact">
+      <div class="dropdown dropdown-end menu-compact pl-7">
           <label class="btn btn-sm btn-ghost rounded-btn" tabindex="0">
             <i class="fas fa-heart"></i>
           </label>
@@ -36,17 +36,17 @@
               <% end %>
             </li>
             <li>
-              <%= link_to new_album_path , target: :_blank, rel: 'noopener noreferrer' do %>
+              <%= link_to new_album_path do %>
                 アルバム作成
               <% end %>
             </li>
             <li>
-              <%= link_to new_photo_path, target: :_blank, rel: 'noopener noreferrer' do %>
+              <%= link_to new_photo_path do %>
                 写真登録
               <% end %>
             </li>
             <li>
-              <%= link_to new_notification_setting_path, target: :_blank, rel: 'noopener noreferrer' do %>
+              <%= link_to new_notification_setting_path do %>
                 通知
               <% end %>
             </li>

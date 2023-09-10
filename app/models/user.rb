@@ -4,5 +4,11 @@ class User < ApplicationRecord
   has_many :albums
   has_many :birthday_notifications
   has_one :notification_setting, class_name: 'NotificationSetting'
-  validates :line_id, presence: true, uniqueness: true
+  validates :name, presence: true
+
+  enum role: { general: 0, admin: 1 }
+
+  def own?(object)
+    object.user_id == id
+  end
 end
