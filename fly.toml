@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for railsgirls-chihiro on 2023-09-06T05:13:10+09:00
+# fly.toml app configuration file generated for railsgirls-osimemories on 2023-09-10T23:08:15+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "railsgirls-chihiro"
+app = "railsgirls-osimemories"
 primary_region = "nrt"
 console_command = "/rails/bin/rails console"
 
