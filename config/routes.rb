@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   post '/callback', to: 'line_bot#callback'
   root to: 'home#top'
-  get 'terms', to: 'home#terms'
+  get '/privacy', to: 'home#privacy', as: 'home_privacy'
+  get '/terms', to: 'home#terms', as: 'home_terms'
+  #resources :homes, only: [:top, :before_login, :after_login, :terms]
   get '/after_login', to: 'home#after_login'
   get 'photos/tag/:tag', to: 'photos#tag', as: 'photo_tag'
   get 'mypages/tag/:tag', to: 'mypages#tag', as: 'mypage_tag'

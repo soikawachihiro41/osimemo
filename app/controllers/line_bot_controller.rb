@@ -36,7 +36,7 @@ class LineBotController < ApplicationController
               }
               client.reply_message(event['replyToken'], message)
             end
-          elsif event.message['text'] == '写真を探すよ。'
+          elsif event.message['text'] == '写真を探すよ。撮影日を入力してね'
             send_date_picker(event['replyToken'])
           end
         end
@@ -169,7 +169,8 @@ class LineBotController < ApplicationController
       else
         message = {
           type: 'text',
-          text: '機嫌が悪のかな? もう一度呼んでみて'
+          text: 'ごめんなさい。その日に撮影した写真はないみたい... 
+別の日で試してみてね'
         }
         client.reply_message(event['replyToken'], message)
       end

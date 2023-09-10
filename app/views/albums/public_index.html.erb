@@ -1,3 +1,4 @@
+<!-- app/views/your_view_file.html.erb -->
 <div class="min-h-screen py-8 px-4">
   <div class="max-w-screen-xl mx-auto">
     <h1 class="text-3xl font-semibold text-center mb-8">みんなの推しアルバム</h1>
@@ -11,10 +12,12 @@
           <div class="p-4">
             <h2 class="text-lg font-semibold text-gray-800"><%= album.name %></h2>
             <p class="text-gray-600">Idol: <%= album.idol.name %></p>
-            <p class="text-gray-400">Posted by: <%= album.user.name %></p> <!-- Assuming the user who posted has a 'username' field -->
-            <%= link_to idol_album_photos_path(idol_id: album.idol.id, album_id: album.id), data: { turbo: "false" }, class: "mt-2 inline-block text-sm text-blue-500 hover:underline" do %>
-              View Photos
-            <% end %>
+            <p class="text-gray-400">Posted by: <%= album.user.name %></p>
+
+            <!-- Twitterでシェアボタン -->
+            <div class="text-left mt-3 mb-3">
+              <%= link_to 'Xでシェア', "https://twitter.com/intent/tweet?text=#{CGI.escape('私の推しの' + album.idol.name + 'を見てください！')}&hashtags=推し活&url=#{CGI.escape(idol_album_photos_url(idol_id: album.idol.id, album_id: album.id))}", class: 'btn bg-blue-600 hover:bg-blue-500 text-white', target: "_blank" %>
+            </div>
           </div>
         </div>
       <% end %>

@@ -5,7 +5,7 @@ set :output, "log/cron_log.log"
 set :runner_command, "rails runner"
 
 #every 1.minutes do
-  #runner "SendPhotoJob.perform_now('late_evening')"
+  #runner "SendPhotoJob.perform_now('夜のはじめ頃')"
 #end
 # 0時〜3時 "未明"
 every 1.day, at: '2:10 am' do
@@ -38,7 +38,7 @@ every 1.day, at: '4:00 pm' do
 end
 
 # 18時〜21時 "夜のはじめ頃"
-every 1.day, at: '8:10 pm' do
+every 1.day, at: '8:03 pm' do
   runner "SendPhotoJob.perform_now('夜のはじめ頃')"
 end
 
