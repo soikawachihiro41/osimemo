@@ -4,6 +4,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
 
   # 画像リサイズ（800x800に合わせる）
   process resize_to_limit: [400, 400]
+  process quality: 90
 
   # Choose what kind of storage to use for this uploader:
   storage :fog
