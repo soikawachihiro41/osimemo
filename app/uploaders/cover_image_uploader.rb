@@ -3,7 +3,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # 画像リサイズ（800x800に合わせる）
-  process resize_to_limit: [400, 400]
+  #process resize_to_limit: [800, 800]
 
   # Choose what kind of storage to use for this uploader:
   storage :fog
