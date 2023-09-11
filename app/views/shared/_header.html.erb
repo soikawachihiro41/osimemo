@@ -85,7 +85,7 @@
         </label>
       <% end %>
       <%= button_to logout_path, method: :delete, data: { turbo_method: :delete }, class: "w-auto flex-shrink-0" do %>
-        <label class="btn btn-ghost rounded-btn flex-col font-normal">
+        <label class="btn btn-ghost rounded-btn items-center flex-col font-normal">
           <i class="fas fa-sign-out-alt text-lg text-yellow-900 mb-1"></i>
           <div class="text-xs">ログアウト</div>
         </label>
@@ -93,7 +93,7 @@
     </div>
   <% else %>
     <div class="flex justify-end space-x-3">
-      <%= link_to new_user_path, class: "btn btn-sm btn-ghost rounded-btn px-2" do %>
+      <%= link_to new_user_path, class: "btn btn-sm btn-ghost rounded-btn px-2", data: { turbo: false } do %>
         ログイン
       <% end %>
     </div>
