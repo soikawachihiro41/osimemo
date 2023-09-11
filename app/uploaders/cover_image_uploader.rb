@@ -4,7 +4,6 @@ class CoverImageUploader < CarrierWave::Uploader::Base
 
   # 画像リサイズ（800x800に合わせる）
   process resize_to_limit: [400, 400]
-  process quality: 90
 
   # Choose what kind of storage to use for this uploader:
   storage :fog
@@ -47,5 +46,9 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   def secure_token
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
+  end
+
+  def size_range
+    0..400.kilobytes
   end
 end

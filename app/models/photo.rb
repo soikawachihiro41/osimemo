@@ -4,6 +4,7 @@ class Photo < ApplicationRecord
   has_many :photo_tags, dependent: :destroy
   has_many :tags, through: :photo_tags
   mount_uploader :image, CoverImageUploader
+  validates :image, file_size: { less_than_or_equal_to: 400.kilobytes }
   attr_accessor :tag_names
 
   validates :image, presence: true
