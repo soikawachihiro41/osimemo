@@ -6,7 +6,7 @@ module ApplicationHelper
       reverse: true,
       charset: 'utf-8',
       description: 'osiMemoriesを使えば、大切なに人との思い出をアルバムにできます。',
-      keywords: '推し,アイドル',
+      keywords: '推し,アイドル,osimemorys',
       canonical: request.original_url,
       separator: '|',
       og: {
