@@ -38,7 +38,7 @@ every 1.day, at: '4:00 pm' do
 end
 
 # 18時〜21時 "夜のはじめ頃"
-every 1.day, at: '8:03 pm' do
+every 1.day, at: '8:00 pm' do
   runner "SendPhotoJob.perform_now('夜のはじめ頃')"
 end
 
