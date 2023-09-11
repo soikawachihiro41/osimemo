@@ -17,7 +17,7 @@
 
       <div class="mb-4">
         <%= f.label :image, "写真", class: "block text-lg text-rose-600 mb-2" %>
-        <%= f.file_field :image, onchange: 'displayImagePreview(this)', class: 'form-control js-file-select-preview mb-3', accept: 'image/*' %>
+        <%= f.file_field :image, onchange: 'displayImagePreview(this)', class: 'form-control js-file-select-preview mb-3'%>
         <img id="image-preview" style="display:none" class='w-80 h-80 border'>
       </div>
 
