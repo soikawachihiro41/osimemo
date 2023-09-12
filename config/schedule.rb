@@ -1,6 +1,6 @@
 # config/schedule.rb
 require File.expand_path(File.dirname(__FILE__) + "/environment")
-set :environment, "development" # 開発環境で動作（本番環境で動かす場合は注意）
+#set :environment, "development" # 開発環境で動作（本番環境で動かす場合は注意）
 set :output, "log/cron_log.log"
 set :runner_command, "rails runner"
 
