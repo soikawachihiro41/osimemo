@@ -10,7 +10,7 @@ class Photo < ApplicationRecord
   validates :image, presence: true
   validates :album_id, presence: true
   validates :capture_date, presence: true
-
+  validates :body, presence: true, length: { maximum: 800 }
   
 
   def save_tags(sent_tags)
