@@ -4,11 +4,11 @@ set :environment, "development" # 開発環境で動作（本番環境で動か�
 set :output, "log/cron_log.log"
 set :runner_command, "rails runner"
 
-#every 1.minutes do
-  #runner "SendPhotoJob.perform_now('夜のはじめ頃')"
-#end
+every 1.minutes do
+  runner "SendPhotoJob.perform_now('未明')"
+end
 # 0時〜3時 "未明"
-every 1.day, at: '2:10 am' do
+every 1.day, at: '0:00 am' do
   runner "SendPhotoJob.perform_now('未明')"
 end
 
