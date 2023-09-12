@@ -7,7 +7,11 @@
     <% @photos.each do |photo| %>
       <div class="w-full lg:w-1/4 p-3 mb-6">
         <div id="photo-id-<%= photo.id %>" class="border rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-          <%= image_tag photo.image.url, class: 'w-full h-auto' %>
+          
+          <!-- Add img-container class here -->
+          <div class="img-container"> 
+            <%= image_tag photo.image.url, class: 'w-full h-auto' %>
+          </div>
 
           <div class="p-4 bg-pink-100">
             <div class="flex items-center space-x-2 mb-2 text-yellow-900">
@@ -34,3 +38,17 @@
     <% end %>
   </div>
 </div>
+
+<!-- Add the image container styles -->
+<style>
+  .img-container {
+    width: 100%;  /* You can adjust this */
+    height: 260px;  /* And this */
+    overflow: hidden;
+  }
+  .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

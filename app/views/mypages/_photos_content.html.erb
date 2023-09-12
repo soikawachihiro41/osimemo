@@ -5,10 +5,12 @@
         <div class="card rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
           <% if photo.image.present? %>
             <%= link_to photo_path(photo), data: { turbo: "false" } do %>
-              <%= image_tag photo.image.url, class: "rounded-t-lg w-full h-48 object-cover" %>
+              <div class="img-container rounded-lg"> 
+                <%= image_tag photo.image.url, class: 'w-full h-auto' %>
+              </div>
             <% end %>
           <% end %>
-          <div class="card-body bg-pink-100 p-4">
+          <div class="card-body bg-pink-100 p-4 rounded-lg">
             <div class="flex items-center space-x-2 mb-2 text-yellow-900">
               <i class="far fa-calendar-alt mr-1"></i>
               <%= l(photo.capture_date, format: :short) if photo.capture_date.present? %>
@@ -37,3 +39,18 @@
     <p class="text-center text-gray-500">写真が登録されていません。</p>
   <% end %>
 </turbo-frame>
+
+
+<!-- Add the image container styles -->
+<style>
+  .img-container {
+    width: 100%;  /* You can adjust this */
+    height: 260px;  /* And this */
+    overflow: hidden;
+  }
+  .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>

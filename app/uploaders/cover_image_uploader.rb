@@ -3,7 +3,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   # 画像リサイズ（800x800に合わせる）
-  #process resize_to_limit: [800, 800]
+  #process resize_to_fit: [400, 400]
 
   # Choose what kind of storage to use for this uploader:
   storage :fog
@@ -18,7 +18,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     "/assets/default-profile-image.jpg"
   end
 
-  process scale: [400, 400]
+  #process scale: [400, 400]
   def scale(width, height)
     manipulate! do |img|
       Rails.logger.debug "Image path before resizing: #{img.path}"
@@ -46,9 +46,5 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   def secure_token
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
-  end
-
-  def size_range
-    0..400.kilobytes
   end
 end
