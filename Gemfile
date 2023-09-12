@@ -87,7 +87,7 @@ end
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 group :production do
-  gem "pg", "~> 1.1"
+  gem "pg"
 end
 
 gem "dockerfile-rails", ">= 1.5", :group => :development

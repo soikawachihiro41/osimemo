@@ -37,3 +37,5 @@ public/uploads/*
 credentials.yml.enc
 /config/certs/*
 /.env
+
+/config/credentials/production.key
