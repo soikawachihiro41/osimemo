@@ -150,31 +150,25 @@ class LineBotController < ApplicationController
       photos = Photo.joins(:album).where(albums: { user_id: user.id }, capture_date: capture_date.beginning_of_day..capture_date.end_of_day)
   
       if photos.any?
-        selected_photos = photos.shuffle.first(4)
+        selected_photos = photos.shuffle.first(4)  # 4つまでの写真をランダムに選択
         
-        messages = photos.map do |photo|
+        messages = selected_photos.map do |photo|
           image_url = photo.image.url
           show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
           album_name = photo.album.name
           idol_name = photo.album.idol.name
           build_flex_message(image_url, album_name, idol_name, show_url)
         end
-
+      
         additional_message = {
           type: 'text',
           text: "#{capture_date_str} の思い出をお届けしたよ"
         }
         messages.unshift(additional_message)
+        
         puts "Before reply_message"
         client.reply_message(event['replyToken'], messages)
         puts "After reply_message"
-      else
-        message = {
-          type: 'text',
-          text: 'ごめんなさい。その日に撮影した写真はないみたい... 
-別の日で試してみてね'
-        }
-        client.reply_message(event['replyToken'], message)
       end
     end
   end  
