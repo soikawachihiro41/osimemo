@@ -150,6 +150,8 @@ class LineBotController < ApplicationController
       photos = Photo.joins(:album).where(albums: { user_id: user.id }, capture_date: capture_date.beginning_of_day..capture_date.end_of_day)
   
       if photos.any?
+        selected_photos = photos.shuffle.first(4)
+        
         messages = photos.map do |photo|
           image_url = photo.image.url
           show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
