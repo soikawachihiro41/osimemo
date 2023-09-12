@@ -4,6 +4,7 @@ set :environment, :production
 set :output, "log/cron_log.log"
 set :runner_command, "rails runner"
 
+ENV.each { |k, v| env(k, v) }
 every 1.minutes do
   runner "SendPhotoJob.perform_now('未明')"
 end
