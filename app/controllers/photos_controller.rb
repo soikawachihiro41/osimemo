@@ -22,9 +22,15 @@ class PhotosController < ApplicationController
       @photo.save_tags(tag_list)
       redirect_to mypages_path, notice: '登録が完了しました'
     else
+      # ここで@my_albumsと@open_albumsを再設定
+      @my_albums = Album.where(user_id: current_user.id)
+      @open_albums = Album.where(is_public: true, is_open: true).where.not(user_id: current_user)
+      
       flash.now[:danger] = 'エラーが発生しました。入力内容を確認してください。'
       render :new, status: :unprocessable_entity
     end
+  end
+  
   end
 
   def show
