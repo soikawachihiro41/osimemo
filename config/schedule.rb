@@ -1,6 +1,6 @@
 # config/schedule.rb
 require File.expand_path(File.dirname(__FILE__) + "/environment")
-#set :environment, :production
+#set :environment, "development"#
 set :output, "log/cron_log.log"
 set :runner_command, "rails runner"
 

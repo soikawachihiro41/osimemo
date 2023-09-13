@@ -18,23 +18,6 @@ ENV RAILS_ENV="production" \
 RUN gem update --system --no-document && \
     gem install -N bundler
 
-# Install Supercronic
-RUN apt-get update -qq && apt-get install -y curl && \
-    curl -fsSLO "https://github.com/aptible/supercronic/releases/download/v0.1.12/supercronic-linux-amd64" && \
-    chmod +x supercronic-linux-amd64 && \
-    mv supercronic-linux-amd64 /usr/local/bin/supercronic
-
-# Copy Cron jobs from host to container
-COPY cron_jobs.txt /etc/cron.d/cron_jobs
-
-# Create entrypoint script
-RUN echo '#!/bin/bash\n'\
-'supercronic /etc/cron.d/cron_jobs &\n'\
-'./bin/rails server\n' > /rails/docker-entrypoint.sh && \
-chmod +x /rails/docker-entrypoint.sh
-
-# Set entrypoint script as the default command
-CMD ["/rails/docker-entrypoint.sh"]
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -76,10 +59,25 @@ RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 # Final stage for app image
 FROM base
 
+# この`apt-get update -qq`以降の記載は元からありますが、ここでcurlもインストールするように修正します
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl imagemagick libsqlite3-0 libvips postgresql-client && \
+    apt-get install --no-install-recommends -y postgresql-client curl && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# # Latest releases available at https://github.com/aptible/supercronic/releases
+ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.2.24/supercronic-linux-amd64 \
+    SUPERCRONIC=supercronic-linux-amd64 \
+    SUPERCRONIC_SHA1SUM=6817299e04457e5d6ec4809c72ee13a43e95ba41
+
+RUN curl -fsSLO "$SUPERCRONIC_URL" \
+    && echo "${SUPERCRONIC_SHA1SUM}  ${SUPERCRONIC}" | sha1sum -c - \
+    && chmod +x "$SUPERCRONIC" \
+    && mv "$SUPERCRONIC" "/usr/local/bin/${SUPERCRONIC}" \
+    && ln -s "/usr/local/bin/${SUPERCRONIC}" /usr/local/bin/supercronic
+
+# You might need to change this depending on where your crontab is located
+COPY crontab crontab
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
@@ -99,4 +97,5 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+#CMD ["./bin/rails", "server"]
+

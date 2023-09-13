@@ -1,0 +1,17 @@
+* * * * * bundle exec rails runner -e production '\''SendPhotoJob.perform_now('\''\'\'''\''未明'\''\'\'''\'')'\'' >> log/cron_log.log 2>&1'
+
+0 0 * * * /bin/bash -l -c 'cd /Users/soikawachihiko/workspace/runteq/PF/osimemori-zu && bundle exec rails runner -e production '\''SendPhotoJob.perform_now('\''\'\'''\''未明'\''\'\'''\'')'\'' >> log/cron_log.log 2>&1'
+
+0 4 * * * /bin/bash -l -c 'cd /Users/soikawachihiko/workspace/runteq/PF/osimemori-zu && bundle exec rails runner -e production '\''SendPhotoJob.perform_now('\''\'\'''\''明け方'\''\'\'''\'')'\'' >> log/cron_log.log 2>&1'
+
+0 8 * * * /bin/bash -l -c 'cd /Users/soikawachihiko/workspace/runteq/PF/osimemori-zu && bundle exec rails runner -e production '\''SendPhotoJob.perform_now('\''\'\'''\''朝'\''\'\'''\'')'\'' >> log/cron_log.log 2>&1'
+
+30 10 * * * /bin/bash -l -c 'cd /Users/soikawachihiko/workspace/runteq/PF/osimemori-zu && bundle exec rails runner -e production '\''SendPhotoJob.perform_now('\''\'\'''\''昼前'\''\'\'''\'')'\'' >> log/cron_log.log 2>&1'
+
+45 0 * * * /bin/bash -l -c 'cd /Users/soikawachihiko/workspace/runteq/PF/osimemori-zu && bundle exec rails runner -e production '\''SendPhotoJob.perform_now('\''\'\'''\''昼過ぎ'\''\'\'''\'')'\'' >> log/cron_log.log 2>&1'
+
+0 16 * * * /bin/bash -l -c 'cd /Users/soikawachihiko/workspace/runteq/PF/osimemori-zu && bundle exec rails runner -e production '\''SendPhotoJob.perform_now('\''\'\'''\''夕方'\''\'\'''\'')'\'' >> log/cron_log.log 2>&1'
+
+0 20 * * * /bin/bash -l -c 'cd /Users/soikawachihiko/workspace/runteq/PF/osimemori-zu && bundle exec rails runner -e production '\''SendPhotoJob.perform_now('\''\'\'''\''夜のはじめ頃'\''\'\'''\'')'\'' >> log/cron_log.log 2>&1'
+
+0 23 * * * /bin/bash -l -c 'cd /Users/soikawachihiko/workspace/runteq/PF/osimemori-zu && bundle exec rails runner -e production '\''SendPhotoJob.perform_now('\''\'\'''\''夜遅く'\''\'\'''\'')'\'' >> log/cron_log.log 2>&1'

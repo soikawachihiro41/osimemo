@@ -7,15 +7,19 @@ app = "railsgirls-osi"
 primary_region = "nrt"
 console_command = "/rails/bin/rails console"
 
+[processes]
+  web = "bin/rails server"
+  cron = "supercronic /rails/crontab"
+
 [build]
 
 [http_service]
+  processes = ["web"]
   internal_port = 3000
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
-  min_machines_running = 0
-  processes = ["app"]
+
 
 [[statics]]
   guest_path = "/rails/public"
