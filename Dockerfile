@@ -18,6 +18,23 @@ ENV RAILS_ENV="production" \
 RUN gem update --system --no-document && \
     gem install -N bundler
 
+# Install Supercronic
+RUN apt-get update -qq && apt-get install -y curl && \
+    curl -fsSLO "https://github.com/aptible/supercronic/releases/download/v0.1.12/supercronic-linux-amd64" && \
+    chmod +x supercronic-linux-amd64 && \
+    mv supercronic-linux-amd64 /usr/local/bin/supercronic
+
+# Copy Cron jobs from host to container
+COPY cron_jobs.txt /etc/cron.d/cron_jobs
+
+# Create entrypoint script
+RUN echo '#!/bin/bash\n'\
+'supercronic /etc/cron.d/cron_jobs &\n'\
+'./bin/rails server\n' > /rails/docker-entrypoint.sh && \
+chmod +x /rails/docker-entrypoint.sh
+
+# Set entrypoint script as the default command
+CMD ["/rails/docker-entrypoint.sh"]
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
