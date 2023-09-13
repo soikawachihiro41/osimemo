@@ -88,7 +88,6 @@ end
   # gem "spring"
 group :production do
   gem "pg"
-  gem 'whenever', require: false
 end
 
 gem "dockerfile-rails", ">= 1.5", :group => :development
