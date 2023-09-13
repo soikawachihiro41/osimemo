@@ -30,8 +30,6 @@ class PhotosController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  
-  end
 
   def show
     @photo = Photo.find(params[:id])
