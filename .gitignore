@@ -39,3 +39,4 @@ credentials.yml.enc
 /.env
 
 /config/credentials/production.key
+cron_jobs.txt
