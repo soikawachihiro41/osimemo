@@ -4,7 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 set :output, "log/cron_log.log"
 set :runner_command, "rails runner"
 
-env :PATH, ENV['PATH']
+ENV['DATABASE_URL']
 ENV.each { |k, v| env(k, v) }
 every 1.minutes do
   runner "SendPhotoJob.perform_now('未明')"

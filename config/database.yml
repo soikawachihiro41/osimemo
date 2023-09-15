@@ -24,6 +24,6 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: railsgirls_production
-  username: railsgirls
+  database: osi-db
+  username: osi
   password: <%= ENV["RAILSGIRLS_DATABASE_PASSWORD"] %>
