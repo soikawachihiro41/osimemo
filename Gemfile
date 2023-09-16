@@ -52,7 +52,7 @@ gem 'mini_magick'
 # ファイルのアップロード機能
 gem 'carrierwave'
 #画像メモリ対策
-gem 'posix-spawn'
+#gem 'posix-spawn'
 # AWS S3
 gem 'fog-aws'
 # AWS確認用
