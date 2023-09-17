@@ -169,7 +169,14 @@ class LineBotController < ApplicationController
         puts "Before reply_message"
         client.reply_message(event['replyToken'], messages)
         puts "After reply_message"
+      else
+        # 撮影日に関連する写真がない場合のメッセージ
+        no_photos_message = {
+          type: 'text',
+          text: "#{capture_date_str} の写真は見つかりませんでした。"
+        }
+        client.reply_message(event['replyToken'], no_photos_message)
       end
     end
-  end  
+  end
 end
