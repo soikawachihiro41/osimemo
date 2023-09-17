@@ -4,11 +4,9 @@ set :environment, "production"
 set :output, "log/cron_log.log"
 set :runner_command, "rails runner"
 
-ENV['DATABASE_URL']
-ENV.each { |k, v| env(k, v) }
-#every 1.minutes do
-  #runner "SendPhotoJob.perform_now('未明')"
-#end
+every 1.minutes do
+  runner "SendPhotoJob.perform_now('未明')"
+end
 # 0時〜3時 "未明"
 every 1.day, at: '0:00 am' do
   runner "SendPhotoJob.perform_now('未明')"
