@@ -95,7 +95,7 @@ namespace :send_photo do
             },
             {
               type: 'text',
-              text: "#{idol_name} - #{album_name}",
+              text: "#{idol_name}#{album_name}",
               wrap: true,
               color: '#666666',
               size: 'md'
