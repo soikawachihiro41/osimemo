@@ -35,7 +35,7 @@ namespace :send_photo do
       end
   
       image_url = photo.image.url
-      show_url = Rails.application.routes.url_helpers.url_for(controller: 'photos', action: 'show', id: photo.id)
+      show_url = Rails.application.routes.url_helpers.url_for(controller: 'photos', action: 'show', id: photo.id, host: 'osi-b2426bac1a6b.herokuapp.com')      
       album_name = photo.album.name
       idol_name = photo.album.idol.name
       message = build_flex_message(image_url, album_name, idol_name, show_url)
