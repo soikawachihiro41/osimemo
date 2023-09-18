@@ -173,7 +173,7 @@ class LineBotController < ApplicationController
         # 撮影日に関連する写真がない場合のメッセージ
         no_photos_message = {
           type: 'text',
-          text: "ごめんなさい💦 #{capture_date_str} の写真は見つからなかったよ📷。他の日で試してみてね🌸🌼"
+          text: "ごめんなさい💦 #{capture_date_str} の写真は見つからなかったよ。他の日で試してみてね🌸🌼"
 
         }
         client.reply_message(event['replyToken'], no_photos_message)

@@ -1,5 +1,4 @@
 # lib/tasks/send_photo.rake
-
 namespace :send_photo do
   desc "Send photo based on time period"
   task :perform, [:time_period] => :environment do |t, args|
@@ -35,11 +34,11 @@ namespace :send_photo do
         next
       end
   
-      message = {
-        type: 'image',
-        originalContentUrl: photo.image.url,
-        previewImageUrl: photo.image.url  
-      }
+      image_url = photo.image.url
+      show_url = Rails.application.routes.url_helpers.url_for(controller: 'photos', action: 'show', id: photo.id)
+      album_name = photo.album.name
+      idol_name = photo.album.idol.name
+      message = build_flex_message(image_url, album_name, idol_name, show_url)
   
       client = Line::Bot::Client.new do |config|
         config.channel_secret = ENV["LINE_CHANNEL_SECRET_bot"]
@@ -53,21 +52,43 @@ namespace :send_photo do
     end
   end
 
-
-  def build_message(photo)
-    if photo
-      {
-        type: 'image',
-        originalContentUrl: photo.image.url,
-        previewImageUrl: photo.image.url  
+  def build_flex_message(image_url, album_name, idol_name, show_url)
+    {
+      type: 'flex',
+      altText: 'This is a Flex Message',
+      contents: {
+        type: 'bubble',
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: 'image',
+              url: image_url,
+              size: 'full'
+            },
+            {
+              type: 'text',
+              text: "#{idol_name} - #{album_name}",
+              wrap: true
+            },
+            {
+              type: 'button',
+              style: 'link',
+              height: 'sm',
+              action: {
+                type: 'uri',
+                label: 'View Details',
+                uri: show_url
+              }
+            }
+          ]
+        }
       }
-    else
-      {
-        type: 'text', 
-        text: '写真がありません'  
-      }
-    end
+    }
   end
+
+  private
 
   def client
     @client ||= Line::Bot::Client.new do |config|
