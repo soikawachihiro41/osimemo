@@ -78,5 +78,12 @@
           <div class="text-xs">通知</div>
         </label>
       <% end %>
+    </div>
+  <% else %>
+    <div class="flex justify-end space-x-3">
+      <%= link_to new_user_path, class: "btn btn-sm btn-ghost rounded-btn px-2", data: { turbo: false } do %>
+        ログイン
+      <% end %>
+    </div>
   <% end %>
 </header>
