@@ -7,8 +7,10 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    # @current_userがnilでsession[:user_id]に値が入っている場合、ユーザーを持ってくる
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  rescue ActiveRecord::RecordNotFound
+    session[:user_id] = nil
+    nil
   end
 
   def login_required

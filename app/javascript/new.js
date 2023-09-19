@@ -1,4 +1,4 @@
-document.addEventListener('turbo:load', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   const LIFF_ID = gon.user_key;
   liff
@@ -32,6 +32,9 @@ document.addEventListener('turbo:load', () => {
             .then(() => {
               window.location = '/after_login'
             })
+            .catch(error => {
+              console.error('エラー:', error);
+            });
         })
       }
     })
