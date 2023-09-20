@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :login_required
+  before_action :login_required, except: [:show, :index]
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
   before_action :check_owner_or_uploader, only: [:edit, :update, :destroy]
 
@@ -38,8 +38,10 @@ class PhotosController < ApplicationController
   end
   
   def index
-    idol = Idol.find(params[:idol_id])
-    @album = idol.albums.find(params[:album_id])
+    @album = Album.find(params[:album_id])
+    unless @album.is_public || (user_signed_in? && @album.user_id == current_user.id)
+      redirect_to root_path, alert: 'このアルバムは非公開です'
+    end
     @photos = @album.photos
   end
   

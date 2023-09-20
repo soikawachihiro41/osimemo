@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  #before_action :login_required
+  before_action :login_required, except: [:show, :public_index]
 
   def new
     @album = Album.new
