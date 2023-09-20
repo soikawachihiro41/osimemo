@@ -18,6 +18,7 @@ module.exports = {
       },
       backgroundColor: { // この部分を追加
         '5c7b64': '#5c7b64',
+        'fcd8df': '#fcd8df'
       },
     },
   },
@@ -59,6 +60,7 @@ module.exports = {
           "primary-content": "#ffe4e6",
           "base-100": "#fff1f2",
           "base-content": "#372f38",
+          "custom-pink": "#fcd8df"
         },
       }
     ],
