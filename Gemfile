@@ -58,12 +58,14 @@ gem 'fog-aws'
 # AWS確認用
 gem 'aws-sdk-s3'
 
+
 # 環境変数を管理する
 gem 'dotenv-rails'
 gem 'gon'
 
 #バックグラウンド
 gem 'whenever', require: false
+gem 'sidekiq'
 gem 'byebug'
 
 # Use Sass to process CSS
