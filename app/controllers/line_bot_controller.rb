@@ -6,9 +6,7 @@ class LineBotController < ApplicationController
     body = request.body.read
     signature = request.env['HTTP_X_LINE_SIGNATURE']
 
-    unless client.validate_signature(body, signature)
-      return head :bad_request
-    end
+    return head :bad_request unless client.validate_signature(body, signature)
 
     events = client.parse_events_from(body)
 
@@ -51,8 +49,8 @@ class LineBotController < ApplicationController
 
   def client
     @client ||= Line::Bot::Client.new do |config|
-      config.channel_secret = ENV["LINE_CHANNEL_SECRET_bot"]
-      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+      config.channel_secret = ENV['LINE_CHANNEL_SECRET_bot']
+      config.channel_token = ENV['LINE_CHANNEL_TOKEN']
     end
   end
 
@@ -140,44 +138,43 @@ class LineBotController < ApplicationController
   end
 
   def handle_postback(event)
-    begin
-      capture_date_str = event['postback']['params']['date']
-      capture_date = Date.strptime(capture_date_str, '%Y-%m-%d')
-      
-      line_id = event['source']['userId']
-      user = User.find_by(line_id: line_id)
-  
-      photos = Photo.joins(:album).where(albums: { user_id: user.id }, capture_date: capture_date.beginning_of_day..capture_date.end_of_day)
-  
-      if photos.any?
-        selected_photos = photos.shuffle.first(4)  # 4つまでの写真をランダムに選択
-        
-        messages = selected_photos.map do |photo|
-          image_url = photo.image.url
-          show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
-          album_name = photo.album.name
-          idol_name = photo.album.idol.name
-          build_flex_message(image_url, album_name, idol_name, show_url)
-        end
-      
-        additional_message = {
-          type: 'text',
-          text: "#{capture_date_str} の思い出をお届けしたよ"
-        }
-        messages.unshift(additional_message)
-        
-        puts "Before reply_message"
-        client.reply_message(event['replyToken'], messages)
-        puts "After reply_message"
-      else
-        # 撮影日に関連する写真がない場合のメッセージ
-        no_photos_message = {
-          type: 'text',
-          text: "ごめんなさい💦 #{capture_date_str} の写真は見つからなかったよ。他の日で試してみてね🌸🌼"
+    capture_date_str = event['postback']['params']['date']
+    capture_date = Date.strptime(capture_date_str, '%Y-%m-%d')
 
-        }
-        client.reply_message(event['replyToken'], no_photos_message)
+    line_id = event['source']['userId']
+    user = User.find_by(line_id:)
+
+    photos = Photo.joins(:album).where(albums: { user_id: user.id },
+                                       capture_date: capture_date.beginning_of_day..capture_date.end_of_day)
+
+    if photos.any?
+      selected_photos = photos.sample(4) # 4つまでの写真をランダムに選択
+
+      messages = selected_photos.map do |photo|
+        image_url = photo.image.url
+        show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
+        album_name = photo.album.name
+        idol_name = photo.album.idol.name
+        build_flex_message(image_url, album_name, idol_name, show_url)
       end
+
+      additional_message = {
+        type: 'text',
+        text: "#{capture_date_str} の思い出をお届けしたよ"
+      }
+      messages.unshift(additional_message)
+
+      puts 'Before reply_message'
+      client.reply_message(event['replyToken'], messages)
+      puts 'After reply_message'
+    else
+      # 撮影日に関連する写真がない場合のメッセージ
+      no_photos_message = {
+        type: 'text',
+        text: "ごめんなさい💦 #{capture_date_str} の写真は見つからなかったよ。他の日で試してみてね🌸🌼"
+
+      }
+      client.reply_message(event['replyToken'], no_photos_message)
     end
   end
 end

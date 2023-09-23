@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :albums
   has_many :birthday_notifications
   has_one :notification_setting, class_name: 'NotificationSetting'
-  #validates :name, presence: true
+  # validates :name, presence: true
   validates :line_id, presence: true, uniqueness: true
 
   enum role: { general: 0, admin: 1 }

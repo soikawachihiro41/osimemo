@@ -1,8 +1,8 @@
 # config/schedule.rb
-require File.expand_path(File.dirname(__FILE__) + "/environment")
-set :environment, "production"
-set :output, "log/cron_log.log"
-set :runner_command, "rails runner"
+require File.expand_path(File.dirname(__FILE__) + '/environment')
+set :environment, 'production'
+set :output, 'log/cron_log.log'
+set :runner_command, 'rails runner'
 
 every 1.minutes do
   rake "send_photo:perform['未明']"
@@ -43,6 +43,6 @@ every 1.day, at: '8:00 pm' do
 end
 
 # 21時〜24時 "夜遅く"
-every 1.day, at: '11:00 pm' do 
+every 1.day, at: '11:00 pm' do
   runner "SendPhotoJob.perform_now('夜遅く')"
 end

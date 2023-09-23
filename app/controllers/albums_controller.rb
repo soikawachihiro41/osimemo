@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :login_required, except: [:show, :public_index]
+  before_action :login_required, except: %i[show public_index]
 
   def new
     @album = Album.new
@@ -16,19 +16,19 @@ class AlbumsController < ApplicationController
     end
   end
 
-  def index #自分用
+  def index # 自分用
     @album = Album.find(params[:album_id])
     @photos = @album.photos
   end
 
-  def public_index #みんなの公開アルバム
+  def public_index # みんなの公開アルバム
     @public_albums = Album.where(is_public: true)
   end
-  
+
   def show
     @album = Album.find(params[:id])
   end
-  
+
   def edit
     @album = Album.find(params[:id])
   end
@@ -41,15 +41,15 @@ class AlbumsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @album = Album.find(params[:id])
     @album.destroy
 
-    flash[:notice] = "アルバムと関連する写真が削除されました。"
+    flash[:notice] = 'アルバムと関連する写真が削除されました。'
     redirect_to mypages_path
   end
-  
+
   private
 
   def album_params
