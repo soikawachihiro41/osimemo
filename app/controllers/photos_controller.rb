@@ -12,7 +12,7 @@ class PhotosController < ApplicationController
   end
 
   def create
-    selected_album_id = params[:my_album_id].present? ? params[:my_album_id] : params[:open_album_id]
+    selected_album_id = (params[:my_album_id].presence || params[:open_album_id])
     @album = Album.find(selected_album_id)
 
     @photo = @album.photos.new(photo_params)
@@ -56,7 +56,7 @@ class PhotosController < ApplicationController
 
   # PhotosController 内の update メソッド
   def update
-    selected_album_id = params[:my_album_id].present? ? params[:my_album_id] : params[:open_album_id]
+    selected_album_id = (params[:my_album_id].presence || params[:open_album_id])
     @album = Album.find(selected_album_id)
 
     @photo = Photo.find(params[:id])

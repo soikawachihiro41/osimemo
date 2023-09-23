@@ -13,31 +13,7 @@ class LineBotController < ApplicationController
     events.each do |event|
       case event
       when Line::Bot::Event::Message
-        case event.type
-        when Line::Bot::Event::MessageType::Text
-          if event.message['text'] == '何が出るかな...'
-            user = User.find_by(line_id: event['source']['userId'])
-            idol = user.idols.includes(:albums).where(is_selected: true).sample
-            album = idol&.albums&.sample
-            photo = album&.photos&.sample
-            if photo
-              image_url = photo.image.url
-              show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
-              album_name = photo.album.name
-              idol_name = photo.album.idol.name
-              message = build_flex_message(image_url, album_name, idol_name, show_url)
-              client.reply_message(event['replyToken'], message)
-            else
-              message = {
-                type: 'text',
-                text: '機嫌が悪のかな? もう一度呼んでみて'
-              }
-              client.reply_message(event['replyToken'], message)
-            end
-          elsif event.message['text'] == '写真を探すよ。撮影日を入力してね'
-            send_date_picker(event['replyToken'])
-          end
-        end
+        handle_message_event(event)
       when Line::Bot::Event::Postback
         handle_postback(event)
       end
@@ -46,6 +22,36 @@ class LineBotController < ApplicationController
   end
 
   private
+
+  def handle_message_event(event)
+    case event.type
+    when Line::Bot::Event::MessageType::Text
+      if event.message['text'] == '何が出るかな...'
+        send_random_photo_reply(event)
+      elsif event.message['text'] == '写真を探すよ。撮影日を入力してね'
+        send_date_picker(event['replyToken'])
+      end
+    end
+  end
+
+  def send_random_photo_reply(event)
+    user = User.find_by(line_id: event['source']['userId'])
+    idol_data = user.random_idol_with_photo
+
+    if idol_data[:photo]
+      image_url = idol_data[:photo].image.url
+      show_url = url_for(controller: 'photos', action: 'show', id: idol_data[:photo].id)
+      album_name = idol_data[:photo].album.name
+      idol_name = idol_data[:photo].album.idol.name
+      message = build_flex_message(image_url, album_name, idol_name, show_url)
+    else
+      message = {
+        type: 'text',
+        text: '機嫌が悪のかな? もう一度呼んでみて'
+      }
+    end
+    client.reply_message(event['replyToken'], message)
+  end
 
   def client
     @client ||= Line::Bot::Client.new do |config|
@@ -142,10 +148,10 @@ class LineBotController < ApplicationController
     capture_date = Date.strptime(capture_date_str, '%Y-%m-%d')
 
     line_id = event['source']['userId']
-    user = User.find_by(line_id:)
+    user = User.find_by(line_id: line_id)
 
     photos = Photo.joins(:album).where(albums: { user_id: user.id },
-                                       capture_date: capture_date.beginning_of_day..capture_date.end_of_day)
+    capture_date: capture_date.beginning_of_day..capture_date.end_of_day)
 
     if photos.any?
       selected_photos = photos.sample(4) # 4つまでの写真をランダムに選択
@@ -164,9 +170,9 @@ class LineBotController < ApplicationController
       }
       messages.unshift(additional_message)
 
-      puts 'Before reply_message'
+      Rails.logger.debug 'Before reply_message'
       client.reply_message(event['replyToken'], messages)
-      puts 'After reply_message'
+      Rails.logger.debug 'After reply_message'
     else
       # 撮影日に関連する写真がない場合のメッセージ
       no_photos_message = {

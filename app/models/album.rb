@@ -10,7 +10,5 @@ class Album < ApplicationRecord
   validates :user_id, presence: true
   validates :idol_id, presence: true
 
-  def idol_name
-    idol.name  # idolのname属性を返す
-  end
+  delegate :name, to: :idol, prefix: true
 end

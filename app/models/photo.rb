@@ -1,6 +1,6 @@
 class Photo < ApplicationRecord
   belongs_to :album
-  belongs_to :uploader, class_name: 'User', foreign_key: 'uploader_id'
+  belongs_to :uploader, class_name: 'User'
   has_many :photo_tags, dependent: :destroy
   has_many :tags, through: :photo_tags
   mount_uploader :image, CoverImageUploader

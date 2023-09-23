@@ -1,0 +1,21 @@
+require:
+  - rubocop-minitest
+  - rubocop-packaging
+  - rubocop-performance
+  - rubocop-rails
+
+
+AllCops:
+
+  Enabled: false 
+
+Layout/IndentationWidth:
+  Enabled: true
+Layout/IndentationConsistency:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

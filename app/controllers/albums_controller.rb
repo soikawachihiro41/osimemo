@@ -16,12 +16,14 @@ class AlbumsController < ApplicationController
     end
   end
 
-  def index # 自分用
+  # 自分用
+  def index
     @album = Album.find(params[:album_id])
     @photos = @album.photos
   end
 
-  def public_index # みんなの公開アルバム
+  # みんなの公開アルバム
+  def public_index
     @public_albums = Album.where(is_public: true)
   end
 

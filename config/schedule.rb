@@ -1,10 +1,10 @@
 # config/schedule.rb
-require File.expand_path(File.dirname(__FILE__) + '/environment')
+require File.expand_path("#{File.dirname(__FILE__)}/environment")
 set :environment, 'production'
 set :output, 'log/cron_log.log'
 set :runner_command, 'rails runner'
 
-every 1.minutes do
+every 1.minute do
   rake "send_photo:perform['未明']"
 end
 # 0時〜3時 "未明"

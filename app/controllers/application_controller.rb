@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def user_signed_in?
-    !!current_user  # current_userがnilでなければtrueを返す
+    !!current_user # current_userがnilでなければtrueを返す
   end
 end
