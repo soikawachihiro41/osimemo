@@ -2,7 +2,7 @@
   <div>
     <%= image_tag "Angelina.png", class:'block mx-auto' %>
   </div>
-  <div class='text-center pt-20'>
+  <div class='text-center pt-18 mb-24'>
     <%= link_to 'みんなの推しアルバム', public_albums_path, class:'btn btn-primary', data: { turbo: false } %>
   </div>
   <div class='text-sm mb-5 border-dotted border-2 border-yellow-700 rounded-box place-items-center '>
@@ -59,7 +59,7 @@
         <%= image_tag 'シャッフル.png', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
       </div>
       <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
-        <p>🌟SHUFFLE MEMORIES機能🌟<br>このボタンを押すとあなた登録した推しの写真がランダムで返ってくるよ！！<br>これで隙間時間に簡単に写真が振り返れるね</p>
+        <p>🌟SHUFFLE MEMORIES機能🌟<br>このボタンを押すとあなたが登録した推しの写真がランダムで返ってくるよ！！<br>これで隙間時間に簡単に写真が振り返れるね</p>
       </div>
     </div>
     <div class='mt-20 mb-5'>
@@ -70,6 +70,24 @@
       <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
         <p>🌟Find a photo機能🌟<br>このボタンを押すとあなた登録した写真の撮影日が簡単に探せます<br>例えば、「去年の推しの誕生日写真を探したい！！」そんな時に簡単探せます💕</p>
       </div>
+    </div>
+    <div class='mt-20 mb-5'>
+      <div class='flex flex-col sm:flex-row items-center'>
+        <%= image_tag 'album.png', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
+        <%= image_tag 'album2.png', class:'block mx-auto', size: '250x250' %>
+      </div>
+      <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
+        <p>🌟アルバム公開機能🌟<br>あなたが作成したアルバムはみんなに公開することができるよ✨X（旧Twitter）に共有できるからみんなに推しを自慢しよう!!</p>
+      </div>
+    </div>
+    <div class='mt-20 mb-5'>
+      <div class='flex flex-col sm:flex-row items-center'>
+        <%= image_tag '公開.png', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
+        <%= image_tag '公開2.png', class:'block mx-auto', size: '250x250' %>
+      </div>
+      <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
+        <p>🌟同じ推しの人とアルバムを作ろう機能🌟<br>この機能は同じ推しの人とアルバムを一緒に作れる機能だよ<br><br>1.アルバム作成時に誰でも写真を追加できるようにすると公開するにチェック<br><br>2.これで他のユーザーは自身の写真登録ページから『みんなの公開アルバム』で追加したいアルバムが表示されるようになり、追加できるようになるよ！<br><br>これでLINEを交換しなくても写真を共有できるね</p>
+      </div> 
     </div>
   </div>
 </div>
