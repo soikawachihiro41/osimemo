@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CoverImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
@@ -20,9 +22,9 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   process scale: [400, 500]
   def scale(width, height)
     manipulate! do |img|
-      Rails.logger.debug "Image path before resizing: #{img.path}"
+      Rails.logger.debug { "Image path before resizing: #{img.path}" }
       img.resize "#{width}x#{height}!"
-      Rails.logger.debug "Image path after resizing: #{img.path}"
+      Rails.logger.debug { "Image path after resizing: #{img.path}" }
       img
     rescue StandardError => e
       Rails.logger.error "An error occurred: #{e.message}"

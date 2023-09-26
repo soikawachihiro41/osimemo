@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # lib/tasks/send_photo.rake
 namespace :send_photo do
   desc 'Send photo based on time period'
@@ -42,8 +44,8 @@ namespace :send_photo do
       message = build_flex_message(image_url, album_name, idol_name, show_url)
 
       client = Line::Bot::Client.new do |config|
-        config.channel_secret = ENV['LINE_CHANNEL_SECRET_bot']
-        config.channel_token = ENV['LINE_CHANNEL_TOKEN']
+        config.channel_secret = ENV.fetch('LINE_CHANNEL_SECRET_bot', nil)
+        config.channel_token = ENV.fetch('LINE_CHANNEL_TOKEN', nil)
       end
 
       response = client.push_message(user.line_id, message)
@@ -128,8 +130,8 @@ namespace :send_photo do
 
   def client
     @client ||= Line::Bot::Client.new do |config|
-      config.channel_secret = ENV['LINE_CHANNEL_SECRET_bot']
-      config.channel_token = ENV['LINE_CHANNEL_TOKEN']
+      config.channel_secret = ENV.fetch('LINE_CHANNEL_SECRET_bot', nil)
+      config.channel_token = ENV.fetch('LINE_CHANNEL_TOKEN', nil)
     end
   end
 end

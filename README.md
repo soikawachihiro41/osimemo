@@ -68,6 +68,6 @@ Figma： https://www.figma.com/file/qRFv8pmmfvhrD6HxZXW2RB/%E6%8E%A8%E3%81%97%E3
 - JavaScript
 - TailWind CSS
 - daisyUI
-- fly.io
+- heroku
 - LINE Messaging API
 - LINE Login

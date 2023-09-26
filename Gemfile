@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -83,11 +85,8 @@ group :development do
   gem 'web-console'
   # 構文チェック
   gem 'rubocop', require: false
-  gem 'rubocop-minitest', require: false
-  gem 'rubocop-packaging', require: false
-  gem 'rubocop-performance', require: false
+  gem 'rubocop-capybara', require: false
   gem 'rubocop-rails', require: false
-  gem 'rubocop-rspec'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 end

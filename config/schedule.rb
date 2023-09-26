@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # config/schedule.rb
 require File.expand_path("#{File.dirname(__FILE__)}/environment")
 set :environment, 'production'

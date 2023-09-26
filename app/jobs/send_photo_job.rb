@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SendPhotoJob < ApplicationJob
   queue_as :default
 
@@ -60,8 +62,8 @@ class SendPhotoJob < ApplicationJob
 
   def client
     @client ||= Line::Bot::Client.new do |config|
-      config.channel_secret = ENV['LINE_CHANNEL_SECRET_bot']
-      config.channel_token = ENV['LINE_CHANNEL_TOKEN']
+      config.channel_secret = ENV.fetch('LINE_CHANNEL_SECRET_bot', nil)
+      config.channel_token = ENV.fetch('LINE_CHANNEL_TOKEN', nil)
     end
   end
 end

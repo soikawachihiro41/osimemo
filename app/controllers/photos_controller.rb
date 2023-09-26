@@ -1,7 +1,23 @@
+# frozen_string_literal: true
+
 class PhotosController < ApplicationController
   before_action :login_required, except: %i[show index]
   before_action :set_photo, only: %i[show edit update destroy]
   before_action :check_owner_or_uploader, only: %i[edit update destroy]
+
+  def index
+    @album = Album.find(params[:album_id])
+    unless @album.is_public || (user_signed_in? && @album.user_id == current_user.id)
+      redirect_to root_path, alert: 'このアルバムは非公開です'
+    end
+    @photos = @album.photos
+  end
+
+  def show
+    @photo = Photo.find(params[:id])
+    @album = Album.find(@photo.album_id)
+    @tag_names = @photo.tags.pluck(:tag_names)
+  end
 
   def new
     @photo = Photo.new
@@ -9,6 +25,15 @@ class PhotosController < ApplicationController
     @my_albums = Album.where(user_id: current_user.id)
     # 公開設定かつ写真追加が許可されているアルバム
     @open_albums = Album.where(is_public: true, is_open: true).where.not(user_id: current_user)
+  end
+
+  def edit
+    @photo = Photo.find(params[:id])
+    # 自身がオーナーのアルバム
+    @my_albums = Album.where(user_id: current_user.id)
+    # 公開設定かつ写真追加が許可されているアルバム
+    @open_albums = Album.where(is_public: true, is_open: true).where.not(user_id: current_user.id)
+    @tag_names = @photo.tags.pluck(:tag_names).join(',')
   end
 
   def create
@@ -29,29 +54,6 @@ class PhotosController < ApplicationController
       flash.now[:danger] = 'エラーが発生しました。入力内容を確認してください。'
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @photo = Photo.find(params[:id])
-    @album = Album.find(@photo.album_id)
-    @tag_names = @photo.tags.pluck(:tag_names)
-  end
-
-  def index
-    @album = Album.find(params[:album_id])
-    unless @album.is_public || (user_signed_in? && @album.user_id == current_user.id)
-      redirect_to root_path, alert: 'このアルバムは非公開です'
-    end
-    @photos = @album.photos
-  end
-
-  def edit
-    @photo = Photo.find(params[:id])
-    # 自身がオーナーのアルバム
-    @my_albums = Album.where(user_id: current_user.id)
-    # 公開設定かつ写真追加が許可されているアルバム
-    @open_albums = Album.where(is_public: true, is_open: true).where.not(user_id: current_user.id)
-    @tag_names = @photo.tags.pluck(:tag_names).join(',')
   end
 
   # PhotosController 内の update メソッド

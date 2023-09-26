@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Photo < ApplicationRecord
   belongs_to :album
   belongs_to :uploader, class_name: 'User'
@@ -8,7 +10,6 @@ class Photo < ApplicationRecord
   attr_accessor :tag_names
 
   validates :image, presence: true
-  validates :album_id, presence: true
   validates :capture_date, presence: true
   validates :body, length: { maximum: 800 }
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotificationSettingsController < ApplicationController
   before_action :login_required
   def new

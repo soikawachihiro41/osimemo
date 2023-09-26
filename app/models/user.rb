@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   mount_uploader :profile_image, CoverImageUploader
   has_many :idols
@@ -13,11 +15,11 @@ class User < ApplicationRecord
     idol = idols.includes(:albums).where(is_selected: true).sample
     album = idol&.albums&.sample
     photo = album&.photos&.sample
-    { idol: idol, album: album, photo: photo }
+    { idol:, album:, photo: }
   end
 
   def photos_on_date(date)
-    Photo.joins(:album).where(albums: { user_id: id }, capture_date: date.beginning_of_day..date.end_of_day)
+    Photo.joins(:album).where(albums: { user_id: id }, capture_date: date.all_day)
   end
 
   def own?(object)

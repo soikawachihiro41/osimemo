@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LineBotController < ApplicationController
   protect_from_forgery except: [:callback]
   include Rails.application.routes.url_helpers
@@ -55,8 +57,8 @@ class LineBotController < ApplicationController
 
   def client
     @client ||= Line::Bot::Client.new do |config|
-      config.channel_secret = ENV['LINE_CHANNEL_SECRET_bot']
-      config.channel_token = ENV['LINE_CHANNEL_TOKEN']
+      config.channel_secret = ENV.fetch('LINE_CHANNEL_SECRET_bot', nil)
+      config.channel_token = ENV.fetch('LINE_CHANNEL_TOKEN', nil)
     end
   end
 
@@ -148,10 +150,10 @@ class LineBotController < ApplicationController
     capture_date = Date.strptime(capture_date_str, '%Y-%m-%d')
 
     line_id = event['source']['userId']
-    user = User.find_by(line_id: line_id)
+    user = User.find_by(line_id:)
 
     photos = Photo.joins(:album).where(albums: { user_id: user.id },
-    capture_date: capture_date.beginning_of_day..capture_date.end_of_day)
+                                       capture_date: capture_date.all_day)
 
     if photos.any?
       selected_photos = photos.sample(4) # 4つまでの写真をランダムに選択

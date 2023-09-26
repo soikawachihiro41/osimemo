@@ -1,21 +1,11 @@
-require:
-  - rubocop-minitest
-  - rubocop-packaging
-  - rubocop-performance
-  - rubocop-rails
-
-
 AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'db/migrate/**/*'
+    - 'db/schema.rb'
+    - 'vendor/**/*'
 
-  Enabled: false 
-
-Layout/IndentationWidth:
-  Enabled: true
-Layout/IndentationConsistency:
-  Enabled: true
-
-Style/AsciiComments:
-  Enabled: true
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
+require:
+  - rubocop-rails
+  - rubocop-capybara

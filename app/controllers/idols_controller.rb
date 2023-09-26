@@ -1,8 +1,22 @@
+# frozen_string_literal: true
+
 class IdolsController < ApplicationController
   before_action :login_required
+  def index
+    @idols = Idol.where(user_id: current_user.id)
+  end
+
+  def show
+    @idol = Idol.find(params[:id])
+  end
+
   def new
     @idol = Idol.new
     @idol.albums.build
+  end
+
+  def edit
+    @idol = Idol.find(params[:id])
   end
 
   def create
@@ -15,18 +29,6 @@ class IdolsController < ApplicationController
       flash.now[:danger] = 'エラーが発生しました。入力内容を確認してください。'
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @idol = Idol.find(params[:id])
-  end
-
-  def index
-    @idols = Idol.where(user_id: current_user.id)
-  end
-
-  def edit
-    @idol = Idol.find(params[:id])
   end
 
   def update

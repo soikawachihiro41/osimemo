@@ -1,8 +1,24 @@
+# frozen_string_literal: true
+
 class AlbumsController < ApplicationController
   before_action :login_required, except: %i[show public_index]
 
+  # 自分用
+  def index
+    @album = Album.find(params[:album_id])
+    @photos = @album.photos
+  end
+
+  def show
+    @album = Album.find(params[:id])
+  end
+
   def new
     @album = Album.new
+  end
+
+  def edit
+    @album = Album.find(params[:id])
   end
 
   def create
@@ -16,23 +32,9 @@ class AlbumsController < ApplicationController
     end
   end
 
-  # 自分用
-  def index
-    @album = Album.find(params[:album_id])
-    @photos = @album.photos
-  end
-
   # みんなの公開アルバム
   def public_index
     @public_albums = Album.where(is_public: true)
-  end
-
-  def show
-    @album = Album.find(params[:id])
-  end
-
-  def edit
-    @album = Album.find(params[:id])
   end
 
   def update

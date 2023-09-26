@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Album < ApplicationRecord
   belongs_to :user
   belongs_to :idol
@@ -7,8 +9,6 @@ class Album < ApplicationRecord
   validates :is_open, inclusion: { in: [true, false] }
   validates :name, presence: true
   validates :cover_image, presence: true
-  validates :user_id, presence: true
-  validates :idol_id, presence: true
 
   delegate :name, to: :idol, prefix: true
 end

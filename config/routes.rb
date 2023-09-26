@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   post '/callback', to: 'line_bot#callback'
   root 'home#top'
-  
+
   # Static pages
   get '/privacy', to: 'home#privacy', as: 'home_privacy'
   get '/terms', to: 'home#terms', as: 'home_terms'

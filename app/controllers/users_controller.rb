@@ -1,9 +1,20 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   require 'net/http'
   require 'uri'
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     redirect_to after_login_path if current_user
-    gon.user_key = ENV['LINE_LIFF_SECRET']
+    gon.user_key = ENV.fetch('LINE_LIFF_SECRET', nil)
+  end
+
+  def edit
+    # プロフィール編集画面を表示するための処理
+    @user = current_user
   end
 
   def create
@@ -42,16 +53,6 @@ class UsersController < ApplicationController
     render json: { error: '内部エラー' }, status: :internal_server_error
   end
 
-  def destroy
-    reset_session
-    redirect_to root_path, notice: 'ログアウトしました'
-  end
-
-  def edit
-    # プロフィール編集画面を表示するための処理
-    @user = current_user
-  end
-
   def update
     @user = current_user
     if @user.update(user_params)
@@ -61,8 +62,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
+  def destroy
+    reset_session
+    redirect_to root_path, notice: 'ログアウトしました'
   end
 
   private
