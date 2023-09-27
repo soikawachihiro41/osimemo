@@ -11,4 +11,8 @@ class Album < ApplicationRecord
   validates :cover_image, presence: true
 
   delegate :name, to: :idol, prefix: true
+
+  def viewable_by?(user)
+    is_public || (user && user_id == user.id)
+  end
 end

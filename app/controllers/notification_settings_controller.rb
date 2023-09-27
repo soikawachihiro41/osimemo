@@ -1,32 +1,21 @@
 # frozen_string_literal: true
 
+# LINE通知設定
 class NotificationSettingsController < ApplicationController
   before_action :login_required
+
   def new
     @notification_setting = NotificationSetting.new
   end
 
   def create
-    # 現在のユーザーがすでに通知設定を持っているか確認
-    existing_setting = NotificationSetting.find_by(user_id: current_user.id)
+    saved = NotificationSetting.create_or_update_by_user(current_user, notification_setting_params)
 
-    if existing_setting
-      # すでに設定があればそれを更新
-      if existing_setting.update(notification_setting_params)
-        redirect_to root_path, notice: '設定が更新されました'
-      else
-        render :new
-      end
+    if saved
+      redirect_to root_path, notice: t('.settings_saved')
     else
-      # 新しく設定を作成
-      @notification_setting = NotificationSetting.new(notification_setting_params)
-      @notification_setting.user_id = current_user.id
-
-      if @notification_setting.save
-        redirect_to root_path, notice: '設定が保存されました'
-      else
-        render :new
-      end
+      @notification_setting = current_user.notification_setting || NotificationSetting.new(notification_setting_params)
+      render :new
     end
   end
 

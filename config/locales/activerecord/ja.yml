@@ -1,17 +1,35 @@
 ja:
-  activerecord:
-    attributes:
-      letter:
-        title: 手紙を送りたい相手の名前
-        body: 手紙の本文
-        sender_name: 自分の名前
-        image: 画像
-        send_date: 手紙を送る日時
-        remove_image: 画像を取り消す
-      template:
-        name: テンプレート名
-        content: テンプレート
-      anniversary:
-        date: Date
-        name: 記念日名
-        description: 説明
+  albums:
+    created: "アルバムが正常に作成されました。"
+    error: "エラーが発生しました。入力内容を確認してください。"
+    updated: "アルバムが更新されました"
+    deleted: "アルバムと関連する写真が削除されました。"
+  idols:
+    error: "エラーが発生しました。入力内容を確認してください。"
+    create:
+      success: "推しを正常に登録しました。"
+    update:
+      success: "推しの情報を正常に更新しました。"
+    destroy:
+      success: "推しを正常に削除しました。"
+  photos:
+    create:
+      success: "登録が完了しました"
+    update:
+      success: "写真が正常に更新されました。"
+    destroy:
+      success: "写真が正常に削除されました。"
+    unauthorized: "このアルバムは非公開です"
+    no_permission: "権限がありません。"
+  users:
+    line_auth:
+      success: "ログインに成功しました。"
+      error: "認証に失敗しました"
+      internal_error: "内部エラー"
+    update:
+      success: "ユーザー情報を更新しました。"
+    destroy:
+      success: "ログアウトしました。"
+  notifications:
+    settings_updated: '設定が更新されました'
+    settings_saved: '設定が保存されました'

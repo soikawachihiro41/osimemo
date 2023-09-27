@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Albumsコントローラはアルバム関連の操作を管理します。
 class AlbumsController < ApplicationController
   before_action :login_required, except: %i[show public_index]
 
@@ -25,9 +26,9 @@ class AlbumsController < ApplicationController
     @album = Album.new(album_params)
     @album.user_id = current_user.id
     if @album.save
-      redirect_to mypages_path, notice: 'アルバムが正常に作成されました。'
+      redirect_to mypages_path, notice: t('albums.created')
     else
-      flash.now[:danger] = 'エラーが発生しました。入力内容を確認してください。'
+      flash.now[:danger] = t('albums.error')
       render :new
     end
   end
@@ -40,7 +41,7 @@ class AlbumsController < ApplicationController
   def update
     @album = Album.find(params[:id])
     if @album.update(album_params)
-      redirect_to idol_album_path(@album.idol, @album), notice: 'アルバムが更新されました'
+      redirect_to idol_album_path(@album.idol, @album), notice: t('albums.updated')
     else
       render :edit
     end
@@ -50,7 +51,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     @album.destroy
 
-    flash[:notice] = 'アルバムと関連する写真が削除されました。'
+    flash[:notice] = t('deleted')
     redirect_to mypages_path
   end
 

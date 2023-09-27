@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# HomeController manages the landing page actions.
 class HomeController < ApplicationController
   def top
     if current_user.nil?

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# ApplicationController manages application-wide functionalities
 class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :login_required

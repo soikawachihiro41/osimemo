@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# This controller handles user interactions.
 class UsersController < ApplicationController
   require 'net/http'
   require 'uri'
@@ -64,7 +65,7 @@ class UsersController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_path, notice: 'ログアウトしました'
+    redirect_to root_path, notice: t('.success')
   end
 
   private

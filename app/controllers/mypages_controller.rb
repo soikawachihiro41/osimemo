@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# MypagesController handles the user's personal page actions.
 class MypagesController < ApplicationController
   before_action :login_required
   def index
