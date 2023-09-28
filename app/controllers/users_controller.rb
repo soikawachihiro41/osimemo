@@ -22,32 +22,25 @@ class UsersController < ApplicationController
     id_token = params[:idToken]
     name = params[:name]
     channel_id = ENV.fetch('LINE_CHANNEL_SECRET')
-
     # LINEのAPIにリクエストを送信してIDトークンを検証します
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),
                               { 'id_token' => id_token, 'client_id' => channel_id })
-
     # レスポンスが成功であれば処理を進めます
     if res.is_a?(Net::HTTPSuccess)
       line_user_id = JSON.parse(res.body)['sub']
-
       # ユーザーが存在する場合はそのまま、存在しない場合は新規作成します
       @user = User.find_or_create_by(line_id: line_user_id) do |user|
         user.name = name
       end
-
       # セッションにユーザーIDを格納してログイン状態とします
       session[:user_id] = @user.id
-
       # JSON形式で@userオブジェクトをクライアントに返します
       render json: @user
-
     # レスポンスが成功でなければエラーを返します
     else
       logger.error "LINE APIからエラーレスポンスが返されました: #{res.body}"
       render json: { error: '認証に失敗しました' }, status: :unauthorized
     end
-
   # その他のエラー（例えばネットワークエラー、JSONの解析エラーなど）をキャッチします
   rescue StandardError => e
     logger.error "エラーが発生しました: #{e.message}"
