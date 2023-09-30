@@ -3,7 +3,7 @@
 class Idol < ApplicationRecord
   belongs_to :user
   has_many :albums, dependent: :destroy
-  has_many :birthday_notifications
+  has_many :birthday_notifications, dependent: :destroy
 
   validates :name, presence: true
   validates :birth_date, presence: true
