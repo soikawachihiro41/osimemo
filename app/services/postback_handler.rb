@@ -51,7 +51,7 @@ class PostbackHandler
     show_url = url_for(controller: 'photos', action: 'show', id: photo.id)
     album_name = photo.album.name
     idol_name = photo.album.idol.name
-    FlexMessageBuilder.(image_url, album_name, idol_name, show_url)
+    FlexMessageBuilder.build(image_url, album_name, idol_name, show_url)
   end
 
   def additional_photo_message
