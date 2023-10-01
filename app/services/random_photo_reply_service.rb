@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # app/services/random_photo_reply_service.rb
+
 class RandomPhotoReplyService
   include Rails.application.routes.url_helpers
 
@@ -13,16 +14,26 @@ class RandomPhotoReplyService
     idol_data = user.random_idol_with_photo
 
     if idol_data[:photo]
-      image_url = idol_data[:photo].image.url
-      show_url = url_for(controller: 'photos', action: 'show', id: idol_data[:photo].id)
-      album_name = idol_data[:album].name
-      idol_name = idol_data[:idol].name
-      FlexMessageBuilder.build(image_url, album_name, idol_name, show_url)
+      generate_flex_message(idol_data)
     else
-      {
-        type: 'text',
-        text: '機嫌が悪のかな? もう一度呼んでみて'
-      }
+      default_message
     end
+  end
+
+  private
+
+  def generate_flex_message(idol_data)
+    image_url = idol_data[:photo].image.url
+    show_url = url_for(controller: 'photos', action: 'show', id: idol_data[:photo].id)
+    album_name = idol_data[:album].name
+    idol_name = idol_data[:idol].name
+    FlexMessageBuilder.build(image_url, album_name, idol_name, show_url)
+  end
+
+  def default_message
+    {
+      type: 'text',
+      text: '機嫌が悪のかな? もう一度呼んでみて'
+    }
   end
 end
