@@ -10,9 +10,9 @@ class PostbackHandler
 
   def handle
     if photos.any?
-      client.reply_message(@event['replyToken'], build_photo_messages)
+      @client.reply_message(@event['replyToken'], build_photo_messages)
     else
-      client.reply_message(@event['replyToken'], no_photos_message)
+      @client.reply_message(@event['replyToken'], no_photos_message)
     end
   end
 
