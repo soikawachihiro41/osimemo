@@ -19,7 +19,7 @@ class User < ApplicationRecord
     idol = idols.includes(:albums).where(is_selected: true).sample
     album = idol&.albums&.sample
     photo = album&.photos&.sample
-    { idol:, album:, photo: }
+    { idol: idol, album: album, photo: photo }
   end
 
   def photos_on_date(date)

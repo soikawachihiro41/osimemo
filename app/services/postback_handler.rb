@@ -5,6 +5,7 @@ class PostbackHandler
 
   def initialize(event)
     @event = event
+    @client = client
   end
 
   def handle

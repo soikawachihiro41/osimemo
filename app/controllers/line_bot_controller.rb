@@ -57,6 +57,6 @@ class LineBotController < ApplicationController
   end
 
   def handle_postback(event)
-    PostbackHandler.new(event).handle
+    PostbackHandler.new(event, client).handle
   end
 end
