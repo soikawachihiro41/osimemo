@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class PostbackHandler
+
+  include Rails.application.routes.url_helpers
+  include ActionDispatch::Routing::PolymorphicRoutes
+
   MAX_PHOTOS = 4 # 必要な場合は定数を設定
 
   def initialize(event, client)
