@@ -3,7 +3,7 @@
 class PostbackHandler
   MAX_PHOTOS = 4 # 必要な場合は定数を設定
 
-  def initialize(event)
+  def initialize(event, client)
     @event = event
     @client = client
   end
