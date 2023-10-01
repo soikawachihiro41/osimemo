@@ -9,16 +9,16 @@ class PostbackHandler
 
   def handle
     if photos.any?
-      client.reply_message(event['replyToken'], build_photo_messages)
+      client.reply_message(@event['replyToken'], build_photo_messages)
     else
-      client.reply_message(event['replyToken'], no_photos_message)
+      client.reply_message(@event['replyToken'], no_photos_message)
     end
   end
 
   private
 
   def capture_date_str
-    @capture_date_str ||= event['postback']['params']['date']
+    @capture_date_str ||= @event['postback']['params']['date']
   end
 
   def capture_date
@@ -26,7 +26,7 @@ class PostbackHandler
   end
 
   def user
-    @user ||= User.find_by(line_id: event['source']['userId'])
+    @user ||= User.find_by(line_id: @event['source']['userId'])
   end
 
   def photos
