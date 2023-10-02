@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
   before_action :login_required, except: %i[show index]
   before_action :set_photo, only: %i[show update destroy]
   before_action :check_owner_or_uploader, only: %i[update destroy]
-  before_action :set_albums, only: %i[new create update]
+  before_action :set_albums, only: %i[new edit]
 
   def index
     @album = Album.includes(:photos).find(params[:album_id])
@@ -18,10 +18,13 @@ class PhotosController < ApplicationController
     @tag_names = @photo.tag_names
   end
 
+  
   def new
     @photo = Photo.new
-    # 自身がオーナーのアルバム
-    @open_albums = Album.where(is_public: true, is_open: true).where.not(user_id: current_user)
+  end
+
+  def edit
+    @tag_names = @photo.tags.pluck(:tag_names).join(',')
   end
 
   def create
@@ -62,9 +65,9 @@ class PhotosController < ApplicationController
     redirect_to root_path, alert: t('photos.no_permission')
   end
 
-  def set_selected_album
-    selected_album_id = (params[:my_album_id].presence || params[:open_album_id])
-    @album = Album.find(selected_album_id)
+  def set_albums
+    @my_albums = Album.where(user_id: current_user.id)
+    @open_albums = Album.where(is_public: true, is_open: true).where.not(user_id: current_user.id)
   end
 
   def parsed_tag_list
