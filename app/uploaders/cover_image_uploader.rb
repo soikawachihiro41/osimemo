@@ -80,7 +80,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   def compress_png
     manipulate! do |img|
       img.format('png') do |c|
-        c.colors '256' # 8ビットカラーに変換
+        c.colors '16' # 8ビットカラーに変換
       end
       img
     end
