@@ -3,8 +3,8 @@
   <div class="tabs mx-auto hidden md:flex">
     <%= link_to "通知", mypages_path(tab: 'notifications'), class: "tab tab-border px-4 py-2", data: { turbo_frame: "content", turbo_action: "replace" } %>
     <%= link_to "推しメン一覧", mypages_path(tab: 'idols'), class: "tab tab-border px-4 py-2", data: { turbo_frame: "content", turbo_action: "replace" } %>
-    <%= link_to "写真", mypages_path(tab: 'photos'), class: "tab tab-border px-4 py-2", data: { turbo_frame: "content", turbo_action: "replace" } %>
-    <%= link_to "アルバム", mypages_path(tab: 'albums'), class: "tab tab-border px-4 py-2", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "写真", mypages_path(tab: 'photos'), class: "tab tab-border px-4 py-2", data: { turbo: false } %>
+    <%= link_to "アルバム", mypages_path(tab: 'albums'), class: "tab tab-border px-4 py-2", data: { turbo: false } %>
     <%= link_to "プロフィール", mypages_path(tab: 'profile'), class: "tab tab-border px-4 py-2", data: { turbo_frame: "content", turbo_action: "replace" } %>
   </div>
 

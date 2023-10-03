@@ -13,7 +13,7 @@
   </div>
   <% if logged_in? %>
     <div class="flex justify-end md:hidden flex-wrap mr-12">
-      <%= link_to mypages_path do %>
+      <%= link_to mypages_path, data: { turbo: false } do %>
         <label class="btn btn-sm btn-ghost items-center rounded-btn flex-col font-normal mr-1">
           <i class="fas fa-solid fa-book mt-1 text-lg text-yellow-900 mb-1"></i>
           <div class="text-xs">マイページ</div>
@@ -48,7 +48,7 @@
       </div>
     </div>
     <div class="flex justify-end hidden md:flex space-x-3">
-      <%= link_to mypages_path do %>
+      <%= link_to mypages_path, data: { turbo: false } do %>
         <label class="btn btn-ghost rounded-btn flex-col font-normal">
           <i class="fas fa-solid fa-book text-lg text-yellow-900 mb-1"></i>
           <div class="text-xs">マイページ</div>
