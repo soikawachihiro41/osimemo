@@ -1,6 +1,6 @@
 <turbo-frame id="content">
   <%= link_to edit_user_path(current_user), data: { turbo: "true" } do %>
-    <div class="profile-content text-center p-10 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
+    <div class="profile-content text-center p-10 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 opacity-0 scroll-fade-in">
       <h2 class="text-2xl font-semibold mb-6">プロフィール</h2>
       <div class="profile-image w-32 h-32 mx-auto mb-4">
         <% if current_user.profile_image.present? %>
