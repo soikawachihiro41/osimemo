@@ -1,8 +1,8 @@
-<div class="min-h-screen py-8 px-4 opacity-0 scroll-fade-in">
+<div class="min-h-screen py-8 px-4 ">
   <div class="max-w-screen-xl mx-auto">
     <h1 class="text-3xl font-semibold text-center mb-8">みんなの推しアルバム</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-0 scroll-fade-in">
       <% @public_albums.each do |album| %>
         <div class="bg-pink-100 rounded-lg shadow-md overflow-hidden">
           <%= link_to idol_album_photos_path(idol_id: album.idol.id, album_id: album.id), data: { turbo: "false" } do %>
