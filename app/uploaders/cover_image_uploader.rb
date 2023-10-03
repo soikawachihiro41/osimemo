@@ -48,4 +48,26 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
   end
+
+  process :optimize_jpeg
+
+  def optimize_jpeg
+    manipulate! do |img|
+      img.format('jpeg') do |c|
+        c.quality '80' # 例として80の品質に設定。適宜調整可能。
+      end
+      img
+    end
+  end
+
+  process :compress_png
+
+  def compress_png
+    manipulate! do |img|
+      img.format('png') do |c|
+        c.colors '256' # 8ビットカラーに変換
+      end
+      img
+    end
+  end
 end
