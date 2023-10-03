@@ -1,10 +1,9 @@
 # lib/tasks/reprocess_images.rake
-
 namespace :images do
-  desc "Reprocess images"
+  desc "Reprocess profile images"
   task reprocess: :environment do
     User.find_each do |user|
-      user.avatar.recreate_versions! if user.avatar.present?
+      user.profile_image.recreate_versions! if user.profile_image.present?
       user.save
     end
   end
