@@ -1,8 +1,8 @@
 <turbo-frame id="content">
   <% if @photos.any? %>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 opacity-0 scroll-fade-in">
       <% @photos.each do |photo| %>
-        <div class="card rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 opacity-0 scroll-fade-in">
+        <div class="card rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
           <% if photo.image.present? %>
             <%= link_to photo_path(photo), data: { turbo: "false" } do %>
               <div class="img-container rounded-lg"> 
