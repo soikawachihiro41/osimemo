@@ -1,12 +1,12 @@
 <header class="text-yellow-900 container mx-auto flex flex-wrap flex-row items-center justify-between ">
   <div class="flex items-center justify-between">
     <div class="flex items-center pl-5 md:hidden"> <!-- md:hidden は 'medium' サイズ以上で非表示 -->
-      <%= link_to root_path do %>
+      <%= link_to root_path, data: { turbo: false } do %>
         <span class="fas fa-home "></span>
       <% end %>
     </div>
     <div class="pl-3 hidden sm:flex">
-      <%= link_to root_path, { class: "text-lg", style: "color: #C85914;" } do %>
+      <%= link_to root_path, data: { turbo: false } do %>
         <span class="text-lg" style="color: #C85914;">osiMemories</span>
       <% end %>
     </div>
