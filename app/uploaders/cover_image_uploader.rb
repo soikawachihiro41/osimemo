@@ -19,7 +19,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     '/assets/default-profile-image.jpg'
   end
 
-  process scale: [400, 500]
+  process scale: [400, 400]
   def scale(width, height)
     manipulate! do |img|
       Rails.logger.debug { "Image path before resizing: #{img.path}" }
@@ -56,7 +56,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     if file.extension.downcase == 'heic' || file.extension.downcase == 'heif'
       manipulate! do |img|
         img.format('jpeg') do |c|
-          c.quality '60' # 変換後のJPEGの品質を設定
+          c.quality '40' # 変換後のJPEGの品質を設定
         end
         img
       end
@@ -69,7 +69,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   def optimize_jpeg
     manipulate! do |img|
       img.format('jpeg') do |c|
-        c.quality '60' # 60の品質に設定。適宜調整可能。
+        c.quality '40' # 60の品質に設定。適宜調整可能。
       end
       img
     end
