@@ -49,12 +49,27 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
   end
 
+# HEIC/HEIFをJPEGに変換
+  process :convert_heic_to_jpeg
+
+  def convert_heic_to_jpeg
+    if file.extension.downcase == 'heic' || file.extension.downcase == 'heif'
+      manipulate! do |img|
+        img.format('jpeg') do |c|
+          c.quality '60' # 変換後のJPEGの品質を設定
+        end
+        img
+      end
+    end
+  end
+
+# JPEGの最適化
   process :optimize_jpeg
 
   def optimize_jpeg
     manipulate! do |img|
       img.format('jpeg') do |c|
-        c.quality '80' # 例として80の品質に設定。適宜調整可能。
+        c.quality '60' # 60の品質に設定。適宜調整可能。
       end
       img
     end
