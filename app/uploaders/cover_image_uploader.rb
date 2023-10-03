@@ -85,4 +85,12 @@ class CoverImageUploader < CarrierWave::Uploader::Base
       img
     end
   end
+
+  def compress_with_pngquant
+    manipulate! do |img|
+      img.write(current_path)
+      `pngquant --quality=0-50 --ext .png --force #{current_path}`
+      img
+    end
+  end
 end
