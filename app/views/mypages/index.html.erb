@@ -12,8 +12,8 @@
   <div class="tabs mx-auto md:hidden flex flex-col overflow-y-auto h-24">
     <%= link_to "通知", mypages_path(tab: 'notifications'), class: "tab tab-border px-2 py-1", data: { turbo_frame: "content", turbo_action: "replace" } %>
     <%= link_to "推しメン一覧", mypages_path(tab: 'idols'), class: "tab tab-border px-2 py-1", data: { turbo_frame: "content", turbo_action: "replace" } %>
-    <%= link_to "写真", mypages_path(tab: 'photos'), class: "tab tab-border px-2 py-1", data: { turbo_frame: "content", turbo_action: "replace" } %>
-    <%= link_to "アルバム", mypages_path(tab: 'albums'), class: "tab tab-border px-2 py-1", data: { turbo_frame: "content", turbo_action: "replace" } %>
+    <%= link_to "写真", mypages_path(tab: 'photos'), class: "tab tab-border px-4 py-2", data: { turbo: false } %>
+    <%= link_to "アルバム", mypages_path(tab: 'albums'), class: "tab tab-border px-4 py-2", data: { turbo: false } %>
     <%= link_to "プロフィール", mypages_path(tab: 'profile'), class: "tab tab-border px-2 py-1", data: { turbo_frame: "content", turbo_action: "replace" } %>
   </div>
 
