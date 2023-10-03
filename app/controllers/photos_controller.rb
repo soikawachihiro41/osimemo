@@ -3,9 +3,10 @@
 # 写真投稿設定
 class PhotosController < ApplicationController
   before_action :login_required, except: %i[show index]
-  before_action :set_photo, only: %i[show update destroy]
+  before_action :set_photo, only: %i[edit show update destroy]
   before_action :check_owner_or_uploader, only: %i[update destroy]
   before_action :set_albums, only: %i[new edit]
+  before_action :set_selected_album, only: %i[create update]
 
   def index
     @album = Album.includes(:photos).find(params[:album_id])
@@ -29,15 +30,18 @@ class PhotosController < ApplicationController
 
   def create
     set_selected_album
-    @photo = Photo.create_with_tags(@album, photo_params, parsed_tag_list, current_user)
-    if @photo.persisted?
-      redirect_to mypages_path, notice: t('.success')
-    else
-      flash.now[:danger] = t('.error')
-      render :new, status: :unprocessable_entity
+    @photo = Photo.create_with_tags(@album, photo_params, current_user)
+    if @photo.valid?
+      @photo.save_tags(parsed_tag_list) if parsed_tag_list.present?
+      if @photo.save
+        redirect_to mypages_path, notice: t('.success')
+      else
+        flash.now[:danger] = t('.error')
+        render :new, status: :unprocessable_entity
+      end
     end
   end
-
+  
   def update
     set_selected_album
     if @photo.update_photo_and_tags(photo_params.except(:tag_names), parsed_tag_list)
@@ -57,6 +61,11 @@ class PhotosController < ApplicationController
 
   def set_photo
     @photo = Photo.includes(:album).find(params[:id])
+  end
+
+  def set_selected_album
+    selected_album_id = params[:my_album_id].presence || params[:open_album_id]
+    @album = Album.find(selected_album_id)
   end
 
   def check_owner_or_uploader

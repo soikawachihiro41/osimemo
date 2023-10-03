@@ -15,14 +15,24 @@ class Photo < ApplicationRecord
   validates :capture_date, presence: true
   validates :body, length: { maximum: 800 }
 
-  def self.create_with_tags(album, attributes, tag_list = [], uploader)
-    photo = album.photos.new(attributes.except(:tag_names).merge(uploader:))
-    if photo.valid?
-      photo.save_tags(tag_list)
-      photo.save
-    end
-    photo
+  def viewable_or_editable_by?(user)
+    self.uploader_id == user.id
   end
+
+  def self.create_with_tags(album, attributes, uploader)
+    album.photos.new(attributes.except(:tag_names).merge(uploader: uploader))
+  end
+  
+  def update_photo_and_tags(attributes, tag_list = [])
+    assign_attributes(attributes)
+    if valid?
+      save_tags(tag_list)
+      save
+    else
+      false
+    end
+  end
+  
 
   private
 
@@ -34,17 +44,8 @@ class Photo < ApplicationRecord
     }
   end
 
-  def update_photo_and_tags(attributes, tag_list = [])
-    assign_attributes(attributes)
-    if valid?
-      save_tags(tag_list)
-      save
-    else
-      false
-    end
-  end
-
   def save_tags(sent_tags)
+    sent_tags ||= []
     current_tags = tags.pluck(:tag_names) || []
 
     remove_old_tags(current_tags - sent_tags)
