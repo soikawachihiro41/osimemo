@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class PostbackHandler
-
   include Rails.application.routes.url_helpers
   include ActionDispatch::Routing::PolymorphicRoutes
 

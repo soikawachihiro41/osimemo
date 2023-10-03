@@ -4,7 +4,7 @@
 class MypagesController < ApplicationController
   before_action :login_required
   def index
-    @selected_tab = params[:tab] || 'albums'
+    @selected_tab = params[:tab] || 'photos'
     @albums = current_user.albums
     @idols = current_user.idols
     @notification_setting = current_user.notification_setting

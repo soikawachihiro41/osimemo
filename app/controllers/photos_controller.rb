@@ -19,7 +19,6 @@ class PhotosController < ApplicationController
     @tag_names = @photo.tag_names
   end
 
-  
   def new
     @photo = Photo.new
   end
@@ -31,17 +30,17 @@ class PhotosController < ApplicationController
   def create
     set_selected_album
     @photo = Photo.create_with_tags(@album, photo_params, current_user)
-    if @photo.valid?
-      @photo.save_tags(parsed_tag_list) if parsed_tag_list.present?
-      if @photo.save
-        redirect_to mypages_path, notice: t('.success')
-      else
-        flash.now[:danger] = t('.error')
-        render :new, status: :unprocessable_entity
-      end
+    return unless @photo.valid?
+
+    @photo.save_tags(parsed_tag_list) if parsed_tag_list.present?
+    if @photo.save
+      redirect_to mypages_path, notice: t('.success')
+    else
+      flash.now[:danger] = t('.error')
+      render :new, status: :unprocessable_entity
     end
   end
-  
+
   def update
     set_selected_album
     if @photo.update_photo_and_tags(photo_params.except(:tag_names), parsed_tag_list)

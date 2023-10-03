@@ -27,7 +27,7 @@
               <%= link_to edit_photo_path(photo), id: "button-edit-#{photo.id}", data: { turbo: "false" }  do %>
                 <span class="bg-yellow-900 hover:bg-yellow-800 text-white font-semibold py-1 px-4 rounded-full shadow-sm">編集</span>
               <% end %>
-              <%= button_to photo_path(photo), id: "button-delete-#{photo.id}", method: :delete, data: { turbo_confirm: "本当に削除しますか？" } do %>
+              <%= button_to photo_path(photo), id: "button-delete-#{photo.id}", method: :delete, data: { turbo: "false" }  do %>
                 <span class="bg-yellow-900 hover:bg-yellow-800 text-white font-semibold py-1 px-4 rounded-full shadow-sm">削除</span>
               <% end %>
             </div>
