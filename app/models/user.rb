@@ -29,4 +29,9 @@ class User < ApplicationRecord
   def own?(object)
     object.user_id == id
   end
+
+  User.find_each do |user|
+    user.avatar.recreate_versions! if user.avatar.present?
+    user.save
+  end  
 end
