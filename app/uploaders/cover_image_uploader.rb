@@ -56,7 +56,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     if file.extension.downcase == 'heic' || file.extension.downcase == 'heif'
       manipulate! do |img|
         img.format('jpeg') do |c|
-          c.quality '40' # 変換後のJPEGの品質を設定
+          c.quality '80' # 変換後のJPEGの品質を設定
         end
         img
       end
@@ -69,7 +69,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   def optimize_jpeg
     manipulate! do |img|
       img.format('jpeg') do |c|
-        c.quality '40' # 60の品質に設定。適宜調整可能。
+        c.quality '80'
       end
       img
     end
@@ -80,7 +80,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   def compress_png
     manipulate! do |img|
       img.format('png') do |c|
-        c.colors '16' # 8ビットカラーに変換
+        c.colors '256'
       end
       img
     end
