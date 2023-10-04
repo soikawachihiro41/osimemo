@@ -33,6 +33,12 @@ class Photo < ApplicationRecord
     end
   end
 
+  def reprocess_image
+    image.recreate_versions!
+    save!
+  end
+  
+
   private
 
   def details
