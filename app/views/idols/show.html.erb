@@ -25,7 +25,7 @@
       <%= button_to idol_path(@idol), method: :delete, data: { turbo_confirm: "推しを削除すると、関連するアルバムもすべて削除されます。本当に削除しますか？" }, form_class: 'inline' do %>
         <i class="btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded">削除</i>
       <% end %>
-      <%= link_to '戻る', mypages_path, class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded' %>
+      <%= link_to '戻る', mypages_path, class: 'btn bg-5c7b64 hover:opacity-90 text-white font-bold py-2 px-4 rounded', data: { turbo: "false" } %>
     </div>
   </div>
 </div>

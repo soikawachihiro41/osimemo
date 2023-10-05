@@ -21,7 +21,7 @@
 
             <div class="flex flex-wrap space-x-2 mb-2">
               <% photo.tags.each do |tag| %>
-                <%= link_to photo_tag_path(tag.tag_names), class: "hover:rotate-90 transform transition-transform duration-500" do %>
+                <%= link_to photo_tag_path(tag.tag_names), class: "hover:rotate-90 transform transition-transform duration-500", data: { turbo: "false" } do %>
                   <span class="inline-block bg-rose-200 text-rose-600 hover:text-white rounded-full px-2 py-1 text-xs font-bold"><%= tag.tag_names %></span>
                 <% end %>
               <% end %>

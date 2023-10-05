@@ -20,9 +20,9 @@ class Photo < ApplicationRecord
   end
 
   def self.create_with_tags(album, attributes, uploader)
-    album.photos.new(attributes.except(:tag_names).merge(uploader:))
+    album.photos.new(attributes.except(:tag_names).merge(uploader: uploader))
   end
-
+  
   def update_photo_and_tags(attributes, tag_list = [])
     assign_attributes(attributes)
     if valid?
@@ -31,22 +31,6 @@ class Photo < ApplicationRecord
     else
       false
     end
-  end
-
-  def reprocess_image
-    image.recreate_versions!
-    save!
-  end
-  
-
-  private
-
-  def details
-    {
-      image_url: image.url,
-      album_name: album.name,
-      idol_name: album.idol.name
-    }
   end
 
   def save_tags(sent_tags)
@@ -69,5 +53,15 @@ class Photo < ApplicationRecord
       tag = Tag.find_or_create_by(tag_names: tag_name)
       photo_tags.create(tag_id: tag.id)
     end
+  end
+
+  private
+
+  def details
+    {
+      image_url: image.url,
+      album_name: album.name,
+      idol_name: album.idol.name
+    }
   end
 end

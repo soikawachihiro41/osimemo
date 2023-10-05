@@ -19,7 +19,7 @@ class MypagesController < ApplicationController
 
     # タグに紐づいていて、かつ公開されているアルバムに所属している（またはアップロード者が現在のユーザーである）写真のみを取得
     @photos = Photo.joins(:tags, :album).where(tags: { tag_names: params[:tag] }).where(
-      'albums.id IN (:public_album_ids) OR photos.uploader_id = :user_id', public_album_ids:, user_id: current_user.id
+      'albums.id IN (:public_album_ids) OR photos.uploader_id = :user_id', public_album_ids: public_album_ids, user_id: current_user.id
     )
 
     @selected_tab = 'photos'

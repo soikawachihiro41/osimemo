@@ -30,14 +30,14 @@ class PhotosController < ApplicationController
   def create
     set_selected_album
     @photo = Photo.create_with_tags(@album, photo_params, current_user)
-    return unless @photo.valid?
-
-    @photo.save_tags(parsed_tag_list) if parsed_tag_list.present?
-    if @photo.save
-      redirect_to mypages_path, notice: t('.success')
-    else
-      flash.now[:danger] = t('.error')
-      render :new, status: :unprocessable_entity
+    if @photo.valid?
+      @photo.save_tags(parsed_tag_list) if parsed_tag_list.present?
+      if @photo.save
+        redirect_to mypages_path, notice: t('.success')
+      else
+        flash.now[:danger] = t('.error')
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
@@ -50,6 +50,15 @@ class PhotosController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def tag
+    # is_publicがtrueに設定されたアルバムのIDを取得
+    public_album_ids = Album.where(is_public: true).pluck(:id)
+    # タグに紐づいていて、かつ公開されているアルバムに所属している写真のみを取得
+    @photos = Photo.joins(:tags, :album).where(tags: { tag_names: params[:tag] }).where(albums: { id: public_album_ids })
+    render :index
+  end
+  
 
   def destroy
     @photo.destroy
