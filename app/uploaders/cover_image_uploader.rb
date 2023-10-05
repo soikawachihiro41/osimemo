@@ -49,7 +49,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
   end
 
-#🔥WebPに変換
+  # 🔥WebPに変換
   process :convert_to_webp
 
   def convert_to_webp
@@ -58,8 +58,9 @@ class CoverImageUploader < CarrierWave::Uploader::Base
       img
     end
   end
-  #🔥拡張子を.webpで保存
+
+  # 🔥拡張子を.webpで保存
   def filename
-    super.chomp(File.extname(super)) + '.webp' if original_filename.present?
+    "#{super.chomp(File.extname(super))}.webp" if original_filename.present?
   end
 end

@@ -59,9 +59,9 @@ gem 'posix-spawn'
 gem 'fog-aws'
 # AWS確認用
 gem 'aws-sdk-s3'
-#画像の投稿の重さ解消
-gem 'sidekiq'
+# 画像の投稿の重さ解消
 gem 'redis'
+gem 'sidekiq'
 gem 'sinatra', require: false
 # 環境変数を管理する
 gem 'dotenv-rails'

@@ -33,5 +33,5 @@ class User < ApplicationRecord
   User.find_each do |user|
     user.profile_image.recreate_versions! if user.profile_image.present?
     user.save
-  end  
+  end
 end

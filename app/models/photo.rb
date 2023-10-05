@@ -20,9 +20,9 @@ class Photo < ApplicationRecord
   end
 
   def self.create_with_tags(album, attributes, uploader)
-    album.photos.new(attributes.except(:tag_names).merge(uploader: uploader))
+    album.photos.new(attributes.except(:tag_names).merge(uploader:))
   end
-  
+
   def update_photo_and_tags(attributes, tag_list = [])
     assign_attributes(attributes)
     if valid?
@@ -51,7 +51,7 @@ class Photo < ApplicationRecord
   def add_new_tags(new_tags)
     new_tags.each do |tag_name|
       tag = Tag.find_or_create_by(tag_names: tag_name)
-      photo_tags.create(tag_id: tag.id)
+      photo_tags.build(tag_id: tag.id)
     end
   end
 
