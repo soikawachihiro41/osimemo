@@ -59,7 +59,10 @@ gem 'posix-spawn'
 gem 'fog-aws'
 # AWS確認用
 gem 'aws-sdk-s3'
-
+#画像の投稿の重さ解消
+gem 'sidekiq'
+gem 'redis'
+gem 'sinatra', require: false
 # 環境変数を管理する
 gem 'dotenv-rails'
 gem 'gon'
@@ -97,8 +100,6 @@ group :production do
 end
 
 gem 'dockerfile-rails', '>= 1.5', group: :development
-
-gem 'redis', '~> 5.0'
 
 gem 'sentry-ruby', '~> 5.10'
 

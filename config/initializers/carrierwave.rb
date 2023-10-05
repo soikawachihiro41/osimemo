@@ -16,5 +16,4 @@ CarrierWave.configure do |config|
     region: 'ap-northeast-1',
     path_style: true
   }
-  config.remove_previously_stored_files_after_update = true
 end

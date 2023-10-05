@@ -29,18 +29,15 @@ class PhotosController < ApplicationController
 
   def create
     set_selected_album
-    @photo = Photo.create_with_tags(@album, photo_params, current_user)
-    return unless @photo.valid?
-
-    @photo.save_tags(parsed_tag_list) if parsed_tag_list.present?
-    if @photo.save
-      redirect_to mypages_path, notice: t('.success')
-    else
-      flash.now[:danger] = t('.error')
-      render :new, status: :unprocessable_entity
-    end
+    uploader = CoverImageUploader.new
+    uploader.cache!(params[:photo][:image])
+    cached_file_identifier = uploader.cache_name
+  
+    tag_list = parsed_tag_list
+    UploadImageJob.perform_later(cached_file_identifier, photo_params.except(:image).to_h, @album.id, current_user.id, tag_list)
+    redirect_to mypages_path, notice: t('.success')
   end
-
+  
   def update
     set_selected_album
     if @photo.update_photo_and_tags(photo_params.except(:tag_names), parsed_tag_list)

@@ -15,8 +15,8 @@ class CoverImageUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url(*_args)
-    '/assets/default-profile-image.jpg'
+  def default_url
+    'no_image_gray.png'
   end
 
   process scale: [400, 400]
@@ -34,7 +34,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
 
   # 画像の拡張子を制限
   def extension_allowlist
-    %w[jpg jpeg gif png HEIC heic heif HEIF]
+    %w[jpg jpeg gif png HEIC heic heif HEIF webp]
   end
 
   # 一意のファイル名を生成
@@ -49,48 +49,17 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
   end
 
-# HEIC/HEIFをJPEGに変換
-  process :convert_heic_to_jpeg
+#🔥WebPに変換
+  process :convert_to_webp
 
-  def convert_heic_to_jpeg
-    if file.extension.downcase == 'heic' || file.extension.downcase == 'heif'
-      manipulate! do |img|
-        img.format('jpeg') do |c|
-          c.quality '80' # 変換後のJPEGの品質を設定
-        end
-        img
-      end
-    end
-  end
-
-# JPEGの最適化
-  process :optimize_jpeg
-
-  def optimize_jpeg
+  def convert_to_webp
     manipulate! do |img|
-      img.format('jpeg') do |c|
-        c.quality '80'
-      end
+      img.format 'webp'
       img
     end
   end
-
-  process :compress_png
-
-  def compress_png
-    manipulate! do |img|
-      img.format('png') do |c|
-        c.colors '256'
-      end
-      img
-    end
-  end
-
-  def compress_with_pngquant
-    manipulate! do |img|
-      img.write(current_path)
-      `pngquant --quality=0-50 --ext .png --force #{current_path}`
-      img
-    end
+  #🔥拡張子を.webpで保存
+  def filename
+    super.chomp(File.extname(super)) + '.webp' if original_filename.present?
   end
 end
