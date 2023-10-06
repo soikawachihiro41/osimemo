@@ -5,12 +5,18 @@ class MypagesController < ApplicationController
   before_action :login_required
   def index
     @selected_tab = params[:tab] || 'photos'
-    @albums = current_user.albums
     @idols = current_user.idols
     @notification_setting = current_user.notification_setting
-    @photos = Photo.joins(:album).where(
-      'albums.user_id = :user_id OR photos.uploader_id = :user_id', user_id: current_user.id
-    )
+  
+    if current_user.admin?
+      @albums = Album.all
+      @photos = Photo.all
+    else
+      @albums = current_user.albums
+      @photos = Photo.joins(:album).where(
+        'albums.user_id = :user_id OR photos.uploader_id = :user_id', user_id: current_user.id
+      )
+    end
   end
 
   def tag

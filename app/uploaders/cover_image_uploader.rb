@@ -19,6 +19,14 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     'no_image_gray.png'
   end
 
+  process :auto_orient
+  def auto_orient
+    manipulate! do |img|
+      img.auto_orient
+      img
+    end
+  end
+
   process scale: [400, 400]
   def scale(width, height)
     manipulate! do |img|

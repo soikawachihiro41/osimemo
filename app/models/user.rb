@@ -34,4 +34,9 @@ class User < ApplicationRecord
     user.profile_image.recreate_versions! if user.profile_image.present?
     user.save
   end
+
+  def admin?
+    role == "admin"
+  end
+  
 end

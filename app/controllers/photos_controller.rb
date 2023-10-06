@@ -77,10 +77,10 @@ class PhotosController < ApplicationController
   end
 
   def check_owner_or_uploader
-    return if @photo.viewable_or_editable_by?(current_user)
-
+    return if current_user.admin? || @photo.viewable_or_editable_by?(current_user)
+  
     redirect_to root_path, alert: t('photos.no_permission')
-  end
+  end  
 
   def set_albums
     @my_albums = Album.where(user_id: current_user.id)
