@@ -3,6 +3,13 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  namespace :admin do
+    get 'sessions/new'
+    get 'sessions/create'
+    get 'sessions/destroy'
+  end
+  ActiveAdmin.routes(self)
   mount Sidekiq::Web => '/sidekiq'
   post '/callback', to: 'line_bot#callback'
   root 'home#top'
@@ -34,4 +41,10 @@ Rails.application.routes.draw do
       resources :photos
     end
   end
+
+  namespace :admin do
+    get 'login', to: 'sessions#new', as: :session
+    post 'login', to: 'sessions#create'
+    delete 'logout', to: 'sessions#destroy'
+  end  
 end

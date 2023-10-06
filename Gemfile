@@ -70,6 +70,10 @@ gem 'gon'
 # バックグラウンド
 gem 'byebug'
 gem 'whenever', require: false
+#管理者画面
+gem 'activeadmin'
+gem 'devise'
+gem 'sassc'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
