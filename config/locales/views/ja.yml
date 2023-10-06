@@ -1,77 +1,9 @@
 ja:
   idols:
     create:
-      success: '推しとアルバムが正常に作成されました。'
+      success: '推しが正常に作成されました。'
       fail: 'エラーが発生しました。入力内容を確認してください。'
   time:
     formats:
-      default: "%Y-%m-%d %H:%M"
+      default: "%Y-%m-%d"
       short: "%Y-%m-%d"
-  anniversaries:
-    edit:
-      title: EDIT ANNIVERSARY
-    index:
-      title: MY ANNIVERSARY
-      to_register_page: 記念日を登録する
-    new:
-      title: NEW ANNIVERSARY
-  home:
-    description:
-      title: DESCRIPTION
-    mypage:
-      title: MY PAGE
-      to_received_page: 届いた手紙
-      to_sent_letter_page: 送った手紙
-      to_anniversary_page: 記念日
-      to_description_page: 使い方
-    privacy:
-      title: PRIVACY POLICY
-    terms:
-      title: TERMS OF SERVICE
-  letters:
-    edit:
-      title: EDIT LETTER
-    index:
-      title: DRAFT LETTER
-    new:
-      title: NEW LETTER
-    invite:
-      ok_button: OK
-  send_letters:
-    index:
-      title: SENT LETTER
-    received:
-      title: MY LETTER
-  admin:
-    dashboards:
-      top:
-        title: DASHBOARD
-  demo:
-    home:
-      description:
-        title: DESCRIPTION
-      mypage:
-        title: MY PAGE
-        to_received_page: 届いた手紙
-        to_sent_letter_page: 送った手紙
-        to_anniversary_page: 記念日
-        to_description_page: 使い方
-      privacy:
-        title: PRIVACY POLICY
-      terms:
-        title: TERMS OF SERVICE
-    anniversaries:
-      index:
-        title: MY ANNIVERSARY
-        to_register_page: 記念日を登録する
-      trial:
-        title: NEW ANNIVERSARY
-    letters:
-      draft:
-        title: DRAFT LETTER
-      mailed:
-        title: SENT LETTER
-      received:
-        title: MY LETTER
-      trial:
-        title: NEW LETTER

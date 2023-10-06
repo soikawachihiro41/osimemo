@@ -30,6 +30,7 @@ ja:
       success: "ユーザー情報を更新しました。"
     destroy:
       success: "ログアウトしました。"
-  notifications:
-    settings_updated: '設定が更新されました'
-    settings_saved: '設定が保存されました'
+  notification_settings:
+    create:
+      settings_saved: "通知設定が保存されました。"
+    settings_saved: "設定が保存されました。"

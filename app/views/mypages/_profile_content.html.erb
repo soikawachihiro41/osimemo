@@ -4,9 +4,9 @@
       <h2 class="text-2xl font-semibold mb-6">プロフィール</h2>
       <div class="profile-image w-32 h-32 mx-auto mb-4">
         <% if current_user.profile_image.present? %>
-          <%= image_tag current_user.profile_image.url, alt: current_user.name, class: "rounded-full border-4 border-pink-300 object-cover w-32 h-32 opacity-0 scroll-fade-in" %>
+          <%= image_tag current_user.profile_image.url, alt: current_user.name, class: "rounded-full border-4 border-pink-300 object-cover w-32 h-32" %>
         <% else %>
-          <img src="/default-profile-image.jpg" alt="デフォルト画像" class="rounded-full border-4 border-pink-300 object-cover w-32 h-32" />
+          <img src="/default-profile-image.jpg" alt="デフォルト画像" class="rounded-full border-4 border-pink-300 object-cover w-32 h-32 opacity-0 scroll-fade-in" />
         <% end %>
       </div>
       <div class="profile-details">

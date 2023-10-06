@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("turbo:load", function () {
   let targets = document.querySelectorAll('.scroll-fade-in');
 
   let fadeInObserver = new IntersectionObserver((entries, observer) => {
