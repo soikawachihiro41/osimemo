@@ -1,4 +1,4 @@
-<header class="text-yellow-900 container mx-auto flex flex-wrap flex-row items-center justify-between ">
+<header class="text-yellow-900 container mx-auto flex flex-wrap flex-row items-center justify-between z-20">
   <div class="flex items-center justify-between">
     <div class="flex items-center pl-5 md:hidden"> <!-- md:hidden は 'medium' サイズ以上で非表示 -->
       <%= link_to root_path, data: { turbo: false } do %>
@@ -19,34 +19,38 @@
           <div class="text-xs">マイページ</div>
         </label>
       <% end %>
-      <div class="dropdown dropdown-end menu-compact pl-7">
-          <label class="btn btn-sm btn-ghost rounded-btn" tabindex="0">
-            <i class="fa fa-bars"></i>
-          </label>
-          <ul class="menu dropdown-content p-2 shadow bg-5c7b64 rounded w-52 z-50 mt-4" tabindex="0">
-            <li>
-              <%= link_to new_idol_path do %>
-                推しアイドル登録
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_album_path do %>
-                アルバム作成
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_photo_path do %>
-                写真登録
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_notification_setting_path do %>
-                通知
-              <% end %>
-            </li>
-          </ul>
+    <div class="relative z-10">
+      <label class="btn btn-circle swap swap-rotate menu-trigger">
+        <input type="checkbox" class="menu-toggle sr-only" /> <!-- sr-onlyを追加 -->
+        <svg class="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"/></svg>
+        <svg class="swap-on fill-current hidden" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
+      </label>
+      <div class="transition-transform duration-500 ease-in-out fixed top-[header-height] transform translate-y-[header-height] left-0 w-full h-full bg-5c7b64 z-10 hidden full-screen-menu">
+        <div class="flex flex-col justify-center h-full">
+            <ul class="list-none p-0 m-0 text-center">
+                <li class="my-2">
+                    <%= link_to new_idol_path, class: "text-white text-lg no-underline" do %>
+                        推しアイドル登録
+                    <% end %>
+                </li>
+                <li class="my-2">
+                    <%= link_to new_album_path, class: "text-white text-lg no-underline" do %>
+                        アルバム作成
+                    <% end %>
+                </li>
+                <li class="my-2">
+                    <%= link_to new_photo_path, class: "text-white text-lg no-underline" do %>
+                        写真登録
+                    <% end %>
+                </li>
+                <li class="my-2">
+                    <%= link_to new_notification_setting_path, class: "text-white text-lg no-underline" do %>
+                        通知
+                    <% end %>
+                </li>
+            </ul>
+        </div>
       </div>
-    </div>
     <div class="flex justify-end hidden md:flex space-x-3">
       <%= link_to mypages_path, data: { turbo: false } do %>
         <label class="btn btn-ghost rounded-btn flex-col font-normal">
