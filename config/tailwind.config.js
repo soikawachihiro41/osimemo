@@ -22,6 +22,10 @@ module.exports = {
         '5c7b64': '#5c7b64',
         'fcd8df': '#fcd8df'
       },
+      zIndex: {
+        '9999': '9999',
+        '10000': '10000'
+      },
     },
   },
   plugins: [
@@ -62,7 +66,9 @@ module.exports = {
           "primary-content": "#ffe4e6",
           "base-100": "#fff1f2",
           "base-content": "#372f38",
-          "custom-pink": "#fcd8df"
+          "custom-pink": "#fcd8df",
+          "ring": "transparent", // 追加: ringカラーを透明に設定
+          "border": "transparent" // 追加: borderカラーを透明に設定
         },
       }
     ],
