@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'idols_content', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-<div class="sticky-note-container">
+<div class="sticky-note-container opacity-0 scroll-fade-in">
   <% if @idols.present? %>
     <% @idols.each do |idol| %>
       <%= link_to idol_path(idol), class: "block transition-transform duration-300 hover:scale-105", data: { turbo: "false" } do %>
