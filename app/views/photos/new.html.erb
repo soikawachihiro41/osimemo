@@ -14,13 +14,13 @@
         <%= label_tag :open_album_id, "みんなの公開アルバム", class: "block text-lg text-rose-600 mb-2" %>
         <%= select_tag :open_album_id, options_from_collection_for_select(@open_albums, 'id', 'name'), prompt: "アルバムを選択してください", class: "form-select w-full p-2 border rounded-md custom-focus" %>
       </div>
+      <div>※"自分のアルバム"か"みんなの公開アルバム"どちらに登録するか選んでね</div>
 
-      <div class="mb-4">
+      <div class="mb-4 mt-8">
         <%= f.label :image, "写真", class: "block text-lg text-rose-600 mb-2" %>
         <%= f.file_field :image, onchange: 'displayImagePreview(this)', class: 'form-control js-file-select-preview mb-3', accept: 'image/*'%>
         <img id="image-preview" style="display:none" class='w-80 h-80 border'>
       </div>
-
 
       <div class="mb-4">
         <%= f.label :capture_date, "撮影日", class: "block text-lg text-rose-600 mb-2" %>

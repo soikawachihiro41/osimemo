@@ -51,7 +51,7 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
     @album.destroy
 
-    flash[:notice] = t('deleted')
+    flash[:notice] = t('albums.deleted')
     redirect_to mypages_path
   end
 
