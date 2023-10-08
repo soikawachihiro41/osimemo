@@ -30,13 +30,7 @@ class User < ApplicationRecord
     object.user_id == id
   end
 
-  User.find_each do |user|
-    user.profile_image.recreate_versions! if user.profile_image.present?
-    user.save
-  end
-
   def admin?
     role == "admin"
   end
-  
 end
