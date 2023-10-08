@@ -15,6 +15,7 @@ ja:
   photos:
     create:
       success: "登録が完了しました"
+      error: "エラーが発生しました。入力内容を確認してください。"
     update:
       success: "写真が正常に更新されました。"
     destroy:
