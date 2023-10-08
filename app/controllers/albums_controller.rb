@@ -29,7 +29,7 @@ class AlbumsController < ApplicationController
       redirect_to mypages_path, notice: t('albums.created')
     else
       flash.now[:danger] = t('albums.error')
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -43,8 +43,7 @@ class AlbumsController < ApplicationController
     if @album.update(album_params)
       redirect_to idol_album_path(@album.idol, @album), notice: t('albums.updated')
     else
-      render :edit
-    end
+      render :edit, status: :unprocessable_entity
   end
 
   def destroy
