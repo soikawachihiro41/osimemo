@@ -34,9 +34,9 @@ class PhotosController < ApplicationController
 
     @photo.save_tags(parsed_tag_list) if parsed_tag_list.present?
     if @photo.save
-      redirect_to mypages_path, notice: t('.success')
+      redirect_to mypages_path, notice: t('photos.created')
     else
-      flash.now[:danger] = t('.error')
+      flash.now[:danger] = t('photos.error')
       render :new, status: :unprocessable_entity
     end
   end
@@ -44,9 +44,9 @@ class PhotosController < ApplicationController
   def update
     set_selected_album
     if @photo.update_photo_and_tags(photo_params.except(:tag_names), parsed_tag_list)
-      redirect_to mypages_url(tab: 'photos'), notice: t('.success')
+      redirect_to mypages_url(tab: 'photos'), notice: t('photo.update')
     else
-      flash.now[:danger] = t('.error')
+      flash.now[:danger] = t('photos.error')
       render :edit, status: :unprocessable_entity
     end
   end
@@ -62,7 +62,7 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo.destroy
-    redirect_to mypages_url(tab: 'photos'), notice: t('.success')
+    redirect_to mypages_url(tab: 'photos'), notice: t('photos.deleted')
   end
 
   private
@@ -72,7 +72,13 @@ class PhotosController < ApplicationController
   end
 
   def set_selected_album
-    selected_album_id = params[:my_album_id].presence || params[:open_album_id]
+    selected_album_id = params[:my_album_id].presence || params[:open_album_id].presence
+    
+    unless selected_album_id
+      redirect_to new_photo_path, alert: 'アルバムを選択してください'
+      return
+    end
+    
     @album = Album.find(selected_album_id)
   end
 

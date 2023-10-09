@@ -44,6 +44,7 @@ class AlbumsController < ApplicationController
       redirect_to idol_album_path(@album.idol, @album), notice: t('albums.updated')
     else
       render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

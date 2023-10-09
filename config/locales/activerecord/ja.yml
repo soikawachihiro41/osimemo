@@ -13,13 +13,10 @@ ja:
     destroy:
       success: "推しを正常に削除しました。"
   photos:
-    create:
-      success: "登録が完了しました"
-      error: "エラーが発生しました。入力内容を確認してください。"
-    update:
-      success: "写真が正常に更新されました。"
-    destroy:
-      success: "写真が正常に削除されました。"
+    error: "エラーが発生しました。入力内容を確認してください。"
+    created: "登録が完了しました"
+    update: "写真が正常に更新されました。"
+    deleted: "写真が正常に削除されました。"
     unauthorized: "このアルバムは非公開です"
     no_permission: "権限がありません。"
   users:

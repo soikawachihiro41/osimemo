@@ -1,5 +1,5 @@
 <% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>">
+  <div class="<%= tailwind_alert_class(message_type) %>">
     <div class="flex-1">
       <p><%= message %></p>
     </div>
