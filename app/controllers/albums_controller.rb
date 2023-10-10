@@ -26,7 +26,7 @@ class AlbumsController < ApplicationController
     @album = Album.new(album_params)
     @album.user_id = current_user.id
     if @album.save
-      redirect_to mypages_path, notice: t('albums.created')
+      redirect_to mypages_url(tab: 'albums'), notice: t('albums.created')
     else
       flash.now[:danger] = t('albums.error')
       render :new, status: :unprocessable_entity
