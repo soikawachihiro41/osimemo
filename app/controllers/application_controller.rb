@@ -17,8 +17,10 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required
-    # ログインしていない（current_userが存在しない場合）root_pathに飛ばす
-    redirect_to root_path unless current_user
+    unless current_user
+      flash[:warning] = t('application.login_required')
+      redirect_to root_path
+    end
   end
 
   def logged_in?

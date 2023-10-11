@@ -1,4 +1,6 @@
 ja:
+  application:
+    login_required: "ログインしてください"
   albums:
     created: "アルバムが正常に作成されました。"
     error: "エラーが発生しました。入力内容を確認してください。"
