@@ -31,11 +31,11 @@ module ApplicationHelper
   def tailwind_alert_class(type)
     case type.to_sym
     when :notice, :success
-      "bg-red-200 border border-blue-400 text-red-700 px-4 py-3 rounded relative"
+      "bg-emerald-100 border text-slate-500 px-4 py-3 rounded relative"
     when :alert, :error, :danger
       "bg-red-200 border border-red-400 text-red-700 px-4 py-3 rounded relative"
     else
-      "bg-red-200 border border-blue-400 text-red-700 px-4 py-3 rounded relative"
+      "bg-emerald-100 border text-slate-500 px-4 py-3 rounded relative"
     end
   end
 end
