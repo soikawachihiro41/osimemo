@@ -34,7 +34,7 @@ class IdolsController < ApplicationController
   def update
     @idol = Idol.find(params[:id])
     if @idol.update(idol_params)
-      redirect_to idol_path(@idol), t.('idols.update.success')
+      redirect_to idol_path(@idol), success: t('idols.update.success')
     else
       flash.now[:danger] = t('idols.error')
       render :edit, status: :unprocessable_entity
@@ -44,7 +44,7 @@ class IdolsController < ApplicationController
   def destroy
     @idol = Idol.find(params[:id])
     @idol.destroy
-    redirect_to mypages_path, t('idols.destroy.success')
+    redirect_to mypages_path,success: t('idols.destroy.success')
   end
 
   private

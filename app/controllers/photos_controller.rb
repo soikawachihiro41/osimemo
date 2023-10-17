@@ -2,7 +2,7 @@
 
 # 写真投稿設定
 class PhotosController < ApplicationController
-  before_action :login_required, except: %i[show index]
+  before_action :login_required, except: %i[show index tag]
   before_action :set_photo, only: %i[edit show update destroy]
   before_action :check_owner_or_uploader, only: %i[update destroy]
   before_action :set_albums, only: %i[new edit]
