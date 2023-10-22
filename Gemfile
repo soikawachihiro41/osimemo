@@ -61,7 +61,8 @@ gem 'fog-aws'
 gem 'aws-sdk-s3'
 # 画像加工機能
 gem 'cloudinary'
-
+# 検索機能追加
+gem 'ransack'
 # 環境変数を管理する
 gem 'dotenv-rails'
 gem 'gon'

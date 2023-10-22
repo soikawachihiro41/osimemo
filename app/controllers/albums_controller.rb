@@ -35,9 +35,10 @@ class AlbumsController < ApplicationController
 
   # みんなの公開アルバム
   def public_index
-    @public_albums = Album.where(is_public: true)
-  end
-
+    @search = Album.ransack(params[:q])
+    @public_albums = @search.result.includes(:idol, :user).where(is_public: true)
+  end  
+  
   def update
     @album = Album.find(params[:id])
     if @album.update(album_params)
