@@ -8,6 +8,7 @@ class Photo < ApplicationRecord
   mount_uploader :image, CoverImageUploader
 
   # validate :image_size_validation
+  attr_accessor :image_secure_token
 
   attr_accessor :tag_names
 
