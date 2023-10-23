@@ -1,21 +1,24 @@
+<!--app/views/albums/public_index.html.erb -->
+
 <div class="min-h-screen py-8 px-4 ">
   <div class="max-w-screen-xl mx-auto">
     <h1 class="text-3xl font-semibold text-center mb-8">みんなの推しアルバム</h1>
     <%= search_form_for @search, url:  public_albums_path do |f| %>
-    <div class="relative flex rounded-md">
-		<%= f.search_field :name_or_idol_name_or_user_name_cont, class: "w-[300px] py-3 px-4 pl-11 block border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400", placeholder: "入力してください" %>
-		<%= f.hidden_field :name %>
-		<ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
-        <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4">
-          <svg class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg>
+      <div class="relative flex rounded-md">
+        <div data-controller="autocomplete" data-autocomplete-url-value="/albums/search" role="combobox">
+		      <%= f.search_field :name_cont, data: { autocomplete_target: 'input' }, class: "w-[300px] py-3 px-4 pl-11 block border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400", placeholder: "入力してください" %>
+		      <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
+		      <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+          <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4">
+            <svg class="h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+          </div>
         </div>
-		<%= f.submit "検索", class: "ml-4 py-3 px-4 inline-flex flex-shrink-0 justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm" %>
-    </div>
-  <% end %>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-0 scroll-fade-in">
+		    <%= f.submit "検索", class: "ml-4 py-3 px-4 inline-flex flex-shrink-0 justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm" %>
+      </div>
+    <% end %>
+    <div class="grid grid-cols-1 mt-20 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-0 scroll-fade-in">
       <% @public_albums.each do |album| %>
         <div class="bg-pink-100 rounded-lg shadow-md overflow-hidden">
           <%= link_to idol_album_photos_path(idol_id: album.idol.id, album_id: album.id), data: { turbo: "false" } do %>

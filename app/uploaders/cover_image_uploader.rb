@@ -1,16 +1,10 @@
-# app/uploaders/cover_image_uploader.rb
-require 'open-uri'
-require 'uri'
+# frozen_string_literal: true
 
 class CoverImageUploader < CarrierWave::Uploader::Base
-  #include CarrierWave::MiniMagick
-  include Cloudinary::CarrierWave
+  include CarrierWave::MiniMagick
 
-  # Cloudinaryでの加工
-  version :face_centered do
-    process :convert_to_webp_and_resize
-    cloudinary_transformation format: 'webp', width: 400, height: 400, crop: :thumb, gravity: :face
-  end
+  # 画像リサイズ（800x800に合わせる）
+  # process resize_to_fit: [400, 400]
 
   # Choose what kind of storage to use for this uploader:
     #storage :file
@@ -27,14 +21,35 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     'no_image_gray.png'
   end
 
-  # Add a white list of extensions which are allowed to be uploaded.
+  process :auto_orient
+  def auto_orient
+    manipulate! do |img|
+      img.auto_orient
+      img
+    end
+  end
+
+  process scale: [400, 400]
+  def scale(width, height)
+    manipulate! do |img|
+      Rails.logger.debug { "Image path before resizing: #{img.path}" }
+      img.resize "#{width}x#{height}!"
+      Rails.logger.debug { "Image path after resizing: #{img.path}" }
+      img
+    rescue StandardError => e
+      Rails.logger.error "An error occurred: #{e.message}"
+      raise e
+    end
+  end
+
+  # 画像の拡張子を制限
   def extension_allowlist
     %w[jpg jpeg gif png HEIC heic heif HEIF webp]
   end
 
-  # Override the filename of the uploaded files:
+  # 一意のファイル名を生成
   def filename
-    original_filename.present? ? "#{secure_token}.#{file.extension}" : nil
+    "#{secure_token}.#{file.extension}" if original_filename
   end
 
   protected
@@ -44,27 +59,18 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
   end
 
-  private
+  # 🔥WebPに変換
+  process :convert_to_webp
 
-  # S3へのアップロードを行うafter_storeコールバック
-  after :store, :upload_to_s3
-
-  def upload_to_s3(file)
-    uploaded_file = file
-    cloudinary_url = url
-    s3_object_key = "#{store_dir}/#{uploaded_file.filename}" if uploaded_file.present?
-  
-    begin
-      URI.open(cloudinary_url) do |image|
-        uploader = CarrierWave::Storage::Fog::File.new(self, CarrierWave::Storage::Fog.new(self), s3_object_key)
-        uploader.store(image)
-      end
-  
-      model.update(image_url: uploader.url) # `image_url`はS3のパスを保存するための属性です
-    rescue OpenURI::HTTPError => e
-      Rails.logger.error "Cannot retrieve file from Cloudinary URL #{cloudinary_url}: #{e.message}"
-      # ここで適切なエラー処理を実装します。例えば、エラーをユーザーに通知したり、リトライロジックを追加したりすることができます。
+  def convert_to_webp
+    manipulate! do |img|
+      img.format 'webp'
+      img
     end
   end
   
+  # 🔥拡張子を.webpで保存
+  def filename
+    "#{super.chomp(File.extname(super))}.webp" if original_filename.present?
+  end
 end

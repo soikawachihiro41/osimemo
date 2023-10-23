@@ -2,7 +2,7 @@
 
 # Albumsコントローラはアルバム関連の操作を管理します。
 class AlbumsController < ApplicationController
-  before_action :login_required, except: %i[show public_index]
+  before_action :login_required, except: %i[show public_index search]
 
   # 自分用
   def index
@@ -54,6 +54,13 @@ class AlbumsController < ApplicationController
 
     flash[:notice] = t('albums.deleted')
     redirect_to mypages_path
+  end
+
+  def search
+    @public_albums  = Album.where("name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

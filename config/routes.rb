@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   resources :notification_settings, only: %i[new create edit update]
   resources :mypages, only: %i[index]
   resources :photos, only: %i[new create show edit update destroy]
-  resources :albums, only: %i[new create index edit update destroy show]
+  resources :albums, only: %i[new create index edit update destroy show] do
+    get :search, on: :collection
+  end
 
   resources :idols, only: %i[new create show edit update destroy] do
     resources :albums, only: [:show] do
