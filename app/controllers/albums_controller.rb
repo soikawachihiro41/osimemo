@@ -62,7 +62,9 @@ class AlbumsController < ApplicationController
     user_results = User.where("name LIKE ?", query).select(:id, :name)
     idol_results = Idol.where("name LIKE ?", query).select(:id, :name)
   
-    @results = album_results + user_results + idol_results
+    combined_results = album_results + user_results + idol_results
+
+    @results = combined_results.uniq { |record| record[:name] }
   
     respond_to do |format|
       format.js

@@ -1,6 +1,6 @@
 <!-- app/views/albums/_search.html.erb -->
 <% @results.each do |result| %>
-  <li class="w-80 flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-blue-200 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-blue-200 dark:hover:text-gray-300 relative z-10" role="option" data-autocomplete-value="<%= result[:id] %>" data-autocomplete-label="<%= result[:name] %>">
+  <li class="w-80 flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 bg-white-100 hover:bg-blue-200 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-blue-200 dark:hover:text-gray-300 relative z-10" role="option" data-autocomplete-value="<%= result[:id] %>" data-autocomplete-label="<%= result[:name] %>">
     <%= result[:name] %>
   </li>
 <% end %>
