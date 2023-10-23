@@ -57,11 +57,18 @@ class AlbumsController < ApplicationController
   end
 
   def search
-    @public_albums  = Album.where("name like ?", "%#{params[:q]}%")
+    query = "%#{params[:q]}%"
+    album_results = Album.where("name LIKE ?", query).select(:id, :name)
+    user_results = User.where("name LIKE ?", query).select(:id, :name)
+    idol_results = Idol.where("name LIKE ?", query).select(:id, :name)
+  
+    @results = album_results + user_results + idol_results
+  
     respond_to do |format|
       format.js
     end
   end
+  
 
   private
 

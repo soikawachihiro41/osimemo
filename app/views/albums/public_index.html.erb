@@ -6,7 +6,7 @@
     <%= search_form_for @search, url:  public_albums_path do |f| %>
       <div class="relative flex rounded-md">
         <div data-controller="autocomplete" data-autocomplete-url-value="/albums/search" role="combobox">
-		      <%= f.search_field :name_cont, data: { autocomplete_target: 'input' }, class: "w-[300px] py-3 px-4 pl-11 block border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400", placeholder: "入力してください" %>
+		      <%= f.search_field :name_or_idol_name_or_user_name_cont, data: { autocomplete_target: 'input' }, class: "w-[300px] py-3 px-4 pl-11 block border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400", placeholder: "入力してください" %>
 		      <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
 		      <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
           <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4">
