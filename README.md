@@ -61,7 +61,7 @@ Figma： https://www.figma.com/file/qRFv8pmmfvhrD6HxZXW2RB/%E6%8E%A8%E3%81%97%E3
 - [ ] 特に違和感を感じなかった
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/1ffbc74fcc9fb7e6c894824c233e40f1.png)](https://gyazo.com/1ffbc74fcc9fb7e6c894824c233e40f1)
+[![Image from Gyazo](https://i.gyazo.com/1ffbc74fcc9fb7e6c894824c233e40f1.webp)](https://gyazo.com/1ffbc74fcc9fb7e6c894824c233e40f1)
 
 ## 技術選定
 - Rails7

@@ -1,6 +1,6 @@
-<div class='align-items my-2  mx-auto opacity-0 scroll-fade-in'>
-  <div>
-    <%= image_tag "Angelina.png", class:'block mx-auto my-20 max-w-lg opacity-0 scroll-fade-in' %>
+<div class='align-items my-2 mx-auto opacity-0 scroll-fade-in'>
+  <div class="max-w-lg mx-auto">
+    <%= image_tag "Angelina.webp", class:'text-center mx-auto w-full block mx-auto my-20 opacity-0 scroll-fade-in' %>
   </div>
   <div class='text-center pt-18 mb-24'>
     <%= link_to 'みんなの推しアルバム', public_albums_path, class:'btn btn-primary', data: { turbo: false } %>
@@ -20,12 +20,12 @@
   <div class="mt-20 mb-10 pt-20 opacity-0 scroll-fade-in">
     <h1 class="md:text-base text-sm text-yellow-900 my-2 font-zenmaru text-center font-bold">使用方法</h1>
   </div>
-  <div class='text-sm mb-5 border-dotted border-2 border-yellow-700 rounded-box place-items-center'>
+  <div class='text-sm mb-5 border-dotted border-2 border-yellow-700 rounded-box place-items-center mx-auto w-11/12'>
     <div class='my-10 opacity-0 scroll-fade-in'>
       <div class='text-center text-lg text-yellow-900 my-2 font-zenmaru'>
         STEP 1
       </div>
-      <%= image_tag 'QR.png', class:'block mx-auto', size: '300x300' %>
+      <%= image_tag 'QR.webp', class:'block mx-auto', size: '300x300' %>
       <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
         <p>『osiMemories』をお友達追加して、LINE認証してね</p>
       </div>
@@ -37,7 +37,7 @@
       <div class='text-center text-lg text-yellow-900 my-2 font-zenmaru'>
         STEP 2
       </div>
-      <%= image_tag '登録1.png', class:'block mx-auto', size: '250x250' %>
+      <%= image_tag '登録1.webp', class:'block mx-auto', size: '250x250' %>
       <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
         <p>  <br>1: 推しアイドル登録<br>2: アルバムを作成<br>3: 写真登録<br>この順番で登録してね<br>※LINEのリッチメニューからも登録可能です!<br> osi sign up → album register → photo registerの順に登録してね</p>
       </div>
@@ -47,8 +47,8 @@
         STEP 3
       </div>
       <div class='align-items sm:flex-row items-center'>
-        <%= image_tag '通知.png', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
-        <%= image_tag '通知2.png', class:'block mx-auto', size: '250x250' %>
+        <%= image_tag '通知.webp', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
+        <%= image_tag '通知2.webp', class:'block mx-auto', size: '250x250' %>
       </div>
 
       <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
@@ -60,7 +60,7 @@
         🌸便利機能🌸
       </div>
       <div class='flex flex-col sm:flex-row items-center'>
-        <%= image_tag 'シャッフル.png', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
+        <%= image_tag 'シャッフル.webp', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
       </div>
       <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
         <p>🌟SHUFFLE MEMORIES機能🌟<br>このボタンを押すとあなたが登録した推しの写真がランダムで返ってくるよ！！<br>これで隙間時間に簡単に写真が振り返れるね</p>
@@ -68,8 +68,8 @@
     </div>
     <div class='mt-20 mb-5 opacity-0 scroll-fade-in'>
       <div class='flex flex-col sm:flex-row items-center'>
-        <%= image_tag '写真探す.png', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
-        <%= image_tag '撮影日入力後.png', class:'block mx-auto', size: '250x250' %>
+        <%= image_tag '写真探す.webp', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
+        <%= image_tag '撮影日入力後.webp', class:'block mx-auto', size: '250x250' %>
       </div>
       <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
         <p>🌟Find a photo機能🌟<br>このボタンを押すとあなた登録した写真の撮影日が簡単に探せます<br>例えば、「去年の推しの誕生日写真を探したい！！」そんな時に簡単探せます💕</p>
@@ -77,8 +77,8 @@
     </div>
     <div class='mt-20 mb-5 opacity-0 scroll-fade-in'>
       <div class='flex flex-col sm:flex-row items-center'>
-        <%= image_tag 'album.png', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
-        <%= image_tag 'album2.png', class:'block mx-auto', size: '250x250' %>
+        <%= image_tag 'album.webp', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
+        <%= image_tag 'album2.webp', class:'block mx-auto', size: '250x250' %>
       </div>
       <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
         <p>🌟アルバム公開機能🌟<br>あなたが作成したアルバムはみんなに公開することができるよ✨X（旧Twitter）に共有できるからみんなに推しを自慢しよう!!</p>
@@ -86,8 +86,8 @@
     </div>
     <div class='mt-20 mb-5 opacity-0 scroll-fade-in'>
       <div class='flex flex-col sm:flex-row items-center'>
-        <%= image_tag '公開.png', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
-        <%= image_tag '公開2.png', class:'block mx-auto', size: '250x250' %>
+        <%= image_tag '公開.webp', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
+        <%= image_tag '公開2.webp', class:'block mx-auto', size: '250x250' %>
       </div>
       <div class='text-center text-sm text-yellow-900 my-2 font-zenmaru'>
         <p>🌟同じ推しの人とアルバムを作ろう機能🌟<br>この機能は同じ推しの人とアルバムを一緒に作れる機能だよ<br><br>1.アルバム作成時に誰でも写真を追加できるようにすると公開するにチェック<br><br>2.これで他のユーザーは自身の写真登録ページから『みんなの公開アルバム』で追加したいアルバムが表示されるようになり、追加できるようになるよ！<br><br>これでLINEを交換しなくても写真を共有できるね</p>

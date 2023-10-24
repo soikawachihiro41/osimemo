@@ -18,7 +18,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    'no_image_gray.png'
+    'no_image_gray.webp'
   end
 
   process :auto_orient
@@ -44,7 +44,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
 
   # 画像の拡張子を制限
   def extension_allowlist
-    %w[jpg jpeg gif png HEIC heic heif HEIF webp]
+    %w[jpg jpeg gif webp HEIC heic heif HEIF webp]
   end
 
   # 一意のファイル名を生成
