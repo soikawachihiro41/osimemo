@@ -10,6 +10,6 @@ class Idol < ApplicationRecord
   validates :is_selected, inclusion: { in: [true, false] }
 
   def self.ransackable_attributes(auth_object = nil)
-    ["birth_date", "created_at", "id", "is_selected", "name", "updated_at"] # 検索可能な属性をここにリストします
+    %w[name] # 検索可能な属性をここにリストします
   end
 end

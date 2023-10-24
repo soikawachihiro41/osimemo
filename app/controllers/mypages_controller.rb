@@ -32,19 +32,4 @@ class MypagesController < ApplicationController
     render :index
   end
 
-  def notifications
-    render partial: 'mypages/notifications_content'
-  end
-
-  def chekigraph
-    render partial: 'mypages/chekigraph_content'
-  end
-
-  def members
-    render partial: 'mypages/members_content'
-  end
-
-  def profile
-    render partial: 'mypages/profile_content'
-  end
 end

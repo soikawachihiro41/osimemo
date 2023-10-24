@@ -1,18 +1,19 @@
-<div class='my-20 max-w-lg mx-auto opacity-0 scroll-fade-in'>
+<div class='align-items my-2  mx-auto opacity-0 scroll-fade-in'>
   <div>
-    <%= image_tag "Angelina.png", class:'block mx-auto' %>
+    <%= image_tag "Angelina.png", class:'block mx-auto my-20 max-w-lg opacity-0 scroll-fade-in' %>
   </div>
   <div class='text-center pt-18 mb-24'>
     <%= link_to 'みんなの推しアルバム', public_albums_path, class:'btn btn-primary', data: { turbo: false } %>
   </div>
-  <div class='text-sm mb-5 border-dotted border-2 border-yellow-700 rounded-lg shadow-lg p-4 place-items-center bg-white transform hover:scale-105 transition-transform duration-300 opacity-0 scroll-fade-in'>
+  <div class='text-sm mx-auto w-3/4 mb-5 border-dotted border-2 border-yellow-700 rounded-lg shadow-lg p-4 place-items-center bg-white transform hover:scale-105 transition-transform duration-300 opacity-0 scroll-fade-in'>
       <div class='text-center my-2'>
           <span class='text-lg text-yellow-900 font-zenmaru font-bold tracking-wide'>osiMemoriesとは</span>
           <div class="bg-yellow-700 h-1 w-24 rounded mt-2 mb-4 mx-auto"></div> <!-- 装飾の下線 -->
       </div>
       <p class='text-center font-zenmaru text-yellow-900'>
-          <br>あなたが愛する「推し」（お気に入りのキャラクター、ペット、恋人など）との思い出の写真をLINEbotでランダムに届けてくれるサービスです。<br><br>
-          自分でも忘れていた思い出の写真を届けてくれます。<br>
+          <br>仕事で疲れた時や落ち込んだ時に好きな人の写真を見てモチベーションを持ち直した経験ありませんか？<br>
+          <br>しかし、ついついお気に入りの写真もファルダに埋もれて撮ったことすら忘れてしまう。こんな経験、誰にでもあるはず<br>
+          <br>そんな悩み解決するため、サイトに写真を管理、定期的に撮った写真をLINEbotでランダムに届けてくれるようにして、管理を簡単にしてくれるサービスです。<br>
       </p>
   </div>
 
@@ -45,7 +46,7 @@
       <div class='text-center text-lg text-yellow-900 my-2 font-zenmaru'>
         STEP 3
       </div>
-      <div class='flex flex-col sm:flex-row items-center'>
+      <div class='align-items sm:flex-row items-center'>
         <%= image_tag '通知.png', class:'block mx-auto mb-4 sm:mb-0', size: '250x250' %>
         <%= image_tag '通知2.png', class:'block mx-auto', size: '250x250' %>
       </div>
