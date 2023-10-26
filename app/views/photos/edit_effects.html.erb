@@ -1,0 +1,10 @@
+<%= form_with(model: @photo, url: update_effects_photo_path(@photo), local: true) do |form| %>
+  <div class="field">
+    <%= form.label :effect, "エフェクト" %>
+    <%= form.select :effect, options_for_select([["エフェクト1", "effect1"], ["エフェクト2", "effect2"]]) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "適用" %>
+  </div>
+<% end %>

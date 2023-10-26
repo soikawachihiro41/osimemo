@@ -36,7 +36,8 @@ class PhotosController < ApplicationController
       redirect_to mypages_path, notice: t('photos.created')
     else
       set_albums  # ここで必要な変数を設定
-      flash.now[:danger] = @photo.errors.full_messages.to_sentence
+      error_message = @photo.errors.full_messages.first # 最初のエラーメッセージを取得
+      flash.now[:danger] = error_message
       render :new, status: :unprocessable_entity
     end
   end
@@ -65,7 +66,7 @@ class PhotosController < ApplicationController
     @photo.destroy
     redirect_to mypages_url(tab: 'photos'), notice: t('photos.deleted')
   end
-
+  
   private
 
   def set_photo
@@ -99,6 +100,6 @@ class PhotosController < ApplicationController
   end
 
   def photo_params
-    params.require(:photo).permit(:image, :body, :album_id, :capture_date, :tag_names)
-  end
+    params.require(:photo).permit(:image, :body, :album_id, :capture_date, :tag_names, :no_focus)
+  end  
 end

@@ -56,7 +56,6 @@ class Photo < ApplicationRecord
       photo_tags.build(tag_id: tag.id)
     end
   end
-  
 
   private
 

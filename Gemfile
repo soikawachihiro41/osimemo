@@ -52,15 +52,15 @@ gem 'line-bot-api'
 # 画像サイズ
 gem 'mini_magick'
 # ファイルのアップロード機能
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 1.3'
+gem 'cloudinary', '~> 1.16'
+
 # 画像メモリ対策
 gem 'posix-spawn'
 # AWS S3
 gem 'fog-aws'
 # AWS確認用
 gem 'aws-sdk-s3'
-# 画像加工機能
-gem 'cloudinary'
 # 検索機能追加
 gem 'ransack'
 # 環境変数を管理する

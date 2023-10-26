@@ -23,6 +23,11 @@
       </div>
 
       <div class="mb-4">
+        <%= f.label :no_focus, "フォーカスしない", class: "block text-lg text-rose-600 mb-2" %>
+        <%= f.check_box :no_focus, class: "form-checkbox w-5 h-5" %>
+      </div>
+
+      <div class="mb-4">
         <%= f.label :capture_date, "撮影日", class: "block text-lg text-rose-600 mb-2" %>
         <%= f.date_select :capture_date, {}, class: "form-input w-full p-2 border rounded-md custom-focus" %>
       </div>

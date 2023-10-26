@@ -21,6 +21,8 @@ ja:
     deleted: "写真が正常に削除されました。"
     unauthorized: "このアルバムは非公開です"
     no_permission: "権限がありません。"
+    image_blank: "画像を入力してください。"
+    extension_whitelist_error: "許可されていない拡張子のファイルです。"
   users:
     line_auth:
       success: "ログインに成功しました。"
@@ -34,3 +36,6 @@ ja:
     create:
       settings_saved: "通知設定が保存されました。"
     settings_saved: "設定が保存されました。"
+  errors:
+    messages:
+      extension_whitelist_error: "許可されていない拡張子のファイルです。"
