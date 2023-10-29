@@ -33,7 +33,7 @@ class CoverImageUploader < CarrierWave::Uploader::Base
     %w[jpg jpeg gif png HEIC heic heif HEIF webp]
   end
    # 一意のファイル名を生成
-   def filename
+  def filename
     "#{secure_token}.#{file.extension}" if original_filename
   end
 
