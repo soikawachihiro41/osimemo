@@ -22,12 +22,12 @@ CarrierWave.configure do |config|
     config.enable_processing = false if Rails.env.test?
   end
 
-  # Cloudinaryの設定
-  if Rails.env.production?
-    config.cloudinary_credentials = {
-      cloud_name: ENV['CLOUDINARY_CLOUD_NAME'],
-      api_key: ENV['CLOUDINARY_API_KEY'],
-      api_secret: ENV['CLOUDINARY_API_SECRET']
-    }
-  end
+  # # Cloudinaryの設定
+  # if Rails.env.production?
+  #   config.cloudinary_credentials = {
+  #     cloud_name: ENV['CLOUDINARY_CLOUD_NAME'],
+  #     api_key: ENV['CLOUDINARY_API_KEY'],
+  #     api_secret: ENV['CLOUDINARY_API_SECRET']
+  #   }
+  # end
 end
