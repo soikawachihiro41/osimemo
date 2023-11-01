@@ -30,8 +30,6 @@
       <p class="form-input w-full p-2 border rounded-md custom-focus"><%= @tag_names.join(", ") if @tag_names.present? %></p>
     </div>
 
-
-
     <div class="text-center mt-6">
       <%= link_to '編集', edit_photo_path(@photo), class: 'btn btn-primary' %>
       <%= button_to photo_path(@photo), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, form_class: 'inline' do %>
