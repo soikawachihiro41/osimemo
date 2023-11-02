@@ -6,10 +6,11 @@ class CoverImageUploader < CarrierWave::Uploader::Base
 
   # WebPへの変換
   process convert: 'webp'
-  cloudinary_transformation width: 800, height: 800, crop: :thumb, gravity: :faces, quality: "auto", fetch_format: "auto"
+  cloudinary_transformation width: 800, height: 800, crop: :thumb, gravity: :faces, quality: 'auto',
+                            fetch_format: 'auto'
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url(*args)
+  def default_url(*_args)
     ActionController::Base.helpers.asset_path('1.webp')
   end
 

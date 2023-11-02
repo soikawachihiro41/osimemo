@@ -69,7 +69,7 @@ gem 'gon'
 
 # バックグラウンド
 gem 'byebug'
-#管理者画面
+# 管理者画面
 gem 'activeadmin'
 gem 'devise'
 gem 'sassc'

@@ -9,11 +9,11 @@ class Idol < ApplicationRecord
   validates :birth_date, presence: true
   validates :is_selected, inclusion: { in: [true, false] }
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[name] # 検索可能な属性をここにリストします
   end
-  
+
   def self.today_birthday
-    where("birth_date = ?", Date.today)
+    where(birth_date: Time.zone.today)
   end
 end

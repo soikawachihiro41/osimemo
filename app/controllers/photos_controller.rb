@@ -31,18 +31,17 @@ class PhotosController < ApplicationController
     set_selected_album
     @photo = Photo.create_with_tags(@album, photo_params, current_user)
     @photo.save_tags(parsed_tag_list) if parsed_tag_list.present?
-  
+
     if @photo.save
       redirect_to mypages_path, notice: t('photos.created')
     else
-      set_albums  # ここで必要な変数を設定
+      set_albums # ここで必要な変数を設定
       error_message = @photo.errors.full_messages.first # 最初のエラーメッセージを取得
       flash.now[:danger] = error_message
       render :new, status: :unprocessable_entity
     end
   end
-  
-  
+
   def update
     set_selected_album
     if @photo.update_photo_and_tags(photo_params.except(:tag_names), parsed_tag_list)
@@ -66,7 +65,7 @@ class PhotosController < ApplicationController
     @photo.destroy
     redirect_to mypages_url(tab: 'photos'), notice: t('photos.deleted')
   end
-  
+
   private
 
   def set_photo
@@ -75,20 +74,20 @@ class PhotosController < ApplicationController
 
   def set_selected_album
     selected_album_id = params[:my_album_id].presence || params[:open_album_id].presence
-    
+
     unless selected_album_id
       redirect_to new_photo_path, alert: 'アルバムを選択してください'
       return
     end
-    
+
     @album = Album.find(selected_album_id)
   end
 
   def check_owner_or_uploader
     return if current_user.admin? || @photo.viewable_or_editable_by?(current_user)
-  
+
     redirect_to root_path, alert: t('photos.no_permission')
-  end  
+  end
 
   def set_albums
     @my_albums = Album.where(user_id: current_user.id)
@@ -101,5 +100,5 @@ class PhotosController < ApplicationController
 
   def photo_params
     params.require(:photo).permit(:image, :body, :album_id, :capture_date, :tag_names, :no_focus)
-  end  
+  end
 end

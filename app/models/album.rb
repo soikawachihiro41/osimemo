@@ -16,11 +16,11 @@ class Album < ApplicationRecord
     is_public || (user && user_id == user.id)
   end
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[name created_at id updated_at] + _ransackers.keys
   end
 
-  def self.ransackable_associations(auth_object = nil)
+  def self.ransackable_associations(_auth_object = nil)
     %w[idol user]
   end
 end

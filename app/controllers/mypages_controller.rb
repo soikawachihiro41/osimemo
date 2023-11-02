@@ -7,7 +7,7 @@ class MypagesController < ApplicationController
     @selected_tab = params[:tab] || 'photos'
     @idols = current_user.idols
     @notification_setting = current_user.notification_setting
-  
+
     if current_user.admin?
       @albums = Album.all
       @photos = Photo.all
@@ -31,5 +31,4 @@ class MypagesController < ApplicationController
     @selected_tab = 'photos'
     render :index
   end
-
 end

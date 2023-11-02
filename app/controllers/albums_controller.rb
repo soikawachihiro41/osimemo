@@ -37,8 +37,8 @@ class AlbumsController < ApplicationController
   def public_index
     @search = Album.ransack(params[:q])
     @public_albums = @search.result.includes(:idol, :user).where(is_public: true)
-  end  
-  
+  end
+
   def update
     @album = Album.find(params[:id])
     if @album.update(album_params)
@@ -58,19 +58,18 @@ class AlbumsController < ApplicationController
 
   def search
     query = "%#{params[:q]}%"
-    album_results = Album.where("name LIKE ?", query).select(:id, :name)
-    user_results = User.where("name LIKE ?", query).select(:id, :name)
-    idol_results = Idol.where("name LIKE ?", query).select(:id, :name)
-  
+    album_results = Album.where('name LIKE ?', query).select(:id, :name)
+    user_results = User.where('name LIKE ?', query).select(:id, :name)
+    idol_results = Idol.where('name LIKE ?', query).select(:id, :name)
+
     combined_results = album_results + user_results + idol_results
 
     @results = combined_results.uniq { |record| record[:name] }
-  
+
     respond_to do |format|
       format.js
     end
   end
-  
 
   private
 
