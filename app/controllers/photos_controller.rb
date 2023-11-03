@@ -76,7 +76,7 @@ class PhotosController < ApplicationController
     selected_album_id = params[:my_album_id].presence || params[:open_album_id].presence
 
     unless selected_album_id
-      redirect_to new_photo_path, alert: 'アルバムを選択してください'
+      redirect_to new_photo_path, alert: t('photos.select_album')
       return
     end
 

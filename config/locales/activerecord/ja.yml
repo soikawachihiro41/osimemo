@@ -23,6 +23,7 @@ ja:
     no_permission: "権限がありません。"
     image_blank: "画像を入力してください。"
     extension_whitelist_error: "許可されていない拡張子のファイルです。"
+    select_album: 'アルバムを選択してください'
   users:
     line_auth:
       success: "ログインに成功しました。"
