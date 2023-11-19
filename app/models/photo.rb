@@ -6,7 +6,7 @@ class Photo < ApplicationRecord
   has_many :photo_tags, dependent: :destroy
   has_many :tags, through: :photo_tags
   mount_uploader :image, CoverImageUploader
-
+  attr_accessor :overlay, :x_offset, :y_offset, :width, :height
   # validate :image_size_validation
   attr_accessor :image_secure_token
 
@@ -15,6 +15,15 @@ class Photo < ApplicationRecord
   validates :image, presence: true
   validates :capture_date, presence: true
   validates :body, length: { maximum: 800 }
+
+  def self.generate_composite_image_url(user_photo_public_id, heart_overlay_public_id = "bdae9b71a0f463997c342fb282c57426_t_utgw9l", x_offset = 0, y_offset = 0)
+    Cloudinary::Utils.cloudinary_url(user_photo_public_id, 
+      transformation: [
+        { width: 500, height: 500, crop: :fill },
+        { overlay: heart_overlay_public_id, width: 100, height: 100, x: x_offset, y: y_offset, gravity: :north_west }
+      ]
+    )
+  end
 
   def viewable_or_editable_by?(user)
     uploader_id == user.id

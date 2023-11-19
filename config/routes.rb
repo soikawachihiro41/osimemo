@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :image_composites, only: [:index, :new, :create] do
+    get 'edit', on: :member
+  end
   post '/callback', to: 'line_bot#callback'
   root 'home#top'
 

@@ -6,4 +6,5 @@ import "./image_upload"
 import "./fade_in"
 import "./hamburger-menu-toggle"
 import "./confirm_photo_upload.js"
+import "./image_composite.js"
 // application.js
