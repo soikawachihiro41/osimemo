@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../javascript/hamburger-menu-toggle.js"],
+  "sourcesContent": ["document.addEventListener(\"DOMContentLoaded\", function () {\n  const menuTrigger = document.querySelector('.menu-toggle');\n  const menu = document.querySelector('.full-screen-menu');\n  const swapOff = document.querySelector('.swap-off');\n  const swapOn = document.querySelector('.swap-on');\n\n  menuTrigger.addEventListener('change', function () {\n    if (this.checked) {\n      menu.style.transform = 'translateY(0)';\n      menu.classList.remove('hidden');\n      swapOff.classList.add('hidden');\n      swapOn.classList.remove('hidden');\n    } else {\n      menu.style.transform = 'translateY(-100%)';\n      swapOff.classList.remove('hidden');\n      swapOn.classList.add('hidden');\n    }\n  });\n});\n"],
+  "mappings": ";;AAAA,WAAS,iBAAiB,oBAAoB,WAAY;AACxD,UAAM,cAAc,SAAS,cAAc,cAAc;AACzD,UAAM,OAAO,SAAS,cAAc,mBAAmB;AACvD,UAAM,UAAU,SAAS,cAAc,WAAW;AAClD,UAAM,SAAS,SAAS,cAAc,UAAU;AAEhD,gBAAY,iBAAiB,UAAU,WAAY;AACjD,UAAI,KAAK,SAAS;AAChB,aAAK,MAAM,YAAY;AACvB,aAAK,UAAU,OAAO,QAAQ;AAC9B,gBAAQ,UAAU,IAAI,QAAQ;AAC9B,eAAO,UAAU,OAAO,QAAQ;AAAA,MAClC,OAAO;AACL,aAAK,MAAM,YAAY;AACvB,gBAAQ,UAAU,OAAO,QAAQ;AACjC,eAAO,UAAU,IAAI,QAAQ;AAAA,MAC/B;AAAA,IACF,CAAC;AAAA,EACH,CAAC;",
+  "names": []
+}

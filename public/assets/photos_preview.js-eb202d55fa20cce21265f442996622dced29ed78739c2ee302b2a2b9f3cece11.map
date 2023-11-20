@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../javascript/photos_preview.js"],
+  "sourcesContent": ["function displayImagePreview(input) {\n  const file = input.files[0];\n  if (file) {\n    const reader = new FileReader();\n\n    reader.onload = function (event) {\n      const preview = document.getElementById('image-preview');\n      preview.src = event.target.result;\n      preview.style.display = 'block';\n    };\n\n    reader.readAsDataURL(file);\n  }\n}\n\nwindow.displayImagePreview = displayImagePreview;\n"],
+  "mappings": ";;AAAA,WAAS,oBAAoB,OAAO;AAClC,UAAM,OAAO,MAAM,MAAM,CAAC;AAC1B,QAAI,MAAM;AACR,YAAM,SAAS,IAAI,WAAW;AAE9B,aAAO,SAAS,SAAU,OAAO;AAC/B,cAAM,UAAU,SAAS,eAAe,eAAe;AACvD,gBAAQ,MAAM,MAAM,OAAO;AAC3B,gBAAQ,MAAM,UAAU;AAAA,MAC1B;AAEA,aAAO,cAAc,IAAI;AAAA,IAC3B;AAAA,EACF;AAEA,SAAO,sBAAsB;",
+  "names": []
+}

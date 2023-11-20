@@ -1,55 +1,51 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const imageUpload = document.getElementById('image-upload');
-  const overlayOptions = document.getElementById('overlay-options');
+  // 既存の要素の取得
   const overlayInput = document.getElementById('overlay');
   const xOffsetInput = document.getElementById('x-offset');
   const yOffsetInput = document.getElementById('y-offset');
   const widthInput = document.getElementById('width');
   const heightInput = document.getElementById('height');
-  const previewContainer = document.getElementById('image-preview-container'); // 画像プレビューの表示場所
+  const previewContainer = document.getElementById('image-preview-container');
+  let heartStampAdded = false;
 
-  // 画像アップロード時の処理
-  imageUpload.addEventListener('change', function (event) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const preview = document.createElement('img');
-      preview.src = e.target.result;
-      preview.style.width = '800px'; // 画像の幅を800pxに設定
-      preview.style.height = '800px'; // 画像の高さを800pxに設定
-      previewContainer.innerHTML = '';
-      previewContainer.appendChild(preview);
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  });
+  // ハートスタンプのパスを取得
+  const heartStampPath = document.getElementById('image-container').dataset.heartStampPath;
 
-  let heartStampAdded = false; // ハートのスタンプが追加されているかどうかを追跡するフラグ
-
-  document.getElementById('toggle-heart-stamp').addEventListener('click', function () {
+  // ハートのスタンプを追加/削除する関数
+  function toggleHeartStamp() {
     const previewImage = document.querySelector('#image-preview-container img');
     if (!heartStampAdded && previewImage) {
       // ハートのスタンプを追加
       const heartStamp = document.createElement('img');
       heartStamp.classList.add('draggable');
-      heartStamp.classList.add('cursor-move'); // Tailwind CSSのクラスを追加
-      heartStamp.src = 'https://res.cloudinary.com/di6l3gth2/image/upload/v1700377582/bdae9b71a0f463997c342fb282c57426_t_utgw9l-%E3%83%8F%E3%83%BC%E3%83%88_fupvnh.png';
+      heartStamp.src = heartStampPath; // 修正されたパス
       heartStamp.style.position = 'absolute';
       heartStamp.style.left = '50%';
       heartStamp.style.top = '50%';
       heartStamp.style.transform = 'translate(-50%, -50%)';
-      heartStamp.id = 'heart-stamp'; // IDを追加して後で参照しやすくする
+      heartStamp.id = 'heart-stamp';
       previewImage.parentNode.appendChild(heartStamp);
       heartStampAdded = true;
+
+      // オーバーレイのURLを設定
+      overlayInput.value = heartStampPath;
+      widthInput.value = 50; // ハートのスタンプの幅
+      heightInput.value = 50; // ハートのスタンプの高さ
     } else if (heartStampAdded) {
       // ハートのスタンプを削除
       const heartStamp = document.getElementById('heart-stamp');
-      if (heartStamp) {
-        heartStamp.parentNode.removeChild(heartStamp);
-      }
+      heartStamp.parentNode.removeChild(heartStamp);
       heartStampAdded = false;
+
+      // オーバーレイのURLをクリア
+      overlayInput.value = '';
     }
+  }
 
-  });
+  // ハートのスタンプ追加/削除ボタンのイベントリスナー
+  document.getElementById('toggle-heart-stamp').addEventListener('click', toggleHeartStamp);
 
+  // interact.jsを使用してハートのスタンプをドラッグ可能にする
   interact('.draggable').draggable({
     listeners: {
       move(event) {
@@ -64,27 +60,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         xOffsetInput.value = x;
         yOffsetInput.value = y;
-      }
-    }
-  });
-
-  // リサイズ可能な要素を設定
-  interact('.resizable').resizable({
-    edges: { left: true, right: true, bottom: true, top: true },
-    listeners: {
-      move(event) {
-        let { x, y } = event.target.dataset;
-
-        x = (parseFloat(x) || 0) + event.deltaRect.left;
-        y = (parseFloat(y) || 0) + event.deltaRect.top;
-
-        Object.assign(event.target.style, {
-          width: `${event.rect.width}px`,
-          height: `${event.rect.height}px`,
-          transform: `translate(${x}px, ${y}px)`
-        });
-
-        Object.assign(event.target.dataset, { x, y });
       }
     }
   });

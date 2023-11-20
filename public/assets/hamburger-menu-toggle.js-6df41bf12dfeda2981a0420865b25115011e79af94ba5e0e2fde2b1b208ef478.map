@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../javascript/hamburger-menu-toggle.js"],
+  "sourcesContent": ["document.addEventListener(\"DOMContentLoaded\", function () {\n  const menuTrigger = document.querySelector('.menu-trigger input[type=\"checkbox\"]');\n  const menu = document.querySelector('.full-screen-menu');\n\n  menuTrigger.addEventListener('change', function () {\n    if (this.checked) {\n      menu.style.transform = 'translateY(0)'; // \u30E1\u30CB\u30E5\u30FC\u3092\u4E0B\u306B\u79FB\u52D5\n      menu.classList.remove('hidden');\n    } else {\n      menu.style.transform = 'translateY(-100%)'; // \u30E1\u30CB\u30E5\u30FC\u3092\u4E0A\u306B\u79FB\u52D5\n    }\n  });\n});\n"],
+  "mappings": ";;AAAA,WAAS,iBAAiB,oBAAoB,WAAY;AACxD,UAAM,cAAc,SAAS,cAAc,sCAAsC;AACjF,UAAM,OAAO,SAAS,cAAc,mBAAmB;AAEvD,gBAAY,iBAAiB,UAAU,WAAY;AACjD,UAAI,KAAK,SAAS;AAChB,aAAK,MAAM,YAAY;AACvB,aAAK,UAAU,OAAO,QAAQ;AAAA,MAChC,OAAO;AACL,aAAK,MAAM,YAAY;AAAA,MACzB;AAAA,IACF,CAAC;AAAA,EACH,CAAC;",
+  "names": []
+}

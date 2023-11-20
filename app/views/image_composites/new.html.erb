@@ -1,19 +1,26 @@
-<% @Photo.each do |image| %>
-  <div class="image-item">
-    <%= image_tag image.url %>
-    <button type="button" class="select-image" data-image-id="<%= image.id %>">この画像を選択</button>
-  </div>
-<% end %>
+<% if @selected_photo.present? %>
+  <%= form_for :composite, url: image_composites_path, html: { multipart: true, id: 'composite-form' } do |f| %>
+    <%= f.hidden_field :photo_id, value: @selected_photo.id, id: 'selected-photo-id' %>
 
-<%# <%= form_for @photo, url: image_composites_path, html: { multipart: true, id: 'composite-form', data: { turbo: false } } do |f| %>
-  <%# <%= f.file_field :image, id: 'image-upload' %>
-  <%# <div id="image-preview-container"></div> <!-- 画像プレビュー表示用のコンテナ -->
-  <button type="button" id="toggle-heart-stamp">ハートのスタンプを追加/削除</button>
-  <!-- JavaScriptで操作するための隠しフィールド -->
-  <%= f.hidden_field :overlay, id: 'overlay' %>
-  <%# <%= f.hidden_field :x_offset, id: 'x-offset' %>
-  <%# <%= f.hidden_field :y_offset, id: 'y-offset' %>
-  <%# <%= f.hidden_field :width, id: 'width' %>
-  <%# <%= f.hidden_field :height, id: 'height' %>
-  <%# <%= f.submit "合成" %>
-<%# <% end %> %> %> %> %> %> %> %> %> %>
+    <!-- 画像のパスをデータ属性として埋め込む -->
+    <div id="image-container" data-heart-stamp-path="<%= asset_path('heart1.webp') %>"></div>
+
+    <!-- 画像プレビュー表示用のコンテナ -->
+    <div id="image-preview-container">
+      <%= image_tag @selected_photo.image.url, class: 'w-full h-auto' %>
+    </div>
+
+    <!-- ハートスタンプのトグルボタン -->
+    <button type="button" id="toggle-heart-stamp">ハートのスタンプを追加/削除</button>
+
+    <!-- JavaScriptで操作するための隠しフィールド -->
+    <%= f.hidden_field :overlay, id: 'overlay' %>
+    <%= f.hidden_field :x_offset, id: 'x-offset' %>
+    <%= f.hidden_field :y_offset, id: 'y-offset' %>
+    <%= f.hidden_field :width, id: 'width' %>
+    <%= f.hidden_field :height, id: 'height' %>
+    <%= f.submit "合成" %>
+  <% end %>
+<% else %>
+  <p>写真が選択されていません。</p>
+<% end %>

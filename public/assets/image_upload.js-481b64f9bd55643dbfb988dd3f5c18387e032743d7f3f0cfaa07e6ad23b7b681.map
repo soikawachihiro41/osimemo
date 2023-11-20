@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../javascript/image_upload.js"],
+  "sourcesContent": ["document.addEventListener(\"DOMContentLoaded\", function () {\n  const imageInput = document.getElementById(\"profile_image_input\");\n  const imagePreview = document.getElementById(\"profile_image_preview\");\n\n  if (imageInput && imagePreview) {\n    imageInput.addEventListener(\"change\", function () {\n      const file = this.files[0];\n      if (file) {\n        const reader = new FileReader();\n        reader.addEventListener(\"load\", function () {\n          imagePreview.setAttribute(\"src\", this.result);\n        });\n        reader.readAsDataURL(file);\n      }\n    });\n  } else {\n    console.error('Required elements are not found in the DOM.');\n  }\n});\n"],
+  "mappings": ";;AAAA,WAAS,iBAAiB,oBAAoB,WAAY;AACxD,UAAM,aAAa,SAAS,eAAe,qBAAqB;AAChE,UAAM,eAAe,SAAS,eAAe,uBAAuB;AAEpE,QAAI,cAAc,cAAc;AAC9B,iBAAW,iBAAiB,UAAU,WAAY;AAChD,cAAM,OAAO,KAAK,MAAM,CAAC;AACzB,YAAI,MAAM;AACR,gBAAM,SAAS,IAAI,WAAW;AAC9B,iBAAO,iBAAiB,QAAQ,WAAY;AAC1C,yBAAa,aAAa,OAAO,KAAK,MAAM;AAAA,UAC9C,CAAC;AACD,iBAAO,cAAc,IAAI;AAAA,QAC3B;AAAA,MACF,CAAC;AAAA,IACH,OAAO;AACL,cAAQ,MAAM,6CAA6C;AAAA,IAC7D;AAAA,EACF,CAAC;",
+  "names": []
+}

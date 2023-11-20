@@ -49,7 +49,7 @@ gem 'rails-i18n'
 # API
 gem 'line-bot-api'
 
-# 画像サイズ
+# 画像合成用
 gem 'mini_magick'
 # ファイルのアップロード機能
 gem 'carrierwave', '~> 1.3'

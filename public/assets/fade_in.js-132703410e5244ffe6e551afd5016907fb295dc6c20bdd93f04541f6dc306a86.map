@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../javascript/fade_in.js"],
+  "sourcesContent": ["function setUpFadeIn() {\n  let targets = document.querySelectorAll('.scroll-fade-in');\n\n  let fadeInObserver = new IntersectionObserver((entries, observer) => {\n    entries.forEach(entry => {\n      if (entry.isIntersecting) {\n        entry.target.classList.remove('opacity-0');\n        entry.target.classList.add('opacity-100', 'transition-opacity', 'duration-1000', 'ease-out');\n        observer.unobserve(entry.target);\n      }\n    });\n  });\n\n  targets.forEach(target => {\n    fadeInObserver.observe(target);\n  });\n}\n\ndocument.addEventListener(\"DOMContentLoaded\", setUpFadeIn);\ndocument.addEventListener(\"turbolinks:load\", setUpFadeIn);\n"],
+  "mappings": ";;AAAA,WAAS,cAAc;AACrB,QAAI,UAAU,SAAS,iBAAiB,iBAAiB;AAEzD,QAAI,iBAAiB,IAAI,qBAAqB,CAAC,SAAS,aAAa;AACnE,cAAQ,QAAQ,WAAS;AACvB,YAAI,MAAM,gBAAgB;AACxB,gBAAM,OAAO,UAAU,OAAO,WAAW;AACzC,gBAAM,OAAO,UAAU,IAAI,eAAe,sBAAsB,iBAAiB,UAAU;AAC3F,mBAAS,UAAU,MAAM,MAAM;AAAA,QACjC;AAAA,MACF,CAAC;AAAA,IACH,CAAC;AAED,YAAQ,QAAQ,YAAU;AACxB,qBAAe,QAAQ,MAAM;AAAA,IAC/B,CAAC;AAAA,EACH;AAEA,WAAS,iBAAiB,oBAAoB,WAAW;AACzD,WAAS,iBAAiB,mBAAmB,WAAW;",
+  "names": []
+}
