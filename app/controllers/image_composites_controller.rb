@@ -10,7 +10,6 @@ class ImageCompositesController < ApplicationController
     end
   end
     
-
   def create
     @photo = Photo.find(params[:composite][:photo_id])
     if @photo.present?
@@ -63,7 +62,6 @@ class ImageCompositesController < ApplicationController
       convert << "-composite"
       convert << output_path
     end
-  
     return output_path if File.exist?(output_path)
   end
 end  
