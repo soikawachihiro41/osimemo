@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
       overlayInput.value = '';
     }
   }
-
   // ハートのスタンプ追加/削除ボタンのイベントリスナー
   document.getElementById('toggle-heart-stamp').addEventListener('click', toggleHeartStamp);
 
