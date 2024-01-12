@@ -23,29 +23,29 @@
 
 # 主な機能
 
-<br>ログイン（LINEログイン機能
-<br>推し（新規作成、編集、詳細、削除、一覧表示）</br>
-・写真（新規作成、編集、詳細、削除、一覧表示）
-・推し別アルバム機能（新規作成、編集、詳細、削除、一覧表示）
-・タグ付け機能
-・ライン連携
-・ランダム通知
-・Flex Message作成
-・リッチメニュー作成
-・リッチメニューからのSHUFFLE MEMORIES機能（自身の投稿した写真がpushをするとランダムで写真が返ってくる）
-・リッチメニューからのFind a photo機能（撮影日検索）
-・ソーシャルシェア機能（twitterシェア機能）
-・OGPの追加
-・みんなで作る推しアルバム
-・利用規約、プライバシーポリシー
-・googleアナリティクス
-・Googleフォント追加
-・LINE Front-end Framework
-・Heroku Scheduler
-・Stimulus Autocomplete（Rails7）を使用して検索機能追加します。
-・推しの誕生日通知
-・独自ドメイン
-・cloudinary（フェイスフォーカス機能、画像保存先）
+<br>・ログイン（LINEログイン機能
+<br>・推し（新規作成、編集、詳細、削除、一覧表示）
+<br>・写真（新規作成、編集、詳細、削除、一覧表示）
+<br>・推し別アルバム機能（新規作成、編集、詳細、削除、一覧表示）
+<br>・タグ付け機能
+<br>・ライン連携
+<br>・ランダム通知
+<br>・Flex Message作成
+<br>・リッチメニュー作成
+<br>・リッチメニューからのSHUFFLE MEMORIES機能（自身の投稿した写真がpushをするとランダムで写真が返ってくる）
+<br>・リッチメニューからのFind a photo機能（撮影日検索）
+<br>・ソーシャルシェア機能（twitterシェア機能）
+<br>・OGPの追加
+<br>・みんなで作る推しアルバム
+<br>・利用規約、プライバシーポリシー
+<br>・googleアナリティクス
+<br>・Googleフォント追加
+<br>・LINE Front-end Framework
+<br>・Heroku Scheduler
+<br>・Stimulus Autocomplete（Rails7）を使用して検索機能追加します。
+<br>・推しの誕生日通知
+<br>・独自ドメイン
+<br>・cloudinary（フェイスフォーカス機能、画像保存先）</br>
 
 ## 画面遷移図
 Figma： https://www.figma.com/file/qRFv8pmmfvhrD6HxZXW2RB/%E6%8E%A8%E3%81%97%E3%83%A1%E3%83%A2%E3%83%AA%E3%83%BC%E3%82%BA%EF%BC%88%E4%BB%AE%EF%BC%89?type=design&node-id=13%3A1033&mode=design&t=I7Rw2a3wdbh54QNf-1
