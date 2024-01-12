@@ -1,6 +1,8 @@
 <div align="center">
   <h1>osiMemories</h1>
-  
+  <img width="749" alt="placeholder" src="https://github.com/soikawachihiro41/osimemo/blob/main/app/assets/images/3.webp">
+</div>
+
 ## サービスURL
 https://www.osimemories.com/
 ## サービス概要
