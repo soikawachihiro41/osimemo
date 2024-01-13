@@ -27,9 +27,9 @@ https://www.osimemories.com/
 　ランダム通知機能により、予期せぬタイミングで推しの写真が届くサプライズ感、ユーザーが自身の推しとの思い出を自由に管理・共有できる自由度
 
 ## 使い方
-| 準備：QRコードから友だち追加します。 | 1. トーク画面からアプリを開きます。 | 2. リッチメニューの使い方ボタンを押すとアプリの使い方が表示されます。 |
+| STEP 1 準備：QRコードから友だち追加します。 | STEP 2 1: 推しアイドル登録 2: アルバムを作成 3: 写真登録 この順番で登録してね | STEP 3 お届けして欲しい時間帯を選んでね ワクワク感を楽しんで欲しいので、何時に届くかはお楽しみ！！ |
 | ---- | ---- | ---- |
-| <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/QR.webp" width="500x500"> | <img src="https://github.com/suzuyu0115/meshitelog/assets/113349377/453c5080-79f7-4ce3-a116-d62ca09a4ecd" width="500x500"> | <img src="https://github.com/suzuyu0115/meshitelog/assets/113349377/43f711de-e87e-4968-b9df-16e1bf9af0f3" width="500x500"> |
+| <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/QR.webp" width="500x500"> | <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/登録1.webp" width="500x500"> | <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/%E9%80%9A%E7%9F%A52.webp" width="500x500"> |
 
 | 3.アプリ上から飯テロをします | 4.送り相手に画像付きの飯テロが届きます。 | Xシェアボタンを押すと飯画像付きのポストができます。　|
 | ---- | ---- | ---- |
