@@ -26,6 +26,15 @@ https://www.osimemories.com/
 ・どこが売りになるか、差別化ポイントになるか
 　ランダム通知機能により、予期せぬタイミングで推しの写真が届くサプライズ感、ユーザーが自身の推しとの思い出を自由に管理・共有できる自由度
 
+## 使い方
+| 準備：QRコードから友だち追加します。 | 1. トーク画面からアプリを開きます。 | 2. リッチメニューの使い方ボタンを押すとアプリの使い方が表示されます。 |
+| ---- | ---- | ---- |
+| <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/QR.webp" width="500x500"> | <img src="https://github.com/suzuyu0115/meshitelog/assets/113349377/453c5080-79f7-4ce3-a116-d62ca09a4ecd" width="500x500"> | <img src="https://github.com/suzuyu0115/meshitelog/assets/113349377/43f711de-e87e-4968-b9df-16e1bf9af0f3" width="500x500"> |
+
+| 3.アプリ上から飯テロをします | 4.送り相手に画像付きの飯テロが届きます。 | Xシェアボタンを押すと飯画像付きのポストができます。　|
+| ---- | ---- | ---- |
+| <img src="https://github.com/suzuyu0115/meshitelog/assets/113349377/b273aea0-e67e-484e-b88a-72948cd52605" width="500x500"> | <img src="https://github.com/suzuyu0115/meshitelog/assets/113349377/9fdf4655-219d-4d47-a13d-82371228f4a8" width="500x500"> | <img src="https://github.com/suzuyu0115/meshitelog/assets/113349377/65b979c4-7867-46b1-aa59-c05d88a771d4" width="500x500"> |
+
 # 主な機能
 
 - ログイン（LINEログイン機能）
