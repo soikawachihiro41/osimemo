@@ -27,7 +27,7 @@ https://www.osimemories.com/
 　ランダム通知機能により、予期せぬタイミングで推しの写真が届くサプライズ感、ユーザーが自身の推しとの思い出を自由に管理・共有できる自由度
 
 ## 使い方
-| STEP1 <br> 準備：QRコードから友だち追加します。</br> | STEP2 <br>1: 推しアイドル登録</br><br>2: アルバムを作成</br><br>3: 写真登録 この順番で登録してね</br> | STEP 3 <br>お届けして欲しい時間帯を選んでね ワクワク感を楽しんで欲しいので、何時に届くかはお楽しみ！！</br> |
+| STEP1 <br> 準備：QRコードから友だち追加します。</br> | STEP2 <br>1: 推しアイドル登録</br>2: アルバムを作成</br>3: 写真登録 この順番で登録してね</br> | STEP 3 <br>お届けして欲しい時間帯を選んでね ワクワク感を楽しんで欲しいので、何時に届くかはお楽しみ！！</br> |
 | ---- | ---- | ---- |
 | <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/QR.webp" width="500x500"> | <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/登録1.webp" width="500x500"> | <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/%E9%80%9A%E7%9F%A52.webp" width="500x500"> |
 
