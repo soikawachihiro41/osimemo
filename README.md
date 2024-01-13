@@ -34,7 +34,7 @@ https://www.osimemories.com/
 
 ## 🌸便利機能🌸
 
-|🌟SHUFFLE<br>MEMORIES機能🌟<br><br>このボタンを押すとあなたが登録した推しの写真がランダムで返ってくるよ！！<br>これで隙間時間に簡単に写真が振り返れるね</br>|🌟Find a photo機能🌟<br><br>このボタンを押すとあなた登録した写真の撮影日が簡単に探せます<br>例えば、「去年の推しの誕生日写真を探したい！！」そんな時に簡単探せます💕</br>| 🌟アルバム公開機能🌟<br><br>あなたが作成したアルバムはみんなに公開することができるよ✨X（旧Twitter）に共有できるからみんなに推しを自慢しよう!!</br>|
+|🌟SHUFFLE<br>MEMORIES機能🌟<br><br>このボタンを押すとあなたが登録した推しの写真がランダムで返ってくるよ！！<br>これで隙間時間に簡単に写真が振り返れるね</br>|🌟Find a photo機能🌟<br><br>このボタンを押すとあなた登録した写真の撮影日が簡単に探せます<br>例えば、「去年の推しの誕生日写真を探したい！！」そんな時に簡単探せます💕</br>| 🌟アルバム公開機能🌟<br><br>あなたが作成したアルバムはみんなに公開することができるよ✨<br>X（旧Twitter）に共有できるからみんなに推しを自慢しよう!!</br>|
 | ---- | ---- | ---- |
 | <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/%E3%82%B7%E3%83%A3%E3%83%83%E3%83%95%E3%83%AB.webp" width="500x500"> | <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/%E5%86%99%E7%9C%9F%E6%8E%A2%E3%81%99.webp" width="500x500"> | <img src="https://raw.githubusercontent.com/soikawachihiro41/osimemo/main/app/assets/images/album.webp" width="500x500"> |
 
