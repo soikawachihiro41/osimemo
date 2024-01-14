@@ -1,6 +1,6 @@
 <div align="center">
   <h1>osiMemories</h1>
-  <img width="749" alt="placeholder" src="https://github.com/soikawachihiro41/osimemo/blob/main/app/assets/images/3.webp">
+  <img width="500x500" alt="placeholder" src="https://github.com/soikawachihiro41/osimemo/blob/main/app/assets/images/3.webp">
 </div>
 
 ## サービスURL
